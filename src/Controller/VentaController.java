@@ -5,42 +5,19 @@
  */
 package Controller;
 
-import Model.BDModel;
-import Model.DAOModel;
+import Model.Conexion;
 import Model.VentaModel;
 import java.util.ArrayList;
+import Model.DAO;
 
 /**
  *
  * @author manuel
  */
-public class VentaController extends VentaModel implements DAOModel {
-    private BDModel conexion;
+public class VentaController  {
+    private VentaModel venta;
     public VentaController(){
-        super();
+        venta= new VentaModel();
     }
-    @Override
-    public Object get(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ArrayList<Object> getList(String query) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void remove(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void update(Object entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void create(Object entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }

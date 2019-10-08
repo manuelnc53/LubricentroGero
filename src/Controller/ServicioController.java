@@ -5,43 +5,21 @@
  */
 package Controller;
 
-import Model.BDModel;
-import Model.DAOModel;
+import Model.Conexion;
 import Model.ServicioModel;
 import java.util.ArrayList;
+import Model.DAO;
 
 /**
  *
  * @author manuel
  */
-public class ServicioController extends ServicioModel implements DAOModel {
-    private BDModel conexion;
+public class ServicioController {
+
+    private ServicioModel servicio;
     public ServicioController(){
-        super();
+        servicio= new ServicioModel();
     }
-    @Override
-    public Object get(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ArrayList<Object> getList(String query) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void remove(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void update(Object entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void create(Object entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     
 }

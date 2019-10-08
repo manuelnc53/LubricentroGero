@@ -3,22 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package Model;
 
-import Model.Conexion;
-import Model.PedidoModel;
 import java.util.ArrayList;
-import Model.DAO;
 
 /**
  *
  * @author manuel
  */
-public class PedidoController  {
-    private PedidoModel pedido;
-    public PedidoController(){
-        pedido= new PedidoModel();
-    }
+public interface DAO<T> {
     
+    public boolean create(T dato);
+    
+    public T read(Long id);
+    
+    public boolean update(T dato);
+    
+    public boolean delete(Long id);
     
 }

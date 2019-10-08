@@ -12,10 +12,10 @@ import java.sql.SQLException;
  *
  * @author manuel
  */
-public class BDModel {
+public class Conexion {
     private static Connection conexion;
     
-    private BDModel(){
+    private Conexion(){
         
         /**IMPLEMENTAR SINGLETON**/
     }
@@ -23,7 +23,7 @@ public class BDModel {
     
     public static Connection getConnection (){
         if (conexion == null){
-             new BDModel();
+             new Conexion();
         }
         return conexion;
     }
