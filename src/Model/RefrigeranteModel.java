@@ -29,4 +29,9 @@ public class RefrigeranteModel extends ProductoModel {
     }
     
     
+    public RefrigeranteModel clone(){
+        RefrigeranteModel clon= new RefrigeranteModel();
+        clon.setLitros(this.litros);
+        return clon;
+    }
 }
