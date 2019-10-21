@@ -3,26 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/manuel/NetBeansProjects/LubricentroGero/src/Model/EstadoModel.java</file>
-            <file>file:/home/manuel/NetBeansProjects/LubricentroGero/src/Model/ServicioModel.java</file>
-            <file>file:/home/manuel/NetBeansProjects/LubricentroGero/src/Controller/CompraController.java</file>
-            <file>file:/home/manuel/NetBeansProjects/LubricentroGero/src/Controller/VentaController.java</file>
-            <file>file:/home/manuel/NetBeansProjects/LubricentroGero/src/Controller/AceiteController.java</file>
-            <file>file:/home/manuel/NetBeansProjects/LubricentroGero/src/Model/AceiteModel.java</file>
-            <file>file:/home/manuel/NetBeansProjects/LubricentroGero/src/Controller/RefrigeranteController.java</file>
-            <file>file:/home/manuel/NetBeansProjects/LubricentroGero/src/Controller/VehiculoController.java</file>
-            <file>file:/home/manuel/NetBeansProjects/LubricentroGero/src/Model/ServicioEnumModel.java</file>
-            <file>file:/home/manuel/NetBeansProjects/LubricentroGero/src/Controller/PedidoController.java</file>
-            <file>file:/home/manuel/NetBeansProjects/LubricentroGero/src/Controller/ServicioController.java</file>
-            <file>file:/home/manuel/NetBeansProjects/LubricentroGero/src/Controller/Item_de_VentaController.java</file>
-            <file>file:/home/manuel/NetBeansProjects/LubricentroGero/src/Controller/ClienteController.java</file>
-            <file>file:/home/manuel/NetBeansProjects/LubricentroGero/src/Controller/LiquidoDeFrenoController.java</file>
-            <file>file:/home/manuel/NetBeansProjects/LubricentroGero/src/Controller/EmpleadoController.java</file>
-            <file>file:/home/manuel/NetBeansProjects/LubricentroGero/src/Controller/ProveedorController.java</file>
-            <file>file:/home/manuel/NetBeansProjects/LubricentroGero/src/Controller/ProductoController.java</file>
-            <file>file:/home/manuel/NetBeansProjects/LubricentroGero/src/Controller/OrdenController.java</file>
-            <file>file:/home/manuel/NetBeansProjects/LubricentroGero/src/Model/ResponsabilidadModel.java</file>
-            <file>file:/home/manuel/NetBeansProjects/LubricentroGero/src/Model/AceiteDAO.java</file>
+            <file>file:/C:/Users/luisr/OneDrive/Documentos/NetBeansProjects/LubricentroGero/LubricentroGero/src/View/VentaView.java</file>
+            <file>file:/C:/Users/luisr/OneDrive/Documentos/NetBeansProjects/LubricentroGero/LubricentroGero/src/Controller/ServicioController.java</file>
+            <file>file:/C:/Users/luisr/OneDrive/Documentos/NetBeansProjects/LubricentroGero/LubricentroGero/src/Model/ClienteDAO.java</file>
+            <file>file:/C:/Users/luisr/OneDrive/Documentos/NetBeansProjects/LubricentroGero/LubricentroGero/src/Model/ServicioModel.java</file>
+            <file>file:/C:/Users/luisr/OneDrive/Documentos/NetBeansProjects/LubricentroGero/LubricentroGero/src/Model/LiquidoDeFrenoDAO.java</file>
+            <file>file:/C:/Users/luisr/OneDrive/Documentos/NetBeansProjects/LubricentroGero/LubricentroGero/src/Model/ServicioDAO.java</file>
+            <file>file:/C:/Users/luisr/OneDrive/Documentos/NetBeansProjects/LubricentroGero/LubricentroGero/src/Controller/ClienteController.java</file>
         </group>
     </open-files>
 </project-private>

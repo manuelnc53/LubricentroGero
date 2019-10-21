@@ -9,6 +9,8 @@ import Model.Conexion;
 import Model.ProductoModel;
 import java.util.ArrayList;
 import Model.DAO;
+import Model.ProductoDAO;
+import java.util.List;
 
 /**
  *
@@ -16,8 +18,20 @@ import Model.DAO;
  */
 public class ProductoController  {
     private ProductoModel producto;
+    private ProductoDAO productoDao;
     public ProductoController(){
         producto= new ProductoModel();
+        productoDao=new ProductoDAO();
     }
     
+    /*public String[] consultarProducto(int id){
+        
+    }*/
+
+    public List verProductos() {
+        List<ProductoModel> listado=new ArrayList();
+        productoDao = new ProductoDAO();
+        listado=productoDao.dameProductos();
+        return listado;
+    }
 }

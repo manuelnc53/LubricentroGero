@@ -169,6 +169,7 @@ public class ProductoModel {
     
     public ProductoModel clone(){
         ProductoModel clon = new ProductoModel();
+        
         clon.setCantidadEnStock(this.cantidadEnStock);
         clon.setDescripcion(this.descripcion);
         clon.setMarca(this.marca);
@@ -180,6 +181,31 @@ public class ProductoModel {
         clon.setProducto_ID(this.producto_ID);
         clon.setVenta(this.venta);
         return clon;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + this.producto_ID;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ProductoModel other = (ProductoModel) obj;
+        if (this.producto_ID != other.producto_ID) {
+            return false;
+        }
+        return true;
     }
     
 }

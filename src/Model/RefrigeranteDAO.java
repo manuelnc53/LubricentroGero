@@ -20,7 +20,7 @@ public class RefrigeranteDAO implements DAO<RefrigeranteModel> {
     private Connection conexion;
     private PreparedStatement consulta;
     public RefrigeranteDAO(){
-        
+        conexion = Conexion.getConnection();
     }
     @Override
     public boolean create(RefrigeranteModel dato) {
@@ -31,15 +31,17 @@ public class RefrigeranteDAO implements DAO<RefrigeranteModel> {
     public RefrigeranteModel read(Long id) {
         ResultSet resultado = null ;
         RefrigeranteModel refrigerante = new RefrigeranteModel();
+        String idAux=String.valueOf(id);
         try{
-            conexion = Conexion.getConnection();
-            consulta= conexion.prepareStatement("SELECT * FROM Productos WHERE Ac_ID=id");
+            
+            consulta= conexion.prepareStatement("SELECT * FROM Refrigerante WHERE Re_ID="+idAux);
             resultado=consulta.executeQuery();
         
         }catch(SQLException e){
             System.out.println("No se pudo realizar la consulta");
         }
         try {
+            
             refrigerante.setLitros(resultado.getFloat(2));
         } catch (SQLException ex) {
             Logger.getLogger(RefrigeranteDAO.class.getName()).log(Level.SEVERE, null, ex);

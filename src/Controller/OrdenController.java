@@ -18,6 +18,7 @@ public class OrdenController {
     private OrdenModel orden;
     public OrdenController(){
         orden=new OrdenModel();
+        
     }
         
 }

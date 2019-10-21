@@ -5,10 +5,13 @@
  */
 package Controller;
 
+import Model.ClienteDAO;
 import Model.Conexion;
 import Model.ClienteModel;
 import java.util.ArrayList;
 import Model.DAO;
+import java.util.List;
+import sun.applet.Main;
 
 /**
  *
@@ -16,9 +19,19 @@ import Model.DAO;
  */
 public class ClienteController {
     public ClienteModel cliente;
+    private ClienteDAO clienteDao;
     public ClienteController(){
         cliente= new ClienteModel();
+        clienteDao = new ClienteDAO();
     }
-   
+    
+    public List verClientes(){
+        List<ClienteModel> listado=new ArrayList();
+        listado=clienteDao.dameClientes();
+        return listado;
+    }
+    
+           
+
     
 }

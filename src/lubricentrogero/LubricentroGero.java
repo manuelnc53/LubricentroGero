@@ -5,6 +5,12 @@
  */
 package lubricentrogero;
 
+import Model.Conexion;
+import View.VentaView;
+import java.beans.Statement;
+import java.sql.Connection;
+import java.sql.SQLException;
+
 /**
  *
  * @author manuel
@@ -16,6 +22,8 @@ public class LubricentroGero {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        VentaView ventaView=new VentaView();
+        ventaView.setVisible(true);
     }
     
 }

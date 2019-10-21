@@ -21,7 +21,7 @@ public class ClienteDAO implements DAO<ClienteModel> {
     private Connection conexion;
     private PreparedStatement consulta;
     public ClienteDAO(){
-    
+        conexion=Conexion.getConnection();
     }
 
     @Override
@@ -49,7 +49,7 @@ public class ClienteDAO implements DAO<ClienteModel> {
         ResultSet resultado;
         ClienteModel cliente= new ClienteModel();
         try{
-            conexion=Conexion.getConnection();
+            
             consulta=conexion.prepareStatement("SELECT * FROM Clientes");
             PreparedStatement consultaAux ;//tendra la consulta para traer los telefonos de los responsables
             ResultSet resultadoAux;//tendra los telefonos de los responsables
@@ -60,7 +60,7 @@ public class ClienteDAO implements DAO<ClienteModel> {
                 cliente.setCuit_cuil(resultado.getInt(1));
                 cliente.setNombre(resultado.getString(2));
                 cliente.setDireccion(resultado.getString(3));
-                idAux=resultado.getString(1);
+                idAux=String.valueOf(resultado.getInt(1));
                 consultaAux = conexion.prepareStatement("SELECT * FROM ClientesTelefonosResponsable WHERE Clien_CUIT_CUIL_Tel ="+idAux);
                 resultadoAux=consultaAux.executeQuery();
                 while(resultadoAux.next()){
