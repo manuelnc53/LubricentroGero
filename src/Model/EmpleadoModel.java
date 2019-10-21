@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class EmpleadoModel {
     private String direccion;
-    private int edad;
+    private Date nacimiento;
     private ResponsabilidadModel responsabilidad;
     private String nombre;
     private long cuit;
@@ -43,15 +43,15 @@ public class EmpleadoModel {
     /**
      * @return the edad
      */
-    public int getEdad() {
-        return edad;
+    public Date getEdad() {
+        return nacimiento;
     }
 
     /**
-     * @param edad the edad to set
+     * @param nacimiento the edad to set
      */
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setEdad(Date nacimiento){
+        this.nacimiento = nacimiento;
     }
 
     /**
@@ -179,6 +179,55 @@ public class EmpleadoModel {
     public void setCompras_realizadas(ArrayList<CompraModel> compras_realizadas) {
         this.compras_realizadas = compras_realizadas;
     }
+
+    @Override
+    public String toString() {
+        return "\nDireccion=" + direccion + "\nNacimiento=" + nacimiento + 
+                "\nResponsabilidad=" + responsabilidad +
+                "\nNombre=" + nombre + 
+                "\nCuit=" + cuit + "\nFecha_ingreso=" + fecha_ingreso + "\nOrdenes_generadas=" 
+                + ordenes_generadas + "\nOrdenes_ejecutadas=" + ordenes_ejecutadas + 
+                "\nVentas realizadas=" + ventas_realizadas + "\nPedidos realizados=" + pedidos_realizados + 
+                "\nCompras_realizadas=" + compras_realizadas;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 59 * hash + (int) (this.cuit ^ (this.cuit >>> 32));
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final EmpleadoModel other = (EmpleadoModel) obj;
+        if (this.cuit != other.cuit) {
+            return false;
+        }
+        return true;
+    }
     
+
+    
+    @Override
+    public EmpleadoModel clone(){
+        EmpleadoModel clon = new EmpleadoModel();
+        clon.setCuit(cuit);
+        clon.setDireccion(direccion);
+        clon.setEdad(nacimiento);
+        clon.setFecha_ingreso(fecha_ingreso);
+        clon.setNombre(nombre);
+        clon.setResponsabilidad(responsabilidad);
+        return clon;
+    }
     
 }

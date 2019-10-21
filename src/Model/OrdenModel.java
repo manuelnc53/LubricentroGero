@@ -15,7 +15,7 @@ import java.util.Date;
  */
 public class OrdenModel {
 
-    
+    private static long nroOrdenClass=0;
     private Date fecha_Orden;
     private long nro_Orden;
     private String urgencia;
@@ -25,7 +25,13 @@ public class OrdenModel {
     private ClienteModel cliente;
     private VehiculoModel vehiculo;
     private ArrayList<ServicioModel> servicios;
+    private String descripcion;
+    
+    
     public OrdenModel(){
+        fecha_Orden = new Date();
+        nro_Orden=nroOrdenClass;
+        nroOrdenClass++;
     }
     
     /**
@@ -33,6 +39,16 @@ public class OrdenModel {
      */
     public EmpleadoModel getEmpleado_cajero() {
         return empleado_cajero;
+    }
+
+    public OrdenModel(String urgencia, EstadoModel estado, EmpleadoModel empleado_cajero, ArrayList<EmpleadoModel> empleados_mantenimiento, ClienteModel cliente, VehiculoModel vehiculo, ArrayList<ServicioModel> servicios) {
+        this.urgencia = urgencia;
+        this.estado = estado;
+        this.empleado_cajero = empleado_cajero;
+        this.empleados_mantenimiento = empleados_mantenimiento;
+        this.cliente = cliente;
+        this.vehiculo = vehiculo;
+        this.servicios = servicios;
     }
 
     /**
@@ -151,6 +167,25 @@ public class OrdenModel {
      */
     public void setEstado(EstadoModel estado) {
         this.estado = estado;
+    }
+
+    @Override
+    public String toString() {
+        return "OrdenModel{" + "fecha_Orden=" + fecha_Orden + ", nro_Orden=" + nro_Orden + ", urgencia=" + urgencia + ", estado=" + estado + ", empleado_cajero=" + empleado_cajero + ", empleados_mantenimiento=" + empleados_mantenimiento + ", cliente=" + cliente + ", vehiculo=" + vehiculo + ", servicios=" + servicios + '}';
+    }
+
+    /**
+     * @return the descripcion
+     */
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    /**
+     * @param descripcion the descripcion to set
+     */
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     

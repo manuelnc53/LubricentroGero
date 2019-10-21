@@ -17,7 +17,7 @@ public class ServicioModel {
     private double precio;
     private ArrayList<OrdenModel> ordenes;
     private ArrayList<VentaModel> ventas;
-    
+    private int id;
     
     public ServicioModel(){
     }
@@ -92,6 +92,28 @@ public class ServicioModel {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-    
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+      @Override
+    public ServicioModel clone(){
+    ServicioModel clon = new ServicioModel();
+    clon.setDescripcion(descripcion);
+    clon.setId(id);
+    clon.setNombre(nombre);
+    clon.setPrecio(precio);
+    return clon;
+    }
     
 }

@@ -19,6 +19,7 @@ public class VehiculoModel {
     private long kilometraje;
     private String marca;
     private ArrayList<OrdenModel> ordenes;
+    private String modelo;
     public VehiculoModel(){
     
     }
@@ -90,6 +91,33 @@ public class VehiculoModel {
     public void setMarca(String marca) {
         this.marca = marca;
     }
-  
+
+    /**
+     * @return the modelo
+     */
+    public String getModelo() {
+        return modelo;
+    }
+
+    /**
+     * @param modelo the modelo to set
+     */
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
     
+  @Override
+    public String toString(){
+        return this.marca+" "+this.modelo+" "+this.patente+" "+this.tipo_motor;
+    }
+  @Override
+    public VehiculoModel clone(){
+    VehiculoModel clon = new VehiculoModel();
+    clon.setKilometraje(this.getKilometraje());
+    clon.setMarca(this.marca);
+    clon.setModelo(modelo);
+    clon.setPatente(patente);
+    clon.setTipo_motor(tipo_motor);
+    return clon;
+    }
 }

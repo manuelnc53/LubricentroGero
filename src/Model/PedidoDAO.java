@@ -12,6 +12,7 @@ package Model;
 public class PedidoDAO implements DAO<PedidoModel> {
     private Conexion conexion;
     public PedidoDAO(){
+        
     }
     @Override
     public boolean create(PedidoModel dato) {
