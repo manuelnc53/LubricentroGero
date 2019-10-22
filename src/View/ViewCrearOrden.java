@@ -455,7 +455,7 @@ public class ViewCrearOrden extends javax.swing.JFrame {
         texto = texto+o.getNombre()+", ";
     }
     texto=texto+"\nCosto: ";
-    float costo=22;//orden.costoOrden();
+    float costo=orden.costoOrden(empleadosSelec);
     texto=texto+costo;
     areaTextoDatos.setText(texto);
 //areaTextoDatos.setText("Servicios:"+servicios+" \nCliente:"+cliente+"\nVehiculo:"+vehiculo+"\nEmpleado/s:"+empleadosSelec+"\n");
