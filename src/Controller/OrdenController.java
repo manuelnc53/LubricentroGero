@@ -39,7 +39,7 @@ public class OrdenController {
 
     public void guardar(String toString, EstadoModel estadoModel, EmpleadoModel cajero,
         List<EmpleadoModel> empleadosSelec, ClienteModel cliente,
-        VehiculoModel vehiculo, List<ServicioModel> servicios) throws SQLException {
+        VehiculoModel vehiculo, List<ServicioModel> servicios,String descripcion) throws SQLException {
         orden.setCliente(cliente);
         orden.setUrgencia(toString);
         orden.setEmpleado_cajero(cajero);
@@ -47,19 +47,27 @@ public class OrdenController {
         orden.setEmpleados_mantenimiento((ArrayList<EmpleadoModel>) empleadosSelec);
         orden.setVehiculo(vehiculo);
         orden.setServicios((ArrayList<ServicioModel>) servicios);
-        System.out.println ("Orden:"+orden);
+        orden.setDescripcion("hola");
+        orden.setDescripcion(descripcion);
         ordenBD.guardar(orden);
     }
  
-    public float costoOrden(){
+    public float costoOrden(List<EmpleadoModel> mantenimiento){
         float aux=0,aumento=1;
         for(ServicioModel o: orden.getServicios()){
             aux=(float) (aux+o.getPrecio());
         }
-        for(EmpleadoModel o: orden.getEmpleados_mantenimiento()){
+        /*System.out.println("llegue aqui");
+        for(EmpleadoModel o: mantenimiento){
             aumento=(float) (aumento+tazaAumento);
+        }*/
+        aumento=aumento+(float) (mantenimiento.size()*tazaAumento);
+        if(aumento==1)
+            aux=0;
+        else
+        {aumento=aumento-tazaAumento;
+            aux=aux*aumento;
         }
-        aux=aux*aumento;
         return aux;
     }
 
