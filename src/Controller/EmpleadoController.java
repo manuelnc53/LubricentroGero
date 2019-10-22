@@ -9,6 +9,7 @@ import Model.Conexion;
 import Model.EmpleadoModel;
 import java.util.ArrayList;
 import Model.DAO;
+import Model.OrdenDAO;
 
 /**
  *
@@ -16,8 +17,10 @@ import Model.DAO;
  */
 public class EmpleadoController  {
     private EmpleadoModel empleado;
+    private OrdenDAO ordenBD;
     public EmpleadoController(){
         empleado= new EmpleadoModel();
+        ordenBD=new OrdenDAO();
     }
    
 }
