@@ -5,7 +5,11 @@
  */
 package Model;
 
+import java.beans.Statement;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -13,17 +17,34 @@ import java.sql.SQLException;
  * @author manuel
  */
 public class Conexion {
-    private static Connection conexion;
+   // private static Connection conexion;//objeto COnecction
+    private String url = "BD_LubricentroGero.db"; //esta variable representa la ruta donde esta almacenada la base de datos   
+    private static Connection  conexion;//objeto coneccion
+    private Statement st;
+    
+    
     
     private Conexion(){
-        
-        /**IMPLEMENTAR SINGLETON**/
+         
+        try{
+            this.conexion = DriverManager.getConnection("jdbc:sqlite:"+url);//conexion recibe el controlador de sqlite, pasamos la ruta donde está
+            
+            if(conexion!=null)
+                System.out.println("Conectado\n");
+
+        }catch(SQLException ex){
+            System.out.println("No se ha podido conectar a la base de datos\n"+ex.getMessage());
+        }   
     }
     
+   public static void crearConexionBD(){
+        if(conexion == null)
+            new Conexion();
+    }
     
     public static Connection getConnection (){
         if (conexion == null){
-             new Conexion();
+            crearConexionBD();
         }
         return conexion;
     }
@@ -40,6 +61,15 @@ public class Conexion {
         if (conn==null)
             System.out.println("Conexion terminada");
         */
+    }
+    public static void main(String[] args) throws SQLException, Exception {
+        // TODO code application logic here
+       Connection con = null;
+       con = Conexion.getConnection();
+        PreparedStatement st=  con.prepareStatement("INSERT INTO Clientes (Clien_CUIT_CUIL,Clien_Nombre,Clien_Direccion) VALUES('21397508685','Pedro','Av.we 345')");
+        st.execute();
+        
+       
     }
     
 }
