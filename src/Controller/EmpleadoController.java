@@ -9,7 +9,11 @@ import Model.Conexion;
 import Model.EmpleadoModel;
 import java.util.ArrayList;
 import Model.DAO;
+import Model.EmpleadoDAO;
 import Model.OrdenDAO;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.List;
 
 /**
  *
@@ -17,10 +21,14 @@ import Model.OrdenDAO;
  */
 public class EmpleadoController  {
     private EmpleadoModel empleado;
-    private OrdenDAO ordenBD;
+    private EmpleadoDAO empleadoBD;
     public EmpleadoController(){
         empleado= new EmpleadoModel();
-        ordenBD=new OrdenDAO();
+        empleadoBD=new EmpleadoDAO();
+    }
+
+    public List<EmpleadoModel> empleadosBD() throws SQLException, ParseException, CloneNotSupportedException {
+        return empleadoBD.dameEmpleados();
     }
    
 }

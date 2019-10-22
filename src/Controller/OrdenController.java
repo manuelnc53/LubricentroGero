@@ -37,11 +37,11 @@ public class OrdenController {
         
     }
 
-    public void guardar(String toString, EstadoModel estadoModel, EmpleadoModel cajero,
+    public void guardar(String urgencia, EstadoModel estadoModel, EmpleadoModel cajero,
         List<EmpleadoModel> empleadosSelec, ClienteModel cliente,
         VehiculoModel vehiculo, List<ServicioModel> servicios,String descripcion) throws SQLException {
         orden.setCliente(cliente);
-        orden.setUrgencia(toString);
+        orden.setUrgencia(urgencia);
         orden.setEmpleado_cajero(cajero);
         orden.setEstado(estadoModel);
         orden.setEmpleados_mantenimiento((ArrayList<EmpleadoModel>) empleadosSelec);
@@ -49,10 +49,14 @@ public class OrdenController {
         orden.setServicios((ArrayList<ServicioModel>) servicios);
         orden.setDescripcion("hola");
         orden.setDescripcion(descripcion);
+    }
+
+    
+    public void guardarEnBD() throws SQLException{
         ordenBD.guardar(orden);
     }
- 
-    public float costoOrden(List<EmpleadoModel> mantenimiento){
+    
+    public  float costoOrden(){
         float aux=0,aumento=1;
         for(ServicioModel o: orden.getServicios()){
             aux=(float) (aux+o.getPrecio());
@@ -61,7 +65,7 @@ public class OrdenController {
         for(EmpleadoModel o: mantenimiento){
             aumento=(float) (aumento+tazaAumento);
         }*/
-        aumento=aumento+(float) (mantenimiento.size()*tazaAumento);
+        aumento=aumento+(float) (orden.getEmpleados_mantenimiento().size()*tazaAumento);
         if(aumento==1)
             aux=0;
         else
@@ -73,5 +77,22 @@ public class OrdenController {
 
     public void guardarServicios(List<ServicioModel> servicios) {
         orden.setServicios((ArrayList<ServicioModel>) servicios);
+    }
+
+    public String texto() {
+    String texto="Cliente: "+orden.getCliente().getNombre()+"\nCajero: "
+            +orden.getEmpleado_cajero().getNombre()+"\nServicios: ";
+    for(ServicioModel o: orden.getServicios()){
+        texto = texto+o.getNombre()+", ";
+    }
+    texto=texto+"\nVehiculo: "+orden.getVehiculo().getModelo()+"\nEmpleado/s: ";
+    for(EmpleadoModel o: orden.getEmpleados_mantenimiento()){
+        texto = texto+o.getNombre()+", ";
+    }
+    texto=texto+"\nCosto: ";
+    float costo=this.costoOrden();
+    texto=texto+costo;  
+    return texto;
+    
     }
 }

@@ -229,7 +229,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="18" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Seleccione los empleado/s que ejecutaran el/los servicio"/>
+                    <Property name="text" type="java.lang.String" value="Seleccione los empleados que ejecutaran los servicio"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel3">

@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controller.EmpleadoController;
 import Controller.OrdenController;
 import Model.ClienteModel;
 import Model.EmpleadoDAO;
@@ -134,9 +135,9 @@ public class ViewCrearOrden extends javax.swing.JFrame {
         this.vehiculo=vehiculo;
         this.servicios=servicios;
         this.cliente=cliente;
-        EmpleadoDAO bdEmpleado=new EmpleadoDAO();
+        EmpleadoController controlador = new EmpleadoController();
         //VehiculoDAO bdVehiculo=new VehiculoDAO();
-        empleados=bdEmpleado.dameEmpleados();
+        empleados=controlador.empleadosBD();
         empleadosSelec=new ArrayList<EmpleadoModel>();
         crearTablaEmpleados(empleados,modeloEmpleados,tablaEmpleados);
         crearTablaEmpleados(empleadosSelec,modeloEmpleadosSelec,tablaEmpleadosSelec);
@@ -217,7 +218,7 @@ public class ViewCrearOrden extends javax.swing.JFrame {
         });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel8.setText("Seleccione los empleado/s que ejecutaran el/los servicio");
+        jLabel8.setText("Seleccione los empleados que ejecutaran los servicio");
 
         jLabel3.setText("Busqueda por nombre:");
 
@@ -449,27 +450,22 @@ public class ViewCrearOrden extends javax.swing.JFrame {
         try {
             controlador.guardar(comboBoxPrioridad.getSelectedItem().toString(),EstadoModel.EN_PROCESO,cajero,empleadosSelec,cliente,vehiculo,servicios,
                     areaTextoDescripcion.getText());
+            controlador.guardarEnBD();
         } catch (SQLException ex) {
             Logger.getLogger(ViewCrearOrden.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_botonCrearOrdenActionPerformed
 
     private void jTabbedPane1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane1FocusGained
-    //Aplicar el controller
+    //No se aplica la arquitectura en capas?
     OrdenController orden = new OrdenController();
-    orden.guardarServicios(servicios);
-    String texto="Cliente: "+cliente.getNombre()+"\nCajero: "+cajero.getNombre()+"\nServicios: ";
-    orden.guardarServicios(servicios);
-    for(ServicioModel o: servicios){
-        texto = texto+o.getNombre()+", ";
-    }
-    texto=texto+"\nVehiculo: "+vehiculo.getModelo()+"\nEmpleado/s: ";
-    for(EmpleadoModel o: empleadosSelec){
-        texto = texto+o.getNombre()+", ";
-    }
-    texto=texto+"\nCosto: ";
-    float costo=orden.costoOrden(empleadosSelec);
-    texto=texto+costo;
+        try {
+            orden.guardar("h", EstadoModel.EN_PROCESO, cajero, empleadosSelec, cliente, vehiculo, servicios, null);
+        } catch (SQLException ex) {
+            Logger.getLogger(ViewCrearOrden.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    String texto=orden.texto();
     areaTextoDatos.setText(texto);
 //areaTextoDatos.setText("Servicios:"+servicios+" \nCliente:"+cliente+"\nVehiculo:"+vehiculo+"\nEmpleado/s:"+empleadosSelec+"\n");
     }//GEN-LAST:event_jTabbedPane1FocusGained
@@ -508,6 +504,7 @@ public class ViewCrearOrden extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+                    //Aqui poner valores validos de la bd
                     EmpleadoModel cajero = new EmpleadoModel();
                     VehiculoModel v = new VehiculoModel();
                     ClienteModel c=new ClienteModel();

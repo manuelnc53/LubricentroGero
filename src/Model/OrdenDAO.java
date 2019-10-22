@@ -8,6 +8,7 @@ package Model;
 import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -45,6 +46,7 @@ public class OrdenDAO implements DAO<OrdenModel> {
     public void guardar(OrdenModel orden) throws SQLException {
         consulta = conexion.prepareStatement("INSERT INTO Ordenes (Ord_Fecha_Emision,Ord_Nro_Orden,Ord_Urgencia,Ord_Estado,Ord_Emp_ID,Ord_Clien_ID,Ord_Ve_ID,Ord_Descripcion) VALUES (?,?,?,?,?,?,?,?)");
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        orden.setNro_Orden();
         consulta.setString(1, dateFormat.format(orden.getFecha_Orden()));
         consulta.setInt(2, (int) orden.getNro_Orden());
         consulta.setString(3, orden.getUrgencia().toString());
@@ -66,6 +68,13 @@ public class OrdenDAO implements DAO<OrdenModel> {
         consulta.setInt(1, (int) o.getCuit());
         consulta.execute();
         }
+    }
+
+    long maximoID() throws SQLException {
+        consulta = conexion.prepareStatement("SELECT MAX (Ord_Nro_Orden) from Ordenes");
+        ResultSet resultado=consulta.executeQuery();
+        System.out.println("resultado:\n\n"+resultado.getInt(1));
+        return resultado.getInt(1);
     }
     
 }

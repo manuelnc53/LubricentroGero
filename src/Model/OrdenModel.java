@@ -5,6 +5,7 @@
  */
 package Model;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -15,7 +16,7 @@ import java.util.Date;
  */
 public class OrdenModel {
 
-    private static long nroOrdenClass=0;
+
     private Date fecha_Orden;
     private long nro_Orden;
     private String urgencia;
@@ -30,8 +31,6 @@ public class OrdenModel {
     
     public OrdenModel(){
         fecha_Orden = new Date();
-        nro_Orden=nroOrdenClass;
-        nroOrdenClass++;
     }
     
     /**
@@ -137,8 +136,10 @@ public class OrdenModel {
     /**
      * @param nro_Orden the nro_Orden to set
      */
-    public void setNro_Orden(long nro_Orden) {
-        this.nro_Orden = nro_Orden;
+    public void setNro_Orden() throws SQLException {
+        OrdenDAO ordenBD = new OrdenDAO();
+        this.nro_Orden=ordenBD.maximoID();
+        nro_Orden++;
     }
 
     /**
@@ -187,6 +188,7 @@ public class OrdenModel {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
 
     
 }
