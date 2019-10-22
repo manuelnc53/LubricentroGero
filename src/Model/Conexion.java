@@ -28,7 +28,6 @@ public class Conexion {
         try{
             this.conexion = DriverManager.getConnection("jdbc:sqlite:"+url);//conexion recibe el controlador de sqlite, pasamos la ruta donde está
             if(conexion!=null)
-                System.out.println("Conectado\n");
             System.out.println(url);
 
         }catch(SQLException ex){
@@ -71,7 +70,6 @@ public class Conexion {
         //st.execute("INSERT INTO Clientes (Clien_CUIT_CUIL,Clien_Nombre,Clien_Direccion) VALUES(20397508685,Pedro carlos,av 1234)");
         //st= con.prepareStatement("SELECT FROM * Clientes");
        // ResultSet resultado = st.execute("SELECT FROM * Clientes");
-        System.out.println("asdsa");
     }
     
 }

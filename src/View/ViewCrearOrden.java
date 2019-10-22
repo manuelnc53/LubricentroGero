@@ -11,6 +11,7 @@ import Model.EmpleadoDAO;
 import Model.EmpleadoModel;
 import Model.EstadoModel;
 import Model.OrdenModel;
+import Model.ResponsabilidadModel;
 import Model.ServicioDAO;
 import Model.ServicioModel;
 import Model.VehiculoDAO;
@@ -54,6 +55,7 @@ public class ViewCrearOrden extends javax.swing.JFrame {
     private List<ServicioModel> servicios;
     private VehiculoModel vehiculo;
     private ClienteModel cliente;
+    private JLabel costo;
     
     
      /**
@@ -110,7 +112,6 @@ public class ViewCrearOrden extends javax.swing.JFrame {
         modelo.addColumn("Responsabilidad");
         modelo.addColumn("Cuil");
         modelo.addColumn("Fecha Ingreso");
-        System.out.println("llegue aqui");
         tabla.setModel(modelo);
         String []datos=new String[6];
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -128,6 +129,7 @@ public class ViewCrearOrden extends javax.swing.JFrame {
     public ViewCrearOrden(EmpleadoModel cajero,VehiculoModel vehiculo,List<ServicioModel> servicios,
             ClienteModel cliente,JLabel costo) throws SQLException, ParseException, CloneNotSupportedException {
         initComponents();
+        this.costo=costo;
         this.cajero=cajero;
         this.vehiculo=vehiculo;
         this.servicios=servicios;
@@ -169,11 +171,18 @@ public class ViewCrearOrden extends javax.swing.JFrame {
         botonCrearOrden = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         comboBoxPrioridad = new javax.swing.JComboBox<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        areaTextoDescripcion = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Crear orden de trabajo");
-        setMaximumSize(new java.awt.Dimension(396, 551));
-        setMinimumSize(new java.awt.Dimension(396, 551));
+        setAlwaysOnTop(true);
+        setMaximumSize(new java.awt.Dimension(1056, 600));
+        setMinimumSize(new java.awt.Dimension(1056, 600));
+        setName("ventanCrearOrden"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(1080, 730));
+        setResizable(false);
 
         jPanel1.setMaximumSize(new java.awt.Dimension(396, 551));
         jPanel1.setMinimumSize(new java.awt.Dimension(396, 551));
@@ -208,7 +217,7 @@ public class ViewCrearOrden extends javax.swing.JFrame {
         });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel8.setText("Seleccione empleado/s");
+        jLabel8.setText("Seleccione los empleado/s que ejecutaran el/los servicio");
 
         jLabel3.setText("Busqueda por nombre:");
 
@@ -249,18 +258,20 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonAgregar)
-                            .addComponent(botonSacar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(buscadorNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(botonAgregar)
+                                    .addComponent(botonSacar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -284,7 +295,7 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
         );
 
-        jTabbedPane1.addTab("tab2", jPanel3);
+        jTabbedPane1.addTab("Seleccionar empleado/s", jPanel3);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setText("Datos de orden:");
@@ -313,6 +324,12 @@ public class ViewCrearOrden extends javax.swing.JFrame {
             }
         });
 
+        areaTextoDescripcion.setColumns(20);
+        areaTextoDescripcion.setRows(5);
+        jScrollPane3.setViewportView(areaTextoDescripcion);
+
+        jLabel2.setText("Agregar una observacion:");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -320,17 +337,18 @@ public class ViewCrearOrden extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1011, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboBoxPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonCrearOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboBoxPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel2))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -340,17 +358,20 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonCrearOrden)
                     .addComponent(jLabel1)
                     .addComponent(comboBoxPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addComponent(botonCrearOrden)
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("tab3", jPanel4);
+        jTabbedPane1.addTab("Finalizar orden", jPanel4);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -426,7 +447,8 @@ public class ViewCrearOrden extends javax.swing.JFrame {
     private void botonCrearOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearOrdenActionPerformed
         OrdenController controlador = new OrdenController();
         try {
-            controlador.guardar(comboBoxPrioridad.getSelectedItem().toString(),EstadoModel.EN_PROCESO,cajero,empleadosSelec,cliente,vehiculo,servicios);
+            controlador.guardar(comboBoxPrioridad.getSelectedItem().toString(),EstadoModel.EN_PROCESO,cajero,empleadosSelec,cliente,vehiculo,servicios,
+                    areaTextoDescripcion.getText());
         } catch (SQLException ex) {
             Logger.getLogger(ViewCrearOrden.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -436,21 +458,12 @@ public class ViewCrearOrden extends javax.swing.JFrame {
     //Aplicar el controller
     OrdenController orden = new OrdenController();
     orden.guardarServicios(servicios);
-    String texto="Cliente: "+cliente+"\nCajero: "+cajero+"\nServicios: ";
-    ServicioDAO ser = new ServicioDAO();
-    List <ServicioModel> serviciosbd = null;
-        try {
-            serviciosbd = ser.dameServicios();
-        } catch (SQLException ex) {
-            Logger.getLogger(ViewCrearOrden.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (CloneNotSupportedException ex) {
-            Logger.getLogger(ViewCrearOrden.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    orden.guardarServicios(serviciosbd);
-    for(ServicioModel o: serviciosbd){
-        texto = texto+o.getNombre()+" ";
+    String texto="Cliente: "+cliente.getNombre()+"\nCajero: "+cajero.getNombre()+"\nServicios: ";
+    orden.guardarServicios(servicios);
+    for(ServicioModel o: servicios){
+        texto = texto+o.getNombre()+", ";
     }
-    texto=texto+"\nVehiculo: "+vehiculo+"\nEmpleado/s: ";
+    texto=texto+"\nVehiculo: "+vehiculo.getModelo()+"\nEmpleado/s: ";
     for(EmpleadoModel o: empleadosSelec){
         texto = texto+o.getNombre()+", ";
     }
@@ -470,7 +483,7 @@ public class ViewCrearOrden extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
+        /*try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -500,6 +513,28 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                     ClienteModel c=new ClienteModel();
                     List <ServicioModel> servicios = new ArrayList<>();
                     JLabel j = new JLabel();
+                    Date f = new Date();
+                    v.setKilometraje(1);
+                    v.setMarca("1");
+                    v.setModelo("1");
+                    v.setPatente("1");
+                    v.setTipo_motor("1");
+                    ServicioModel ser = new ServicioModel();
+                    ser.setDescripcion("1");
+                    ser.setId(1);
+                    ser.setNombre("1");
+                    ser.setPrecio(1);
+                    servicios.add(ser);
+                    c.setCuit_cuil(1);
+                    c.setDireccion("1");
+                    c.setNombre("1");
+                    cajero.setCuit(1);
+                    cajero.setDireccion("1");
+                    cajero.setEdad(f);
+                    cajero.setFecha_ingreso(f);
+                    cajero.setResponsabilidad(ResponsabilidadModel.ENCARGADO);
+                    cajero.setNombre("1");
+                    
                     new ViewCrearOrden(cajero,v,servicios,c,j).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(ViewCrearOrden.class.getName()).log(Level.SEVERE, null, ex);
@@ -514,12 +549,14 @@ public class ViewCrearOrden extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea areaTextoDatos;
+    private javax.swing.JTextArea areaTextoDescripcion;
     private javax.swing.JButton botonAgregar;
     private javax.swing.JButton botonCrearOrden;
     private javax.swing.JButton botonSacar;
     private javax.swing.JTextField buscadorNombre;
     private javax.swing.JComboBox<String> comboBoxPrioridad;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
@@ -529,6 +566,7 @@ public class ViewCrearOrden extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tablaEmpleados;

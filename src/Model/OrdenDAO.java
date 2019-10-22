@@ -48,7 +48,7 @@ public class OrdenDAO implements DAO<OrdenModel> {
         consulta.setString(1, dateFormat.format(orden.getFecha_Orden()));
         consulta.setInt(2, (int) orden.getNro_Orden());
         consulta.setString(3, orden.getUrgencia().toString());
-        consulta.setString(4,orden.getUrgencia());
+        consulta.setString(4,orden.getEstado().toString());
         consulta.setInt(5, (int) orden.getEmpleado_cajero().getCuit());
         consulta.setInt(6, (int) orden.getCliente().getCuit_cuil());
         consulta.setString(7,orden.getVehiculo().getPatente());
@@ -58,11 +58,13 @@ public class OrdenDAO implements DAO<OrdenModel> {
         consulta = conexion.prepareStatement("INSERT INTO Respecto (Respecto_Orden_ID,Respecto_Servicio_ID) VALUES (?,?)");
         consulta.setInt(1, (int) orden.getNro_Orden());
         consulta.setInt(2, o.getId());
+        consulta.execute();
         }
         for(EmpleadoModel o: orden.getEmpleados_mantenimiento()){
-        consulta = conexion.prepareStatement("INSERT INTO Ejecuta (Respecto_Orden_ID,Respecto_Servicio_ID) (?,?)");
+        consulta = conexion.prepareStatement("INSERT INTO Ejecuta (Ejec_Empleado_ID,Ejec_Orden_ID) VALUES (?,?)");
         consulta.setInt(2, (int) orden.getNro_Orden());
         consulta.setInt(1, (int) o.getCuit());
+        consulta.execute();
         }
     }
     
