@@ -127,8 +127,7 @@ public class ViewCrearOrden extends javax.swing.JFrame {
         }
     }
     
-    public ViewCrearOrden(EmpleadoModel cajero,VehiculoModel vehiculo,List<ServicioModel> servicios,
-            ClienteModel cliente,JLabel costo) throws SQLException, ParseException, CloneNotSupportedException {
+    public ViewCrearOrden(EmpleadoModel cajero) throws SQLException, ParseException, CloneNotSupportedException {
         initComponents();
         this.costo=costo;
         this.cajero=cajero;
@@ -165,6 +164,30 @@ public class ViewCrearOrden extends javax.swing.JFrame {
         botonSacar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaEmpleadosSelec = new javax.swing.JTable();
+        jPanel7 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tablaEmpleados1 = new javax.swing.JTable();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        buscadorNombre1 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jPanel8 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tablaEmpleados2 = new javax.swing.JTable();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        buscadorNombre2 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jPanel9 = new javax.swing.JPanel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        tablaEmpleados3 = new javax.swing.JTable();
+        botonAgregar3 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        buscadorNombre3 = new javax.swing.JTextField();
+        botonSacar3 = new javax.swing.JButton();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        tablaEmpleadosSelec3 = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -292,11 +315,249 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                         .addGap(77, 77, 77)
                         .addComponent(botonSacar)
                         .addContainerGap())
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Seleccionar empleado/s", jPanel3);
+
+        tablaEmpleados1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane5.setViewportView(tablaEmpleados1);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel10.setText("Seleccione el cliente al que se le realizara el servicio.");
+
+        jLabel5.setText("Busqueda por nombre:");
+
+        buscadorNombre1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                buscadorNombre1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                buscadorNombre1KeyReleased(evt);
+            }
+        });
+
+        jButton2.setText("Agregar nuevo cliente a la base de datos");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(buscadorNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 495, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buscadorNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Seleccionar cliente", jPanel7);
+
+        tablaEmpleados2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane7.setViewportView(tablaEmpleados2);
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel11.setText("Seleccione el vehiculo al que se le realizara el servicio");
+
+        jLabel6.setText("Busqueda por nombre:");
+
+        buscadorNombre2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                buscadorNombre2KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                buscadorNombre2KeyReleased(evt);
+            }
+        });
+
+        jButton1.setText("Agregar nuevo vehiculo a la base de datos");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane7)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(buscadorNombre2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 495, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buscadorNombre2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Seleccionar vehiculo", jPanel8);
+
+        tablaEmpleados3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane9.setViewportView(tablaEmpleados3);
+
+        botonAgregar3.setText("Agregar");
+        botonAgregar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregar3ActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel12.setText("Agregue los servicios que se realizaran al vehiculo");
+
+        jLabel7.setText("Busqueda por nombre:");
+
+        buscadorNombre3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                buscadorNombre3KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                buscadorNombre3KeyReleased(evt);
+            }
+        });
+
+        botonSacar3.setText("Sacar");
+        botonSacar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSacar3ActionPerformed(evt);
+            }
+        });
+
+        tablaEmpleadosSelec3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane10.setViewportView(tablaEmpleadosSelec3);
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(buscadorNombre3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(botonAgregar3)
+                                    .addComponent(botonSacar3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buscadorNombre3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(113, 113, 113)
+                        .addComponent(botonAgregar3)
+                        .addGap(77, 77, 77)
+                        .addComponent(botonSacar3)
+                        .addContainerGap())
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+        );
+
+        jTabbedPane1.addTab("Seleccionar servicios", jPanel9);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setText("Datos de orden:");
@@ -339,7 +600,7 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1011, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1036, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -359,17 +620,17 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonCrearOrden)
-                    .addComponent(jLabel1)
-                    .addComponent(comboBoxPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(comboBoxPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(31, 31, 31))
         );
 
         jTabbedPane1.addTab("Finalizar orden", jPanel4);
@@ -380,12 +641,9 @@ public class ViewCrearOrden extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -411,6 +669,59 @@ public class ViewCrearOrden extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTabbedPane1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane1FocusGained
+        //No se aplica la arquitectura en capas?
+        OrdenController orden = new OrdenController();
+        try {
+            orden.guardar("h", EstadoModel.EN_PROCESO, cajero, empleadosSelec, cliente, vehiculo, servicios, null);
+        } catch (SQLException ex) {
+            Logger.getLogger(ViewCrearOrden.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        String texto=orden.texto();
+        areaTextoDatos.setText(texto);
+        //areaTextoDatos.setText("Servicios:"+servicios+" \nCliente:"+cliente+"\nVehiculo:"+vehiculo+"\nEmpleado/s:"+empleadosSelec+"\n");
+    }//GEN-LAST:event_jTabbedPane1FocusGained
+
+    private void comboBoxPrioridadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPrioridadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxPrioridadActionPerformed
+
+    private void botonCrearOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearOrdenActionPerformed
+        OrdenController controlador = new OrdenController();
+        try {
+            controlador.guardar(comboBoxPrioridad.getSelectedItem().toString(),EstadoModel.EN_PROCESO,cajero,empleadosSelec,cliente,vehiculo,servicios,
+                areaTextoDescripcion.getText());
+            controlador.guardarEnBD();
+        } catch (SQLException ex) {
+            Logger.getLogger(ViewCrearOrden.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_botonCrearOrdenActionPerformed
+
+    private void buscadorNombre1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombre1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buscadorNombre1KeyReleased
+
+    private void buscadorNombre1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombre1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buscadorNombre1KeyPressed
+
+    private void botonSacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSacarActionPerformed
+        String cuil=(String) tablaEmpleadosSelec.getValueAt(tablaEmpleadosSelec.getSelectedRow(),4);
+        EmpleadoModel emp=filtrarCuil(cuil,empleadosSelec);
+        empleadosSelec.remove(emp);
+        crearTablaEmpleados(empleadosSelec,modeloEmpleadosSelec,tablaEmpleadosSelec);
+    }//GEN-LAST:event_botonSacarActionPerformed
+
+    private void buscadorNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombreKeyReleased
+        List a=filtrarNombre(buscadorNombre.getText(),empleados);
+        crearTablaEmpleados(a,modeloEmpleados,tablaEmpleados);
+    }//GEN-LAST:event_buscadorNombreKeyReleased
+
+    private void buscadorNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombreKeyPressed
+
+    }//GEN-LAST:event_buscadorNombreKeyPressed
+
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
         String cuil=(String) tablaEmpleados.getValueAt(tablaEmpleados.getSelectedRow(),4);
         EmpleadoModel emp =new EmpleadoModel();
@@ -425,50 +736,33 @@ public class ViewCrearOrden extends javax.swing.JFrame {
         crearTablaEmpleados(empleadosSelec,modeloEmpleadosSelec,tablaEmpleadosSelec);
     }//GEN-LAST:event_botonAgregarActionPerformed
 
-    private void buscadorNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombreKeyPressed
-
-    }//GEN-LAST:event_buscadorNombreKeyPressed
-
-    private void buscadorNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombreKeyReleased
-        List a=filtrarNombre(buscadorNombre.getText(),empleados);
-        crearTablaEmpleados(a,modeloEmpleados,tablaEmpleados);
-    }//GEN-LAST:event_buscadorNombreKeyReleased
-
-    private void botonSacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSacarActionPerformed
-        String cuil=(String) tablaEmpleadosSelec.getValueAt(tablaEmpleadosSelec.getSelectedRow(),4);
-        EmpleadoModel emp=filtrarCuil(cuil,empleadosSelec);
-        empleadosSelec.remove(emp);
-        crearTablaEmpleados(empleadosSelec,modeloEmpleadosSelec,tablaEmpleadosSelec);
-    }//GEN-LAST:event_botonSacarActionPerformed
-
-    private void comboBoxPrioridadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPrioridadActionPerformed
+    private void buscadorNombre2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombre2KeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxPrioridadActionPerformed
+    }//GEN-LAST:event_buscadorNombre2KeyPressed
 
-    private void botonCrearOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearOrdenActionPerformed
-        OrdenController controlador = new OrdenController();
-        try {
-            controlador.guardar(comboBoxPrioridad.getSelectedItem().toString(),EstadoModel.EN_PROCESO,cajero,empleadosSelec,cliente,vehiculo,servicios,
-                    areaTextoDescripcion.getText());
-            controlador.guardarEnBD();
-        } catch (SQLException ex) {
-            Logger.getLogger(ViewCrearOrden.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_botonCrearOrdenActionPerformed
+    private void buscadorNombre2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombre2KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buscadorNombre2KeyReleased
 
-    private void jTabbedPane1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane1FocusGained
-    //No se aplica la arquitectura en capas?
-    OrdenController orden = new OrdenController();
-        try {
-            orden.guardar("h", EstadoModel.EN_PROCESO, cajero, empleadosSelec, cliente, vehiculo, servicios, null);
-        } catch (SQLException ex) {
-            Logger.getLogger(ViewCrearOrden.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    private void botonAgregar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregar3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonAgregar3ActionPerformed
 
-    String texto=orden.texto();
-    areaTextoDatos.setText(texto);
-//areaTextoDatos.setText("Servicios:"+servicios+" \nCliente:"+cliente+"\nVehiculo:"+vehiculo+"\nEmpleado/s:"+empleadosSelec+"\n");
-    }//GEN-LAST:event_jTabbedPane1FocusGained
+    private void buscadorNombre3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombre3KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buscadorNombre3KeyPressed
+
+    private void buscadorNombre3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombre3KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buscadorNombre3KeyReleased
+
+    private void botonSacar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSacar3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonSacar3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -506,7 +800,7 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                 try {
                     //Aqui poner valores validos de la bd
                     EmpleadoModel cajero = new EmpleadoModel();
-                    VehiculoModel v = new VehiculoModel();
+                    /*VehiculoModel v = new VehiculoModel();
                     ClienteModel c=new ClienteModel();
                     List <ServicioModel> servicios = new ArrayList<>();
                     JLabel j = new JLabel();
@@ -530,9 +824,9 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                     cajero.setEdad(f);
                     cajero.setFecha_ingreso(f);
                     cajero.setResponsabilidad(ResponsabilidadModel.ENCARGADO);
-                    cajero.setNombre("1");
+                    cajero.setNombre("1");*/
                     
-                    new ViewCrearOrden(cajero,v,servicios,c,j).setVisible(true);
+                    new ViewCrearOrden(cajero).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(ViewCrearOrden.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ParseException ex) {
@@ -548,25 +842,49 @@ public class ViewCrearOrden extends javax.swing.JFrame {
     private javax.swing.JTextArea areaTextoDatos;
     private javax.swing.JTextArea areaTextoDescripcion;
     private javax.swing.JButton botonAgregar;
+    private javax.swing.JButton botonAgregar3;
     private javax.swing.JButton botonCrearOrden;
     private javax.swing.JButton botonSacar;
+    private javax.swing.JButton botonSacar3;
     private javax.swing.JTextField buscadorNombre;
+    private javax.swing.JTextField buscadorNombre1;
+    private javax.swing.JTextField buscadorNombre2;
+    private javax.swing.JTextField buscadorNombre3;
     private javax.swing.JComboBox<String> comboBoxPrioridad;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tablaEmpleados;
+    private javax.swing.JTable tablaEmpleados1;
+    private javax.swing.JTable tablaEmpleados2;
+    private javax.swing.JTable tablaEmpleados3;
     private javax.swing.JTable tablaEmpleadosSelec;
+    private javax.swing.JTable tablaEmpleadosSelec3;
     // End of variables declaration//GEN-END:variables
 }
