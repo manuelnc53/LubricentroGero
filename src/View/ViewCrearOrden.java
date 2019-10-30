@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package View;
-
+//Algo
 import Controller.EmpleadoController;
 import Controller.OrdenController;
 import Model.ClienteModel;
