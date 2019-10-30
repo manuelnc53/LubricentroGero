@@ -131,9 +131,9 @@ public class ViewCrearOrden extends javax.swing.JFrame {
         initComponents();
         this.costo=costo;
         this.cajero=cajero;
-        this.vehiculo=vehiculo;
+        this.vehiculo= new VehiculoModel();
         this.servicios=servicios;
-        this.cliente=cliente;
+        this.cliente=new ClienteModel();
         EmpleadoController controlador = new EmpleadoController();
         //VehiculoDAO bdVehiculo=new VehiculoDAO();
         empleados=controlador.empleadosBD();
@@ -626,10 +626,11 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonCrearOrden)
-                    .addComponent(comboBoxPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(botonCrearOrden)
+                        .addComponent(comboBoxPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(31, 31, 31))
         );
 
