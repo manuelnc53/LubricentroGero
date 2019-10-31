@@ -114,7 +114,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel3" min="-2" pref="130" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="buscadorNombre" min="-2" pref="135" max="-2" attributes="0"/>
+                                  <Component id="buscadorNombreEmpleado" min="-2" pref="135" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -123,8 +123,8 @@
                                           <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="botonAgregar" min="-2" max="-2" attributes="0"/>
-                                              <Component id="botonSacar" min="-2" pref="71" max="-2" attributes="0"/>
+                                              <Component id="botonAgregarEmpleados" min="-2" max="-2" attributes="0"/>
+                                              <Component id="botonSacarEmpleados" min="-2" pref="71" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -143,16 +143,16 @@
                           <Component id="jLabel8" min="-2" pref="22" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="buscadorNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="buscadorNombreEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
-                                  <Component id="botonAgregar" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonAgregarEmpleados" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-                                  <Component id="botonSacar" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonSacarEmpleados" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane1" alignment="0" pref="574" max="32767" attributes="0"/>
@@ -211,12 +211,12 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JButton" name="botonAgregar">
+                <Component class="javax.swing.JButton" name="botonAgregarEmpleados">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Agregar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAgregarActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAgregarEmpleadosActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel8">
@@ -232,18 +232,19 @@
                     <Property name="text" type="java.lang.String" value="Busqueda por nombre:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="buscadorNombre">
+                <Component class="javax.swing.JTextField" name="buscadorNombreEmpleado">
                   <Events>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="buscadorNombreKeyPressed"/>
-                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="buscadorNombreKeyReleased"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscadorNombreEmpleadoActionPerformed"/>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="buscadorNombreEmpleadoKeyPressed"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="buscadorNombreEmpleadoKeyReleased"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="botonSacar">
+                <Component class="javax.swing.JButton" name="botonSacarEmpleados">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Sacar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonSacarActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonSacarEmpleadosActionPerformed"/>
                   </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane2">
@@ -318,7 +319,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel5" min="-2" pref="130" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="buscadorNombre1" min="-2" pref="135" max="-2" attributes="0"/>
+                                          <Component id="buscadorNombreCliente" min="-2" pref="135" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="0" pref="495" max="32767" attributes="0"/>
@@ -339,7 +340,7 @@
                           <Component id="jLabel10" min="-2" pref="22" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="buscadorNombre1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="buscadorNombreCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -357,7 +358,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="tablaEmpleados1">
+                    <Component class="javax.swing.JTable" name="tablaClientes">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="4" rowCount="4">
@@ -395,6 +396,11 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaClientesMouseClicked"/>
+                        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaClientesMouseEntered"/>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tablaClientesKeyReleased"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -403,7 +409,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="18" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Seleccione el cliente al que se le realizara el servicio."/>
+                    <Property name="text" type="java.lang.String" value="Seleccione el cliente al que se le realizara el servicio"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel5">
@@ -411,10 +417,10 @@
                     <Property name="text" type="java.lang.String" value="Busqueda por nombre:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="buscadorNombre1">
+                <Component class="javax.swing.JTextField" name="buscadorNombreCliente">
                   <Events>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="buscadorNombre1KeyPressed"/>
-                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="buscadorNombre1KeyReleased"/>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="buscadorNombreClienteKeyPressed"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="buscadorNombreClienteKeyReleased"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton2">
@@ -449,7 +455,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel6" min="-2" pref="130" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="buscadorNombre2" min="-2" pref="135" max="-2" attributes="0"/>
+                                          <Component id="buscadorNombreVehiculo" min="-2" pref="135" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="0" pref="495" max="32767" attributes="0"/>
@@ -470,7 +476,7 @@
                           <Component id="jLabel11" min="-2" pref="22" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="buscadorNombre2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="buscadorNombreVehiculo" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -488,7 +494,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="tablaEmpleados2">
+                    <Component class="javax.swing.JTable" name="tablaVehiculos">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="4" rowCount="4">
@@ -526,6 +532,10 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaVehiculosMouseClicked"/>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tablaVehiculosKeyReleased"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -539,13 +549,13 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel6">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Busqueda por nombre:"/>
+                    <Property name="text" type="java.lang.String" value="Busqueda por patente:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="buscadorNombre2">
+                <Component class="javax.swing.JTextField" name="buscadorNombreVehiculo">
                   <Events>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="buscadorNombre2KeyPressed"/>
-                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="buscadorNombre2KeyReleased"/>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="buscadorNombreVehiculoKeyPressed"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="buscadorNombreVehiculoKeyReleased"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton1">
@@ -573,7 +583,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel7" min="-2" pref="130" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="buscadorNombre3" min="-2" pref="135" max="-2" attributes="0"/>
+                                  <Component id="buscadorNombreServicio" min="-2" pref="135" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -582,8 +592,8 @@
                                           <Component id="jScrollPane9" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="botonAgregar3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="botonSacar3" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+                                              <Component id="botonAgregarServicios" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="botonSacarServicios" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -602,16 +612,16 @@
                           <Component id="jLabel12" min="-2" pref="22" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="buscadorNombre3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="buscadorNombreServicio" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
-                                  <Component id="botonAgregar3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonAgregarServicios" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-                                  <Component id="botonSacar3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonSacarServicios" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane9" alignment="0" pref="574" max="32767" attributes="0"/>
@@ -629,7 +639,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="tablaEmpleados3">
+                    <Component class="javax.swing.JTable" name="tablaServicios">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="4" rowCount="4">
@@ -670,12 +680,12 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JButton" name="botonAgregar3">
+                <Component class="javax.swing.JButton" name="botonAgregarServicios">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Agregar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAgregar3ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAgregarServiciosActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel12">
@@ -691,18 +701,18 @@
                     <Property name="text" type="java.lang.String" value="Busqueda por nombre:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="buscadorNombre3">
+                <Component class="javax.swing.JTextField" name="buscadorNombreServicio">
                   <Events>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="buscadorNombre3KeyPressed"/>
-                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="buscadorNombre3KeyReleased"/>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="buscadorNombreServicioKeyPressed"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="buscadorNombreServicioKeyReleased"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="botonSacar3">
+                <Component class="javax.swing.JButton" name="botonSacarServicios">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Sacar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonSacar3ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonSacarServiciosActionPerformed"/>
                   </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane10">
@@ -712,7 +722,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="tablaEmpleadosSelec3">
+                    <Component class="javax.swing.JTable" name="tablaServiciosSelec">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="4" rowCount="4">

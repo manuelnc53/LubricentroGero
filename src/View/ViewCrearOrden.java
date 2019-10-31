@@ -4,9 +4,12 @@
  * and open the template in the editor.
  */
 package View;
-//Algo
+//Orden
+import Controller.ClienteController;
 import Controller.EmpleadoController;
 import Controller.OrdenController;
+import Controller.ServicioController;
+import Controller.VehiculoController;
 import Model.ClienteModel;
 import Model.EmpleadoDAO;
 import Model.EmpleadoModel;
@@ -48,15 +51,23 @@ import javax.swing.JTable;
  * @author YOGA
  */
 public class ViewCrearOrden extends javax.swing.JFrame {
-    private TablaNoEditable modeloEmpleados;
-    private TablaNoEditable modeloEmpleadosSelec;
+    private TablaNoEditable modeloGenerico;
+   //private TablaNoEditable modeloEmpleados;
+   // private TablaNoEditable modeloEmpleadosSelec;
+   // private TablaNoEditable modeloClientes;
+   // private TablaNoEditable modeloVehiculos;
+   // private TablaNoEditable modeloServicios;
+   // private TablaNoEditable modeloServiciosSelec;
     private List<EmpleadoModel> empleados;
     private List<EmpleadoModel> empleadosSelec;
-    private EmpleadoModel cajero;
+    private List<ClienteModel> clientes;
+    private List<VehiculoModel> vehiculos;
     private List<ServicioModel> servicios;
+    private List<ServicioModel> serviciosSelec;
+    private EmpleadoModel cajero;
     private VehiculoModel vehiculo;
     private ClienteModel cliente;
-    private JLabel costo;
+    //private JLabel costo;
     
     
      /**
@@ -65,22 +76,66 @@ public class ViewCrearOrden extends javax.swing.JFrame {
      * @param listaEmpleados la lista de los empleados
      * @return List<Empleados> que cumple con tener el patron de la palabra.
      */
-    private static List filtrarNombre(String nombre,List<EmpleadoModel> empleados) { //Utilizo lenguaje regular aqui.
-        nombre.toLowerCase();
+    private static List filtrarNombreEmpleado(String nombre,List<EmpleadoModel> empleados) { //Utilizo lenguaje regular aqui.
+        nombre=nombre.toLowerCase();
         List<EmpleadoModel> filtrados=new ArrayList<EmpleadoModel>();
         String regex = ".*"+nombre+".*";
         Pattern patron = Pattern.compile(regex);
         Matcher m ;
         for(EmpleadoModel o: empleados){
-             m  = patron.matcher(o.getNombre());
+             m  = patron.matcher(o.getNombre().toLowerCase());
              if(m.find()){
                  filtrados.add(o);
              }
         }
         return filtrados;
     }
+    private static List filtrarNombreCliente(String nombre,List<ClienteModel> clientes) { //Utilizo lenguaje regular aqui.
+        nombre=nombre.toLowerCase();
+        List<ClienteModel> filtrados=new ArrayList<ClienteModel>();
+        String regex = ".*"+nombre+".*";
+        Pattern patron = Pattern.compile(regex);
+        Matcher m ;
+        for(ClienteModel o: clientes){
+             m  = patron.matcher(o.getNombre().toLowerCase());
+             if(m.find()){
+                 filtrados.add(o);
+             }
+        }
+        return filtrados;
+    }
+
+    private static List filtrarPatente(String nombre,List<VehiculoModel> vehiculos) { //Utilizo lenguaje regular aqui.
+        nombre=nombre.toLowerCase();
+        List<VehiculoModel> filtrados=new ArrayList<VehiculoModel>();
+        String regex = ".*"+nombre+".*";
+        Pattern patron = Pattern.compile(regex);
+        Matcher m ;
+        for(VehiculoModel o: vehiculos){
+             m  = patron.matcher(o.getPatente().toLowerCase());
+             if(m.find()){
+                 filtrados.add(o);
+             }
+        }
+        return filtrados;
+    }
+    private static List filtrarNombreServicio(String nombre,List<ServicioModel> servicios) { //Utilizo lenguaje regular aqui.
+        nombre=nombre.toLowerCase();
+        List<ServicioModel> filtrados=new ArrayList<ServicioModel>();
+        String regex = ".*"+nombre+".*";
+        Pattern patron = Pattern.compile(regex);
+        Matcher m ;
+        for(ServicioModel o: servicios){
+             m  = patron.matcher(o.getNombre().toLowerCase());
+             if(m.find()){
+                 filtrados.add(o);
+             }
+        }
+        return filtrados;
+    }
+
     
-     /**
+    /**
      * Devuelve una lista con todos los empleados que tienen cuil igual al pasado por parametro
      * @param cuil nombre del empleado buscado
      * @param listaEmpleados la lista de los empleados
@@ -126,20 +181,84 @@ public class ViewCrearOrden extends javax.swing.JFrame {
             modelo.addRow(datos);
         }
     }
+    private static void crearTablaClientes(List<ClienteModel> client,TablaNoEditable modelo,JTable tabla){
+        modelo=new TablaNoEditable();
+        modelo.addColumn("Cuil");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Direccion");
+        tabla.setModel(modelo);
+        String []datos=new String[3];
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                for(ClienteModel o : client){
+            datos[0]=String.valueOf(o.getCuit_cuil());
+            datos[1]=o.getNombre();
+            datos[2]=o.getDireccion();
+            modelo.addRow(datos);
+        }
+    }
+    
+    private static void crearTablaVehiculos(List<VehiculoModel> vehiculo,TablaNoEditable modelo,JTable tabla){
+        modelo=new TablaNoEditable();
+        modelo.addColumn("Patente");
+        modelo.addColumn("Tipo Motor");
+        modelo.addColumn("Kilometraje");
+        modelo.addColumn("Marca");
+        modelo.addColumn("Modelo");
+        tabla.setModel(modelo);
+        String []datos=new String[5];
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                for(VehiculoModel o : vehiculo){
+            datos[0]=o.getPatente();
+            datos[1]=o.getTipo_motor();
+            datos[2]=String.valueOf(o.getKilometraje());
+            datos[3]=o.getMarca();
+            datos[4]=o.getModelo();
+            modelo.addRow(datos);
+        }
+    }
+    
+    private static void crearTablaServicios(List<ServicioModel> servicio,TablaNoEditable modelo,JTable tabla){
+        modelo=new TablaNoEditable();
+        modelo.addColumn("ID");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Precio");
+        tabla.setModel(modelo);
+        String []datos=new String[4];
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                for(ServicioModel o : servicio){
+            datos[0]=String.valueOf(o.getId());
+            datos[1]=o.getNombre();
+            datos[2]=o.getDescripcion();
+            datos[3]=String.valueOf(o.getPrecio());
+            modelo.addRow(datos);
+        }
+    }
+    
     
     public ViewCrearOrden(EmpleadoModel cajero) throws SQLException, ParseException, CloneNotSupportedException {
         initComponents();
-        this.costo=costo;
+        //this.costo=costo;
         this.cajero=cajero;
         this.vehiculo= new VehiculoModel();
-        this.servicios=servicios;
         this.cliente=new ClienteModel();
         EmpleadoController controlador = new EmpleadoController();
+        ClienteController controladorC= new ClienteController();
+        VehiculoController controladorV = new VehiculoController();
+        ServicioController controladorS = new ServicioController();
         //VehiculoDAO bdVehiculo=new VehiculoDAO();
         empleados=controlador.empleadosBD();
         empleadosSelec=new ArrayList<EmpleadoModel>();
-        crearTablaEmpleados(empleados,modeloEmpleados,tablaEmpleados);
-        crearTablaEmpleados(empleadosSelec,modeloEmpleadosSelec,tablaEmpleadosSelec);
+        serviciosSelec = new ArrayList<ServicioModel>();
+        vehiculos = controladorV.vehiculosBD();
+        servicios = controladorS.serviciosBD();
+        clientes = controladorC.clientesBD();
+        crearTablaEmpleados(empleados,modeloGenerico,tablaEmpleados);
+        crearTablaEmpleados(empleadosSelec,modeloGenerico,tablaEmpleadosSelec);
+        crearTablaClientes(clientes,modeloGenerico,tablaClientes);
+        crearTablaVehiculos(vehiculos,modeloGenerico,tablaVehiculos);
+        crearTablaServicios(servicios,modeloGenerico,tablaServicios);
+        crearTablaServicios(serviciosSelec,modeloGenerico,tablaServiciosSelec);
     }
 
     /**
@@ -157,37 +276,37 @@ public class ViewCrearOrden extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaEmpleados = new javax.swing.JTable();
-        botonAgregar = new javax.swing.JButton();
+        botonAgregarEmpleados = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        buscadorNombre = new javax.swing.JTextField();
-        botonSacar = new javax.swing.JButton();
+        buscadorNombreEmpleado = new javax.swing.JTextField();
+        botonSacarEmpleados = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaEmpleadosSelec = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        tablaEmpleados1 = new javax.swing.JTable();
+        tablaClientes = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        buscadorNombre1 = new javax.swing.JTextField();
+        buscadorNombreCliente = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        tablaEmpleados2 = new javax.swing.JTable();
+        tablaVehiculos = new javax.swing.JTable();
         jLabel11 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        buscadorNombre2 = new javax.swing.JTextField();
+        buscadorNombreVehiculo = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
-        tablaEmpleados3 = new javax.swing.JTable();
-        botonAgregar3 = new javax.swing.JButton();
+        tablaServicios = new javax.swing.JTable();
+        botonAgregarServicios = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        buscadorNombre3 = new javax.swing.JTextField();
-        botonSacar3 = new javax.swing.JButton();
+        buscadorNombreServicio = new javax.swing.JTextField();
+        botonSacarServicios = new javax.swing.JButton();
         jScrollPane10 = new javax.swing.JScrollPane();
-        tablaEmpleadosSelec3 = new javax.swing.JTable();
+        tablaServiciosSelec = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -233,10 +352,10 @@ public class ViewCrearOrden extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tablaEmpleados);
 
-        botonAgregar.setText("Agregar");
-        botonAgregar.addActionListener(new java.awt.event.ActionListener() {
+        botonAgregarEmpleados.setText("Agregar");
+        botonAgregarEmpleados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAgregarActionPerformed(evt);
+                botonAgregarEmpleadosActionPerformed(evt);
             }
         });
 
@@ -245,19 +364,24 @@ public class ViewCrearOrden extends javax.swing.JFrame {
 
         jLabel3.setText("Busqueda por nombre:");
 
-        buscadorNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+        buscadorNombreEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscadorNombreEmpleadoActionPerformed(evt);
+            }
+        });
+        buscadorNombreEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                buscadorNombreKeyPressed(evt);
+                buscadorNombreEmpleadoKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                buscadorNombreKeyReleased(evt);
+                buscadorNombreEmpleadoKeyReleased(evt);
             }
         });
 
-        botonSacar.setText("Sacar");
-        botonSacar.addActionListener(new java.awt.event.ActionListener() {
+        botonSacarEmpleados.setText("Sacar");
+        botonSacarEmpleados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonSacarActionPerformed(evt);
+                botonSacarEmpleadosActionPerformed(evt);
             }
         });
 
@@ -284,7 +408,7 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(buscadorNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buscadorNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -292,8 +416,8 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(botonAgregar)
-                                    .addComponent(botonSacar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(botonAgregarEmpleados)
+                                    .addComponent(botonSacarEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -305,15 +429,15 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buscadorNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscadorNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(113, 113, 113)
-                        .addComponent(botonAgregar)
+                        .addComponent(botonAgregarEmpleados)
                         .addGap(77, 77, 77)
-                        .addComponent(botonSacar)
+                        .addComponent(botonSacarEmpleados)
                         .addContainerGap())
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
@@ -321,7 +445,7 @@ public class ViewCrearOrden extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Seleccionar empleado/s", jPanel3);
 
-        tablaEmpleados1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -332,19 +456,32 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane5.setViewportView(tablaEmpleados1);
+        tablaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaClientesMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tablaClientesMouseEntered(evt);
+            }
+        });
+        tablaClientes.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tablaClientesKeyReleased(evt);
+            }
+        });
+        jScrollPane5.setViewportView(tablaClientes);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel10.setText("Seleccione el cliente al que se le realizara el servicio.");
+        jLabel10.setText("Seleccione el cliente al que se le realizara el servicio");
 
         jLabel5.setText("Busqueda por nombre:");
 
-        buscadorNombre1.addKeyListener(new java.awt.event.KeyAdapter() {
+        buscadorNombreCliente.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                buscadorNombre1KeyPressed(evt);
+                buscadorNombreClienteKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                buscadorNombre1KeyReleased(evt);
+                buscadorNombreClienteKeyReleased(evt);
             }
         });
 
@@ -369,7 +506,7 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(buscadorNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(buscadorNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 495, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -383,7 +520,7 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buscadorNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscadorNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -392,7 +529,7 @@ public class ViewCrearOrden extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Seleccionar cliente", jPanel7);
 
-        tablaEmpleados2.setModel(new javax.swing.table.DefaultTableModel(
+        tablaVehiculos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -403,19 +540,29 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane7.setViewportView(tablaEmpleados2);
+        tablaVehiculos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaVehiculosMouseClicked(evt);
+            }
+        });
+        tablaVehiculos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tablaVehiculosKeyReleased(evt);
+            }
+        });
+        jScrollPane7.setViewportView(tablaVehiculos);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel11.setText("Seleccione el vehiculo al que se le realizara el servicio");
 
-        jLabel6.setText("Busqueda por nombre:");
+        jLabel6.setText("Busqueda por patente:");
 
-        buscadorNombre2.addKeyListener(new java.awt.event.KeyAdapter() {
+        buscadorNombreVehiculo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                buscadorNombre2KeyPressed(evt);
+                buscadorNombreVehiculoKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                buscadorNombre2KeyReleased(evt);
+                buscadorNombreVehiculoKeyReleased(evt);
             }
         });
 
@@ -435,7 +582,7 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(buscadorNombre2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(buscadorNombreVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 495, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -449,7 +596,7 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buscadorNombre2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscadorNombreVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -458,7 +605,7 @@ public class ViewCrearOrden extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Seleccionar vehiculo", jPanel8);
 
-        tablaEmpleados3.setModel(new javax.swing.table.DefaultTableModel(
+        tablaServicios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -469,12 +616,12 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane9.setViewportView(tablaEmpleados3);
+        jScrollPane9.setViewportView(tablaServicios);
 
-        botonAgregar3.setText("Agregar");
-        botonAgregar3.addActionListener(new java.awt.event.ActionListener() {
+        botonAgregarServicios.setText("Agregar");
+        botonAgregarServicios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAgregar3ActionPerformed(evt);
+                botonAgregarServiciosActionPerformed(evt);
             }
         });
 
@@ -483,23 +630,23 @@ public class ViewCrearOrden extends javax.swing.JFrame {
 
         jLabel7.setText("Busqueda por nombre:");
 
-        buscadorNombre3.addKeyListener(new java.awt.event.KeyAdapter() {
+        buscadorNombreServicio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                buscadorNombre3KeyPressed(evt);
+                buscadorNombreServicioKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                buscadorNombre3KeyReleased(evt);
+                buscadorNombreServicioKeyReleased(evt);
             }
         });
 
-        botonSacar3.setText("Sacar");
-        botonSacar3.addActionListener(new java.awt.event.ActionListener() {
+        botonSacarServicios.setText("Sacar");
+        botonSacarServicios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonSacar3ActionPerformed(evt);
+                botonSacarServiciosActionPerformed(evt);
             }
         });
 
-        tablaEmpleadosSelec3.setModel(new javax.swing.table.DefaultTableModel(
+        tablaServiciosSelec.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -510,7 +657,7 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane10.setViewportView(tablaEmpleadosSelec3);
+        jScrollPane10.setViewportView(tablaServiciosSelec);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -522,7 +669,7 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(buscadorNombre3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buscadorNombreServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -530,8 +677,8 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(botonAgregar3)
-                                    .addComponent(botonSacar3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(botonAgregarServicios)
+                                    .addComponent(botonSacarServicios, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -543,15 +690,15 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buscadorNombre3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscadorNombreServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGap(113, 113, 113)
-                        .addComponent(botonAgregar3)
+                        .addComponent(botonAgregarServicios)
                         .addGap(77, 77, 77)
-                        .addComponent(botonSacar3)
+                        .addComponent(botonSacarServicios)
                         .addContainerGap())
                     .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
                     .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
@@ -674,7 +821,7 @@ public class ViewCrearOrden extends javax.swing.JFrame {
         //No se aplica la arquitectura en capas?
         OrdenController orden = new OrdenController();
         try {
-            orden.guardar("h", EstadoModel.EN_PROCESO, cajero, empleadosSelec, cliente, vehiculo, servicios, null);
+            orden.guardar("h", EstadoModel.EN_PROCESO, cajero, empleadosSelec, cliente, vehiculo, serviciosSelec, null);
         } catch (SQLException ex) {
             Logger.getLogger(ViewCrearOrden.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -699,31 +846,32 @@ public class ViewCrearOrden extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botonCrearOrdenActionPerformed
 
-    private void buscadorNombre1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombre1KeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buscadorNombre1KeyReleased
+    private void buscadorNombreClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombreClienteKeyReleased
+        List a=filtrarNombreCliente(buscadorNombreCliente.getText(),clientes);
+        crearTablaClientes(a,modeloGenerico,tablaClientes);
+    }//GEN-LAST:event_buscadorNombreClienteKeyReleased
 
-    private void buscadorNombre1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombre1KeyPressed
+    private void buscadorNombreClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombreClienteKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buscadorNombre1KeyPressed
+    }//GEN-LAST:event_buscadorNombreClienteKeyPressed
 
-    private void botonSacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSacarActionPerformed
+    private void botonSacarEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSacarEmpleadosActionPerformed
         String cuil=(String) tablaEmpleadosSelec.getValueAt(tablaEmpleadosSelec.getSelectedRow(),4);
         EmpleadoModel emp=filtrarCuil(cuil,empleadosSelec);
         empleadosSelec.remove(emp);
-        crearTablaEmpleados(empleadosSelec,modeloEmpleadosSelec,tablaEmpleadosSelec);
-    }//GEN-LAST:event_botonSacarActionPerformed
+        crearTablaEmpleados(empleadosSelec,modeloGenerico,tablaEmpleadosSelec);
+    }//GEN-LAST:event_botonSacarEmpleadosActionPerformed
 
-    private void buscadorNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombreKeyReleased
-        List a=filtrarNombre(buscadorNombre.getText(),empleados);
-        crearTablaEmpleados(a,modeloEmpleados,tablaEmpleados);
-    }//GEN-LAST:event_buscadorNombreKeyReleased
+    private void buscadorNombreEmpleadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombreEmpleadoKeyReleased
+        List a=filtrarNombreEmpleado(buscadorNombreEmpleado.getText(),empleados);
+        crearTablaEmpleados(a,modeloGenerico,tablaEmpleados);
+    }//GEN-LAST:event_buscadorNombreEmpleadoKeyReleased
 
-    private void buscadorNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombreKeyPressed
+    private void buscadorNombreEmpleadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombreEmpleadoKeyPressed
 
-    }//GEN-LAST:event_buscadorNombreKeyPressed
+    }//GEN-LAST:event_buscadorNombreEmpleadoKeyPressed
 
-    private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
+    private void botonAgregarEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarEmpleadosActionPerformed
         String cuil=(String) tablaEmpleados.getValueAt(tablaEmpleados.getSelectedRow(),4);
         EmpleadoModel emp =new EmpleadoModel();
         emp=filtrarCuil(cuil,empleados);
@@ -734,36 +882,97 @@ public class ViewCrearOrden extends javax.swing.JFrame {
         empleadosSelec.clear();
         empleadosSelec.addAll(hs);
         //
-        crearTablaEmpleados(empleadosSelec,modeloEmpleadosSelec,tablaEmpleadosSelec);
-    }//GEN-LAST:event_botonAgregarActionPerformed
+        crearTablaEmpleados(empleadosSelec,modeloGenerico,tablaEmpleadosSelec);
+    }//GEN-LAST:event_botonAgregarEmpleadosActionPerformed
 
-    private void buscadorNombre2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombre2KeyPressed
+    private void buscadorNombreVehiculoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombreVehiculoKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buscadorNombre2KeyPressed
+    }//GEN-LAST:event_buscadorNombreVehiculoKeyPressed
 
-    private void buscadorNombre2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombre2KeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buscadorNombre2KeyReleased
+    private void buscadorNombreVehiculoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombreVehiculoKeyReleased
+        List a=filtrarPatente(buscadorNombreVehiculo.getText(),vehiculos);
+        crearTablaVehiculos(a,modeloGenerico,tablaVehiculos);
+    }//GEN-LAST:event_buscadorNombreVehiculoKeyReleased
 
-    private void botonAgregar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregar3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonAgregar3ActionPerformed
+    private void botonAgregarServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarServiciosActionPerformed
+        long ID= Integer.parseInt((String) tablaServicios.getValueAt(tablaServicios.getSelectedRow(),0)) ;
+        System.out.println(ID);
+        ServicioController controladorS=new ServicioController();
+        ServicioModel aux=controladorS.buscarPorID(ID,servicios);
+                System.out.println(serviciosSelec);
+        serviciosSelec.add(aux);
+        //eliminar los repetidos
+        Set<ServicioModel> hs = new HashSet<>();
+        hs.addAll(serviciosSelec);
+        serviciosSelec.clear();
+        serviciosSelec.addAll(hs);
+        //
+        System.out.println(serviciosSelec);
+        crearTablaServicios(serviciosSelec,modeloGenerico,tablaServiciosSelec);
+    }//GEN-LAST:event_botonAgregarServiciosActionPerformed
 
-    private void buscadorNombre3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombre3KeyPressed
+    private void buscadorNombreServicioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombreServicioKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buscadorNombre3KeyPressed
+    }//GEN-LAST:event_buscadorNombreServicioKeyPressed
 
-    private void buscadorNombre3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombre3KeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buscadorNombre3KeyReleased
+    private void buscadorNombreServicioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscadorNombreServicioKeyReleased
+        List a=filtrarNombreServicio(buscadorNombreServicio.getText(),servicios);
+        crearTablaServicios(a,modeloGenerico,tablaServicios);
+    }//GEN-LAST:event_buscadorNombreServicioKeyReleased
 
-    private void botonSacar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSacar3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonSacar3ActionPerformed
+    private void botonSacarServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSacarServiciosActionPerformed
+        long ID=Integer.parseInt((String) tablaServiciosSelec.getValueAt(tablaServiciosSelec.getSelectedRow(),0)) ;
+        ServicioController controladorS = new ServicioController();
+        ServicioModel aux=controladorS.buscarPorID(ID, servicios);
+        System.out.println(serviciosSelec);
+        serviciosSelec.remove(aux);
+        System.out.println(serviciosSelec);
+        crearTablaServicios(serviciosSelec,modeloGenerico,tablaServiciosSelec);
+    }//GEN-LAST:event_botonSacarServiciosActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void tablaClientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseEntered
+        
+    }//GEN-LAST:event_tablaClientesMouseEntered
+
+    private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
+       ClienteController controladorC = new ClienteController();
+       long aux=Integer.parseInt((String) tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 0)) ;
+       System.out.println(aux);
+       cliente=controladorC.buscarPorCuil(aux, clientes);
+        System.out.println(cliente);
+    }//GEN-LAST:event_tablaClientesMouseClicked
+
+    private void tablaVehiculosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaVehiculosMouseClicked
+       VehiculoController controladorV = new VehiculoController();
+       String aux=(String) tablaVehiculos.getValueAt(tablaVehiculos.getSelectedRow(), 0) ;
+       System.out.println(aux);
+       vehiculo=controladorV.buscarPorPatente(aux, vehiculos);
+        System.out.println(vehiculo);
+    }//GEN-LAST:event_tablaVehiculosMouseClicked
+
+    private void tablaVehiculosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaVehiculosKeyReleased
+       VehiculoController controladorV = new VehiculoController();
+       String aux=(String) tablaVehiculos.getValueAt(tablaVehiculos.getSelectedRow(), 0) ;
+       System.out.println(aux);
+       vehiculo=controladorV.buscarPorPatente(aux, vehiculos);
+       System.out.println(vehiculo);
+    }//GEN-LAST:event_tablaVehiculosKeyReleased
+
+    private void tablaClientesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaClientesKeyReleased
+       ClienteController controladorC = new ClienteController();
+       long aux=Integer.parseInt((String) tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 0)) ;
+       System.out.println(aux);
+       cliente=controladorC.buscarPorCuil(aux, clientes);
+       System.out.println(cliente);
+    }//GEN-LAST:event_tablaClientesKeyReleased
+
+    private void buscadorNombreEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscadorNombreEmpleadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buscadorNombreEmpleadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -801,11 +1010,11 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                 try {
                     //Aqui poner valores validos de la bd
                     EmpleadoModel cajero = new EmpleadoModel();
-                    /*VehiculoModel v = new VehiculoModel();
+                    Date f = new Date();/*
+                    VehiculoModel v = new VehiculoModel();
                     ClienteModel c=new ClienteModel();
                     List <ServicioModel> servicios = new ArrayList<>();
                     JLabel j = new JLabel();
-                    Date f = new Date();
                     v.setKilometraje(1);
                     v.setMarca("1");
                     v.setModelo("1");
@@ -819,13 +1028,13 @@ public class ViewCrearOrden extends javax.swing.JFrame {
                     servicios.add(ser);
                     c.setCuit_cuil(1);
                     c.setDireccion("1");
-                    c.setNombre("1");
+                    c.setNombre("1");*/
                     cajero.setCuit(1);
                     cajero.setDireccion("1");
                     cajero.setEdad(f);
                     cajero.setFecha_ingreso(f);
-                    cajero.setResponsabilidad(ResponsabilidadModel.ENCARGADO);
-                    cajero.setNombre("1");*/
+                    cajero.setResponsabilidad(ResponsabilidadModel.CAJERO);
+                    cajero.setNombre("Peres Ricardo");
                     
                     new ViewCrearOrden(cajero).setVisible(true);
                 } catch (SQLException ex) {
@@ -842,15 +1051,15 @@ public class ViewCrearOrden extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea areaTextoDatos;
     private javax.swing.JTextArea areaTextoDescripcion;
-    private javax.swing.JButton botonAgregar;
-    private javax.swing.JButton botonAgregar3;
+    private javax.swing.JButton botonAgregarEmpleados;
+    private javax.swing.JButton botonAgregarServicios;
     private javax.swing.JButton botonCrearOrden;
-    private javax.swing.JButton botonSacar;
-    private javax.swing.JButton botonSacar3;
-    private javax.swing.JTextField buscadorNombre;
-    private javax.swing.JTextField buscadorNombre1;
-    private javax.swing.JTextField buscadorNombre2;
-    private javax.swing.JTextField buscadorNombre3;
+    private javax.swing.JButton botonSacarEmpleados;
+    private javax.swing.JButton botonSacarServicios;
+    private javax.swing.JTextField buscadorNombreCliente;
+    private javax.swing.JTextField buscadorNombreEmpleado;
+    private javax.swing.JTextField buscadorNombreServicio;
+    private javax.swing.JTextField buscadorNombreVehiculo;
     private javax.swing.JComboBox<String> comboBoxPrioridad;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -881,11 +1090,11 @@ public class ViewCrearOrden extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable tablaClientes;
     private javax.swing.JTable tablaEmpleados;
-    private javax.swing.JTable tablaEmpleados1;
-    private javax.swing.JTable tablaEmpleados2;
-    private javax.swing.JTable tablaEmpleados3;
     private javax.swing.JTable tablaEmpleadosSelec;
-    private javax.swing.JTable tablaEmpleadosSelec3;
+    private javax.swing.JTable tablaServicios;
+    private javax.swing.JTable tablaServiciosSelec;
+    private javax.swing.JTable tablaVehiculos;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,7 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
@@ -104,6 +105,31 @@ public class VehiculoModel {
      */
     public void setModelo(String modelo) {
         this.modelo = modelo;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.patente);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final VehiculoModel other = (VehiculoModel) obj;
+        if (!Objects.equals(this.patente, other.patente)) {
+            return false;
+        }
+        return true;
     }
     
   @Override

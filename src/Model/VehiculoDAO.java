@@ -50,8 +50,6 @@ public class VehiculoDAO implements DAO<VehiculoModel> {
         ResultSet bdVehiculos=consulta.executeQuery();
         VehiculoModel auxiliar=new VehiculoModel();
         String res;
-        Date fecha;
-        ResponsabilidadModel responsabilidad=ResponsabilidadModel.CAJERO;
         while(bdVehiculos.next()){
             auxiliar.setPatente(bdVehiculos.getString(1));
             auxiliar.setTipo_motor(bdVehiculos.getString(2));

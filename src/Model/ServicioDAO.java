@@ -10,7 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,8 +19,9 @@ import java.util.List;
 public class ServicioDAO implements DAO<ServicioModel> {
     private Connection conexion;
     private PreparedStatement consulta;
+    
     public ServicioDAO(){
-        conexion = Conexion.getConnection();
+        conexion= Conexion.getConnection();
     }
     @Override
     public boolean create(ServicioModel dato) {
@@ -42,29 +42,29 @@ public class ServicioDAO implements DAO<ServicioModel> {
     public boolean delete(Long id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    //A estos daos les falta obtener las relaciones foreigns ya que hasta ahora no lo necesito, probablemente manu
-    //si necesite hacer el dao de servicios completo, es decir, un select que traiga la lista de ordenes asociadas.
-    public List dameServicios() throws SQLException, CloneNotSupportedException{
-        List <ServicioModel> servicios = new ArrayList();
+    public List dameServicios(){
+        List<ServicioModel>listaServicos=new ArrayList();
+        ResultSet resultado=null;
+        ServicioModel servicio = new ServicioModel();
         try{
-        consulta = conexion.prepareStatement("SELECT * FROM Servicios");
-        ResultSet bdServicios=consulta.executeQuery();
-        ServicioModel auxiliar=new ServicioModel();
-        String res;
-        Date fecha;
-        while(bdServicios.next()){
-            auxiliar.setId(bdServicios.getInt(1));
-            auxiliar.setNombre(bdServicios.getString(2));
-            auxiliar.setDescripcion(bdServicios.getString(3));
-            auxiliar.setPrecio(bdServicios.getFloat(4));
-            servicios.add((ServicioModel) auxiliar.clone());
-        }
-        }
-                catch(SQLException e){
+            consulta= conexion.prepareStatement("SELECT * FROM Servicios");//preparo la consulta a ser ejecutada
+            resultado=consulta.executeQuery();
+        }catch(SQLException e){
             System.out.println("No se pudo realizar la consulta");
         }
-        return servicios;
+        try{
+            while(resultado.next()){
+                servicio.setId(resultado.getInt(1));
+                servicio.setNombre(resultado.getString(2));
+                servicio.setDescripcion(resultado.getString(3));
+                servicio.setPrecio(resultado.getFloat(4));
+                listaServicos.add(servicio.clone());
+            }
+        }catch(SQLException f){
+            System.out.println("La consulta retorno vacio");
+        } 
+        return listaServicos;
     }
+    
     
 }

@@ -9,6 +9,9 @@ import Model.Conexion;
 import Model.VehiculoModel;
 import java.util.ArrayList;
 import Model.DAO;
+import Model.VehiculoDAO;
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -16,8 +19,25 @@ import Model.DAO;
  */
 public class VehiculoController  {
     private VehiculoModel vehiculo;
+    private VehiculoDAO vehiculoBD;
     public VehiculoController(){
         vehiculo= new VehiculoModel();
+        vehiculoBD = new VehiculoDAO();
     }
+    
+public List vehiculosBD() throws SQLException, CloneNotSupportedException{
+        List<VehiculoModel> listado=new ArrayList();
+        listado=vehiculoBD.dameVehiculos();
+        return listado;
+    }
+
+public VehiculoModel buscarPorPatente(String patente,List<VehiculoModel> lista){
+    VehiculoModel aux = null;
+    for(VehiculoModel o:lista){
+        if(o.getPatente().equals(patente))
+            aux=o;
+    }
+    return aux;
+}
     
 }
