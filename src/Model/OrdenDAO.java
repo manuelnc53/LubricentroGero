@@ -59,7 +59,7 @@ public class OrdenDAO implements DAO<OrdenModel> {
         for(ServicioModel o: orden.getServicios()){
         consulta = conexion.prepareStatement("INSERT INTO Respecto (Respecto_Orden_ID,Respecto_Servicio_ID) VALUES (?,?)");
         consulta.setInt(1, (int) orden.getNro_Orden());
-        consulta.setInt(2, o.getId());
+        consulta.setInt(2, (int) o.getId());
         consulta.execute();
         }
         for(EmpleadoModel o: orden.getEmpleados_mantenimiento()){
