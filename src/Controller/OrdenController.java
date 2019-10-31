@@ -25,7 +25,6 @@ import java.util.List;
 public class OrdenController {
     private OrdenModel orden;
     private OrdenDAO ordenBD;
-    private static float tazaAumento=(float) 0.2;
     public OrdenController(){
         orden=new OrdenModel();
         ordenBD=new OrdenDAO();
@@ -56,7 +55,7 @@ public class OrdenController {
         ordenBD.guardar(orden);
     }
     
-    public  float costoOrden(){
+    public  float costoOrden(float tazaAumento){
         float aux=0,aumento=1;
         for(ServicioModel o: orden.getServicios()){
             aux=(float) (aux+o.getPrecio());
@@ -79,7 +78,7 @@ public class OrdenController {
         orden.setServicios((ArrayList<ServicioModel>) servicios);
     }
 
-    public String texto() {
+    public String texto(float tazaAumento) {
     String texto="Cliente: "+orden.getCliente().getNombre()+"\nCajero: "
             +orden.getEmpleado_cajero().getNombre()+"\nServicios: ";
     for(ServicioModel o: orden.getServicios()){
@@ -90,7 +89,7 @@ public class OrdenController {
         texto = texto+o.getNombre()+", ";
     }
     texto=texto+"\nCosto: ";
-    float costo=this.costoOrden();
+    float costo=this.costoOrden(tazaAumento);
     texto=texto+costo;  
     return texto;
     
