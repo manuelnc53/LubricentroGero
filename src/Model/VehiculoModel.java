@@ -22,6 +22,9 @@ public class VehiculoModel {
     public VehiculoModel(){
     
     }
+    public VehiculoModel(String patente){
+        this.patente=patente;
+    }
     /**
      * @return the ordenes
      */

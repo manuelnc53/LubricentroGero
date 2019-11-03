@@ -24,6 +24,11 @@ public class ServicioModel {
     public ServicioModel(){
     }
 
+    public ServicioModel(long id,String nombre,double precio){
+        this.id=id;
+        this.nombre=nombre;
+        this.precio=precio;
+    }
     /**
      * @return the ordenes
      */
