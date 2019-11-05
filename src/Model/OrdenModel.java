@@ -5,6 +5,7 @@
  */
 package Model;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -15,7 +16,7 @@ import java.util.Date;
  */
 public class OrdenModel {
 
-    
+
     private Date fecha_Orden;
     private long nro_Orden;
     private String urgencia;
@@ -26,10 +27,16 @@ public class OrdenModel {
     private ClienteModel cliente;
     private VehiculoModel vehiculo;
     private ArrayList<ServicioModel> servicios;
+    private String descripcion;
+    
+    
     public OrdenModel(){
+
         this.servicios=new ArrayList();
         this.empleados_mantenimiento= new ArrayList();
-        
+
+        fecha_Orden = new Date();
+
     }
     
     /**
@@ -37,6 +44,16 @@ public class OrdenModel {
      */
     public EmpleadoModel getEmpleado_cajero() {
         return empleado_cajero;
+    }
+
+    public OrdenModel(String urgencia, EstadoModel estado, EmpleadoModel empleado_cajero, ArrayList<EmpleadoModel> empleados_mantenimiento, ClienteModel cliente, VehiculoModel vehiculo, ArrayList<ServicioModel> servicios) {
+        this.urgencia = urgencia;
+        this.estado = estado;
+        this.empleado_cajero = empleado_cajero;
+        this.empleados_mantenimiento = empleados_mantenimiento;
+        this.cliente = cliente;
+        this.vehiculo = vehiculo;
+        this.servicios = servicios;
     }
 
     /**
@@ -121,12 +138,20 @@ public class OrdenModel {
     public long getNro_Orden() {
         return nro_Orden;
     }
-
-    /**
+      /**
      * @param nro_Orden the nro_Orden to set
      */
     public void setNro_Orden(long nro_Orden) {
         this.nro_Orden = nro_Orden;
+    }
+
+
+     
+    public void setNro_Orden() throws SQLException {
+        OrdenDAO ordenBD = new OrdenDAO();
+        this.nro_Orden=ordenBD.maximoID();
+        nro_Orden++;
+        
     }
 
     /**
@@ -163,6 +188,7 @@ public class OrdenModel {
         return Descripcion;
     }
 
+
     /**
      * @param Descripcion the Descripcion to set
      */
@@ -174,5 +200,10 @@ public class OrdenModel {
     public String toString() {
         return "OrdenModel{" + "fecha_Orden=" + fecha_Orden + ", nro_Orden=" + nro_Orden + ", urgencia=" + urgencia + ", Descripcion=" + Descripcion + ", estado=" + estado + ", empleado_cajero=" + empleado_cajero + ", empleados_mantenimiento=" + empleados_mantenimiento + ", cliente=" + cliente + ", vehiculo=" + vehiculo + ", servicios=" + servicios + '}';
     }
+
+  
+    
+
+
     
 }

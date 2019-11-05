@@ -25,10 +25,27 @@ public class ServicioController {
         servicio= new ServicioModel();
         servicioDao= new ServicioDAO();
     }
+
     public List verServicios(){
         List<ServicioModel> listado=new ArrayList();
         listado=servicioDao.dameServicios();
         return listado;
     }
     
+
+    public List serviciosBD(){
+        List<ServicioModel> listado=new ArrayList();
+        listado=servicioDao.dameServicios();
+        return listado;
+    }
+
+    public ServicioModel buscarPorID(long ID,List<ServicioModel> lista){
+    ServicioModel aux = null;
+    for(ServicioModel o:lista){
+        if(o.getId()==ID)
+            aux=o;
+        }
+    return aux;
+    }
+
 }

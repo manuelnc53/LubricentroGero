@@ -18,6 +18,15 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 
+import Model.EmpleadoDAO;
+import Model.EmpleadoModel;
+import Model.ResponsabilidadModel;
+import Model.VehiculoDAO;
+import Model.VehiculoModel;
+import View.ViewCrearOrden;
+
+import java.util.List;
+
 /**
  *
  * @author manuel
@@ -32,9 +41,12 @@ public class LubricentroGero {
 
     public static void main(String[] args) throws SQLException, ParseException {
         // TODO code application logic here
+        
+        try{
         VentaView ventaView=new VentaView();
         ventaView.setVisible(true);
-         
+        }catch(Exception e){
+        }
         ListarOrdenesDeTrabajoController listarOrdenesDeTrabajoController= new ListarOrdenesDeTrabajoController(); 
         try {
             
@@ -44,6 +56,21 @@ public class LubricentroGero {
         } catch (SQLException ex) {
             System.out.println("Error "+ ex);
         }
+        
+        
+        
+        EmpleadoModel emp =new EmpleadoModel();
+        List a;
+        EmpleadoDAO bd = new EmpleadoDAO();
+        try {
+            a=bd.dameEmpleados();
+            System.out.println(a);
+            
+            
+        } catch (CloneNotSupportedException ex) {
+            Logger.getLogger(LubricentroGero.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
 }

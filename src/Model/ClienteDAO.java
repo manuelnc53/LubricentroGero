@@ -57,9 +57,11 @@ public class ClienteDAO implements DAO<ClienteModel> {
             resultado=consulta.executeQuery();
             String idAux;
             while(resultado.next()){
+
                 cliente.setCuit_cuil(resultado.getLong("Clien_CUIT_CUIL"));
                 cliente.setNombre(resultado.getString("Clien_Nombre"));
                 cliente.setDireccion(resultado.getString("Clien_Direccion"));
+
                 idAux=String.valueOf(resultado.getInt(1));
                 consultaAux = conexion.prepareStatement("SELECT * FROM ClientesTelefonosResponsable WHERE Clien_CUIT_CUIL_Tel ="+idAux);
                 resultadoAux=consultaAux.executeQuery();

@@ -18,18 +18,36 @@ import java.util.List;
  * @author manuel
  */
 public class ClienteController {
-    public ClienteModel cliente;
+
+    private ClienteModel cliente;
     private ClienteDAO clienteDao;
     public ClienteController(){
         cliente= new ClienteModel();
         clienteDao = new ClienteDAO();
     }
     
+
     public List verClientes(){
+                List<ClienteModel> listado=new ArrayList();
+                listado=clienteDao.dameClientes();
+        return listado;
+    }
+    public List clientesBD(){
+
         List<ClienteModel> listado=new ArrayList();
         listado=clienteDao.dameClientes();
         return listado;
     }
+
+    public ClienteModel buscarPorCuil(long cuil,List<ClienteModel> lista){
+    ClienteModel aux = null;
+    for(ClienteModel o:lista){
+        if(o.getCuit_cuil()==cuil)
+            aux=o;
+        }
+    return aux;
+    }
+
     
            
 

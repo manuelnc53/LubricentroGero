@@ -123,5 +123,36 @@ public class ClienteModel {
         clon.setTelefonos_Del_Responsable(this.telefonos_Del_Responsable);
         return clon;
     }
+
+    @Override
+    public String toString() {
+        return "ClienteModel{" + "telefonos_Del_Responsable=" + telefonos_Del_Responsable + ", cuit_cuil=" + cuit_cuil + ", nombre=" + nombre + ", direccion=" + direccion + ", ordenes=" + ordenes + ", compras=" + compras + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + (int) (this.cuit_cuil ^ (this.cuit_cuil >>> 32));
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ClienteModel other = (ClienteModel) obj;
+        if (this.cuit_cuil != other.cuit_cuil) {
+            return false;
+        }
+        return true;
+    }
+
     
 }

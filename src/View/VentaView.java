@@ -46,7 +46,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.Stack;
 import javax.swing.JTable;
-
 public class VentaView extends javax.swing.JFrame {
 
     /**

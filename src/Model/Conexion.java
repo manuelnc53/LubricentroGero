@@ -26,11 +26,13 @@ public class Conexion {
     
     private Conexion(){
 
+
         try{
             this.conexion = DriverManager.getConnection("jdbc:sqlite:"+url);//conexion recibe el controlador de sqlite, pasamos la ruta donde está
 
             if(conexion!=null)
                 System.out.println("Conectado\n");
+
 
         }catch(SQLException ex){
             System.out.println("No se ha podido conectar a la base de datos\n"+ex.getMessage());
@@ -60,4 +62,5 @@ public class Conexion {
         conn=null;
         if (conn==null)
             System.out.println("Conexion terminada");
+<<<<<<< HEAD
         */ }}  
