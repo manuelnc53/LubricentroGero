@@ -18,8 +18,11 @@ public class ServicioModel {
     private ArrayList<OrdenModel> ordenes;
     private ArrayList<VentaModel> ventas;
     
-    
     public ServicioModel(){
+        
+    }
+    public ServicioModel(String nombre){
+        this.nombre=nombre;
     }
 
     /**

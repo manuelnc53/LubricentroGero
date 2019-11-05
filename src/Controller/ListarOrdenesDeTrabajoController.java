@@ -6,6 +6,7 @@
 package Controller;
 
 import Model.OrdenDAO;
+import Model.OrdenModel;
 import View.ListarOrdenesDeTrabajoView;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class ListarOrdenesDeTrabajoController {
     }
     
     public void iniciar() throws SQLException{
-        ArrayList<String[]> ordenes= new ArrayList();
+        ArrayList<OrdenModel> ordenes= new ArrayList();
         ordenes = this.ordenDAO.getAll();
         
        /* ordenes.addColumn("N°");

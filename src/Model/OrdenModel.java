@@ -26,6 +26,9 @@ public class OrdenModel {
     private VehiculoModel vehiculo;
     private ArrayList<ServicioModel> servicios;
     public OrdenModel(){
+        this.servicios=new ArrayList();
+        this.empleados_mantenimiento= new ArrayList();
+        
     }
     
     /**
