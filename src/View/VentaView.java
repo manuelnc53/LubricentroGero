@@ -69,7 +69,7 @@ public class VentaView extends javax.swing.JFrame {
     //Clinte que se carga en el action listener de agregar luego se pasara a la orden
     private ClienteModel clienteAux;
     
-    public VentaView() {
+    public VentaView() throws SQLException, ParseException {
         initComponents();
         //creo los tableModel con el modelo de las tablas correspondientes
         modeloTablaClientes=(DefaultTableModel)jTableClientesVenta.getModel();
@@ -83,19 +83,23 @@ public class VentaView extends javax.swing.JFrame {
         //seteo las tablas con los modelos que seran llenados aqui
         jTableClientesVenta.setModel(modeloTablaClientes);
         jTableProductosVenta.setModel(modeloTablaProductos);
+        jTableOrdenesVenta.setModel(modeloTablaOrdenes);
         
         
         //tabla con los renglones de la venta
         jTableMostrarRenglonesVenta.setModel(modeloTablaVentas);
         //instancio el controlador
         clienteControlador = new ClienteController();
-        clientes=clienteControlador.verClientes();
         productoControlador= new ProductoController();
+        ordenControlador=new OrdenController();
+        //listas de elementos a mostrar en la venta
+        clientes=clienteControlador.verClientes();
         productos=productoControlador.verProductos();
-        
+        ordenes=ordenControlador.verOrdenes();//se invoca a ver ordenes con el cuil del cliente seleccionado antes
+        //carga las tablas con la informacion de las listas
         crearTablaClientes(clientes, modeloTablaClientes);
         crearTablaProductos(productos, modeloTablaProductos);
-        
+        crearTablaOrdenes(ordenes,modeloTablaOrdenes);
         
         
     }
@@ -149,6 +153,7 @@ public class VentaView extends javax.swing.JFrame {
         }
         //carga el renglos datos con la informacion de clientes
         for(ClienteModel o : clientesParaTabla){
+            
             datos[0]=String.valueOf(o.getCuit_cuil());
             datos[1]=o.getNombre();
             datos[2]=o.getDireccion();
@@ -180,7 +185,29 @@ public class VentaView extends javax.swing.JFrame {
         }
     }
     
-
+    private static void crearTablaOrdenes(List<OrdenModel>ordenesParaTabla,DefaultTableModel modeloTablaOrdenes){
+        String []datos=new String[6];
+        String empleados="";
+        int i;
+        SimpleDateFormat fechaAux = new SimpleDateFormat("dd/MM/yyyy");
+        for(i=0;i<modeloTablaOrdenes.getRowCount();i++){
+            modeloTablaOrdenes.removeRow(i);
+            i=i-1;
+        }
+        for(OrdenModel o: ordenesParaTabla){
+            datos[0]=String.valueOf(o.getNro_Orden());
+            datos[1]=o.getDescripcion();
+            datos[2]=fechaAux.format(o.getFecha_Orden());
+            datos[3]=o.getVehiculo().getPatente();
+            for(EmpleadoModel e: o.getEmpleados_mantenimiento()){
+                empleados=empleados+"/"+e.getNombre();
+            }
+            datos[4]=empleados;
+            datos[5]=o.getUrgencia();
+            
+            modeloTablaOrdenes.addRow(datos);
+        }
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -214,9 +241,9 @@ public class VentaView extends javax.swing.JFrame {
         jLabelNombreCliente = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButtonAgregarTablaRenglonesVenta = new javax.swing.JButton();
-        jTextFieldCantidadVenta = new javax.swing.JTextField();
         jLabelCantidadVenta = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jTextFieldCantidadVenta = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -367,6 +394,8 @@ public class VentaView extends javax.swing.JFrame {
 
         jTabbedPaneSelecionVenta.addTab("Ordenes", jPanelOrdenesVenta);
 
+        jPanelMostrarRenglonesVenta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jTableMostrarRenglonesVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -376,40 +405,18 @@ public class VentaView extends javax.swing.JFrame {
             }
         ));
         jScrollPaneMostrarRenglonesVenta.setViewportView(jTableMostrarRenglonesVenta);
+        if (jTableMostrarRenglonesVenta.getColumnModel().getColumnCount() > 0) {
+            jTableMostrarRenglonesVenta.getColumnModel().getColumn(0).setPreferredWidth(10);
+        }
+
+        jPanelMostrarRenglonesVenta.add(jScrollPaneMostrarRenglonesVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 76, 616, 270));
+        jPanelMostrarRenglonesVenta.add(jTextFieldNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 11, 69, -1));
 
         jLabelNombreCliente.setText("Cliente");
+        jPanelMostrarRenglonesVenta.add(jLabelNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 14, -1, -1));
 
         jLabel2.setText("Fecha");
-
-        javax.swing.GroupLayout jPanelMostrarRenglonesVentaLayout = new javax.swing.GroupLayout(jPanelMostrarRenglonesVenta);
-        jPanelMostrarRenglonesVenta.setLayout(jPanelMostrarRenglonesVentaLayout);
-        jPanelMostrarRenglonesVentaLayout.setHorizontalGroup(
-            jPanelMostrarRenglonesVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelMostrarRenglonesVentaLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLabelNombreCliente)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextFieldNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(163, 163, 163))
-            .addGroup(jPanelMostrarRenglonesVentaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPaneMostrarRenglonesVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
-        );
-        jPanelMostrarRenglonesVentaLayout.setVerticalGroup(
-            jPanelMostrarRenglonesVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelMostrarRenglonesVentaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelMostrarRenglonesVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelNombreCliente)
-                    .addComponent(jLabel2))
-                .addGap(45, 45, 45)
-                .addComponent(jScrollPaneMostrarRenglonesVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addGap(39, 39, 39))
-        );
+        jPanelMostrarRenglonesVenta.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(469, 14, -1, -1));
 
         jButtonAgregarTablaRenglonesVenta.setText("agregar");
         jButtonAgregarTablaRenglonesVenta.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -423,9 +430,6 @@ public class VentaView extends javax.swing.JFrame {
             }
         });
 
-        jTextFieldCantidadVenta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldCantidadVenta.setText("0");
-
         jLabelCantidadVenta.setText("   Cantidad");
         jLabelCantidadVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelCantidadVenta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -437,6 +441,8 @@ public class VentaView extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldCantidadVenta.setText("jFormattedTextField1");
+
         javax.swing.GroupLayout jTabbedPaneVentaLayout = new javax.swing.GroupLayout(jTabbedPaneVenta);
         jTabbedPaneVenta.setLayout(jTabbedPaneVentaLayout);
         jTabbedPaneVentaLayout.setHorizontalGroup(
@@ -446,11 +452,10 @@ public class VentaView extends javax.swing.JFrame {
                 .addComponent(jTabbedPaneSelecionVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jTabbedPaneVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jTabbedPaneVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButtonAgregarTablaRenglonesVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextFieldCantidadVenta))
-                    .addComponent(jLabelCantidadVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                    .addComponent(jButtonAgregarTablaRenglonesVenta)
+                    .addComponent(jLabelCantidadVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldCantidadVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jPanelMostrarRenglonesVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(64, 64, 64))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jTabbedPaneVentaLayout.createSequentialGroup()
@@ -467,8 +472,8 @@ public class VentaView extends javax.swing.JFrame {
                         .addComponent(jButtonAgregarTablaRenglonesVenta)
                         .addGap(18, 18, 18)
                         .addComponent(jLabelCantidadVenta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldCantidadVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(80, 80, 80)
+                        .addComponent(jTextFieldCantidadVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jTabbedPaneVentaLayout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addGroup(jTabbedPaneVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -505,7 +510,7 @@ public class VentaView extends javax.swing.JFrame {
                         jTextFieldNombreCliente.setText(nombre);
                         clienteAux=new ClienteModel();
                         String a=(String) jTableClientesVenta.getValueAt(jTableClientesVenta.getSelectedRow(),0);//variable auxiliar
-                        clienteAux.setCuit_cuil(Integer.valueOf(a));
+                        clienteAux.setCuit_cuil(Long.valueOf(a));
                         clienteAux.setNombre((String) jTableClientesVenta.getValueAt(jTableClientesVenta.getSelectedRow(),1));
                         clienteAux.setDireccion((String) jTableClientesVenta.getValueAt(jTableClientesVenta.getSelectedRow(),2));
                         break;
@@ -593,7 +598,7 @@ public class VentaView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentaView().setVisible(true);
+                //new VentaView().setVisible(true);
             }
         });
     }
@@ -623,7 +628,7 @@ public class VentaView extends javax.swing.JFrame {
     private javax.swing.JTable jTableProductosVenta;
     private javax.swing.JTextField jTextFieldBuscadorTablaCliente;
     private javax.swing.JTextField jTextFieldBuscadorTablaProductos;
-    private javax.swing.JTextField jTextFieldCantidadVenta;
+    private javax.swing.JFormattedTextField jTextFieldCantidadVenta;
     private javax.swing.JTextField jTextFieldNombreCliente;
     // End of variables declaration//GEN-END:variables
 }

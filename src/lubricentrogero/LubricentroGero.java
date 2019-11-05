@@ -10,6 +10,7 @@ import View.VentaView;
 import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 /**
  *
@@ -19,8 +20,10 @@ public class LubricentroGero {
 
     /**
      * @param args the command line arguments
+     * @throws java.sql.SQLException
+     * @throws java.text.ParseException
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, ParseException {
         // TODO code application logic here
         VentaView ventaView=new VentaView();
         ventaView.setVisible(true);
