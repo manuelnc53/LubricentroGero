@@ -25,10 +25,10 @@ public class Conexion {
     
     
     private Conexion(){
-         
+
         try{
             this.conexion = DriverManager.getConnection("jdbc:sqlite:"+url);//conexion recibe el controlador de sqlite, pasamos la ruta donde está
-            
+
             if(conexion!=null)
                 System.out.println("Conectado\n");
 
@@ -60,16 +60,4 @@ public class Conexion {
         conn=null;
         if (conn==null)
             System.out.println("Conexion terminada");
-        */
-    }
-    public static void main(String[] args) throws SQLException, Exception {
-        // TODO code application logic here
-       Connection con = null;
-       con = Conexion.getConnection();
-        PreparedStatement st=  con.prepareStatement("INSERT INTO Clientes (Clien_CUIT_CUIL,Clien_Nombre,Clien_Direccion) VALUES('21397508685','Pedro','Av.we 345')");
-        st.execute();
-        
-       
-    }
-    
-}
+        */ }}  

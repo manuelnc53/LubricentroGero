@@ -5,21 +5,27 @@
  */
 package Model;
 
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
+import java.util.Date;
+
 
 /**
  *
  * @author manuel
  */
 public class OrdenDAO implements DAO<OrdenModel> {
-    private Conexion conexion;
+    private Connection conexion;
     public OrdenDAO(){
-        
+
+        conexion=Conexion.getConnection();
 
 }
     @Override
@@ -41,6 +47,7 @@ public class OrdenDAO implements DAO<OrdenModel> {
     public boolean delete(Long id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     public ArrayList<String[]> getAll() throws SQLException{
         
         ArrayList<String[]> retorno = new ArrayList();
@@ -69,4 +76,97 @@ public class OrdenDAO implements DAO<OrdenModel> {
         return retorno;
         
     }
-}
+//
+    public ArrayList<OrdenModel> dameOrdenes() throws SQLException{
+        
+        String idCliente="20397508685";
+        Date fechaOrd;
+        ArrayList<OrdenModel>listaOrdenes = new ArrayList();
+        
+        ResultSet resultado;
+        ResultSet servicios;
+        ResultSet mantenimiento;
+        ResultSet vehiculo;
+        PreparedStatement st;
+        PreparedStatement st2;
+        PreparedStatement st3;
+        PreparedStatement st4;
+        
+        
+        
+            conexion = Conexion.getConnection();
+            st= conexion.prepareStatement("SELECT * FROM Ordenes WHERE "+idCliente+"=Ord_Clien_ID");
+            resultado=st.executeQuery();
+            while(resultado.next()){
+                OrdenModel ordenAux=new OrdenModel();
+                try{
+                fechaOrd=new SimpleDateFormat("dd/MM/yyyy").parse(resultado.getString("Ord_Fecha_Emision"));
+                ordenAux.setFecha_Orden(fechaOrd);
+                }catch(ParseException p){
+                    System.out.println("Error de parseo de string a date(orden dao)");
+                }
+                ordenAux.setNro_Orden(resultado.getInt("Ord_Nro_Orden"));
+                ordenAux.setUrgencia(resultado.getString("Ord_Urgencia"));
+                if (resultado.getString("Ord_Estado").equals("en_proceso")){
+                  ordenAux.setEstado(EstadoModel.EN_PROCESO);
+                }else{
+                  ordenAux.setEstado(EstadoModel.FINALIZADO);
+                }
+                //no necesito el cajero
+                ordenAux.setDescripcion(resultado.getString("Ord_Descripcion"));
+                //consulto para traer los servicios realizados en la orden
+                System.out.println("resultado del get long: "+resultado.getLong("Ord_Nro_Orden"));
+                //auxiliar string que contiene la id de la orden
+                String nrOrden=String.valueOf(resultado.getLong("Ord_Nro_Orden"));
+                st2=conexion.prepareStatement("SELECT  Ser_ID,Ser_Nombre,Ser_Precio FROM Servicios,Respecto WHERE Respecto_Orden_ID="+nrOrden+" and  Respecto_Servicio_ID=Ser_ID");
+                servicios=st2.executeQuery();
+               
+                ArrayList<ServicioModel> auxServicios= new ArrayList();
+                while(servicios.next()){
+                    ServicioModel servicioAux=new ServicioModel();
+                    servicioAux.setId(servicios.getLong("Ser_ID"));
+                    servicioAux.setNombre(servicios.getString("Ser_Nombre"));
+                    
+                    servicioAux.setPrecio(servicios.getDouble("Ser_Precio"));
+                    auxServicios.add(servicioAux);
+                }
+                
+                
+                ordenAux.setServicios(auxServicios);
+                st3= conexion.prepareStatement("select distinct Emp_Nombre,Emp_CUIL  from Empleados where Emp_CUIL in (select Ejec_Empleado_ID from Ejecuta where Ejec_Orden_ID="+ nrOrden+ ")");
+                mantenimiento=st3.executeQuery();
+                ArrayList<EmpleadoModel> auxMantenimiento= new ArrayList();
+                while(mantenimiento.next()){
+                    EmpleadoModel empAux=new EmpleadoModel();
+                    empAux.setCuit(mantenimiento.getLong("Emp_CUIL"));
+                    empAux.setNombre(mantenimiento.getString("Emp_Nombre"));
+                    auxMantenimiento.add(empAux);
+                }
+                String patenteAux=resultado.getString("Ord_Ve_ID");
+                System.out.println(patenteAux);
+                
+                st4= conexion.prepareStatement("SELECT * FROM Vehiculos WHERE Ve_Patente= '"+patenteAux+"';");
+                vehiculo=st4.executeQuery();
+                
+                VehiculoModel vAux=new VehiculoModel();
+                while(vehiculo.next()){
+                    vAux.setPatente(vehiculo.getString("Ve_Patente"));
+                }
+                ordenAux.setVehiculo(vAux);
+                
+                ordenAux.setEmpleados_mantenimiento(auxMantenimiento);
+                
+                listaOrdenes.add(ordenAux);
+            }
+    
+        
+        //SimpleDateFormat fechaAux = new SimpleDateFormat("dd/MM/yyyy");
+        //resultado = st.executeQuery("select * from Ordenes");
+        //Date tem;
+        //tem=new SimpleDateFormat("dd/MM/yyyy").parse(resultado.getString("Ord_Fecha_Emision"));
+        
+        return listaOrdenes;
+        
+    }
+    
+    }

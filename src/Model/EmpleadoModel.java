@@ -26,6 +26,10 @@ public class EmpleadoModel {
     private ArrayList<CompraModel> compras_realizadas;
     public EmpleadoModel(){
     }
+    public EmpleadoModel(long cuit, String nombre){
+        this.nombre=nombre;
+        this.cuit=cuit;
+    }
     /**
      * @return the direccion
      */

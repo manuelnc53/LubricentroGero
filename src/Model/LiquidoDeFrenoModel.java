@@ -43,5 +43,10 @@ public class LiquidoDeFrenoModel extends ProductoModel {
         this.volumen_unidad = volumen_unidad;
     }
     
+    public LiquidoDeFrenoModel clone(){
+        LiquidoDeFrenoModel clon = new LiquidoDeFrenoModel();
+        clon.setVolumen_unidad(this.volumen_unidad);
+        return clon;
+    }
     
 }

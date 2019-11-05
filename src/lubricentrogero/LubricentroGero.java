@@ -5,13 +5,18 @@
  */
 package lubricentrogero;
 
+
 import Controller.ListarOrdenesDeTrabajoController;
 import View.ListarOrdenesDeTrabajoView;
 import java.io.File;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import Model.Conexion;
+import View.VentaView;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.text.ParseException;
+
 
 /**
  *
@@ -21,11 +26,15 @@ public class LubricentroGero {
 
     /**
      * @param args the command line arguments
+     * @throws java.sql.SQLException
+     * @throws java.text.ParseException
      */
-    public static void main(String[] args) {
-       
-        
-        
+
+    public static void main(String[] args) throws SQLException, ParseException {
+        // TODO code application logic here
+        VentaView ventaView=new VentaView();
+        ventaView.setVisible(true);
+         
         ListarOrdenesDeTrabajoController listarOrdenesDeTrabajoController= new ListarOrdenesDeTrabajoController(); 
         try {
             

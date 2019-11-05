@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/manuel/NetBeansProjects/LubricentroGero/src/lubricentrogero/LubricentroGero.java</file>
-            <file>file:/home/manuel/NetBeansProjects/LubricentroGero/src/View/ListarOrdenesDeTrabajoView.java</file>
-            <file>file:/home/manuel/NetBeansProjects/LubricentroGero/src/Model/Conexion.java</file>
-            <file>file:/home/manuel/NetBeansProjects/LubricentroGero/src/Controller/ListarOrdenesDeTrabajoController.java</file>
-            <file>file:/home/manuel/NetBeansProjects/LubricentroGero/src/Model/OrdenDAO.java</file>
+            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Model/ClienteDAO.java</file>
+            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/lubricentrogero/LubricentroGero.java</file>
+            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Model/OrdenDAO.java</file>
+            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Model/Conexion.java</file>
         </group>
     </open-files>
 </project-private>

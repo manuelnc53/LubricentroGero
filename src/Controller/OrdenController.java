@@ -9,6 +9,10 @@ import Model.Conexion;
 import Model.OrdenModel;
 import java.util.ArrayList;
 import Model.DAO;
+import Model.OrdenDAO;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.List;
 
 /**
  *
@@ -16,8 +20,15 @@ import Model.DAO;
  */
 public class OrdenController {
     private OrdenModel orden;
+    private OrdenDAO ordenDao;
+    
     public OrdenController(){
         orden=new OrdenModel();
+        ordenDao= new OrdenDAO();
     }
-        
+    public List verOrdenes() throws SQLException {
+        List<OrdenModel> listado=new ArrayList();
+        listado=ordenDao.dameOrdenes();
+        return listado;
+    }
 }

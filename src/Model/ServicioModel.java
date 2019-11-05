@@ -12,6 +12,8 @@ import java.util.ArrayList;
  * @author manuel
  */
 public class ServicioModel {
+
+    private long id;
     private String nombre;
     private String descripcion;
     private double precio;
@@ -22,6 +24,11 @@ public class ServicioModel {
     public ServicioModel(){
     }
 
+    public ServicioModel(long id,String nombre,double precio){
+        this.id=id;
+        this.nombre=nombre;
+        this.precio=precio;
+    }
     /**
      * @return the ordenes
      */
@@ -92,6 +99,28 @@ public class ServicioModel {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-    
+    /**
+     * @return the id
+     */
+    public long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(long id) {
+        this.id = id;
+    }
+    public ServicioModel clone(){
+        ServicioModel clon = new ServicioModel();
+        clon.setId(this.id);
+        clon.setNombre(this.nombre);
+        clon.setPrecio(this.precio);
+        clon.setDescripcion(this.descripcion);
+        clon.setOrdenes(this.ordenes);
+        clon.setVentas(this.ventas);
+        return clon;
+    }
     
 }

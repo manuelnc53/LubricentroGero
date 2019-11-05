@@ -12,6 +12,9 @@ import java.util.ArrayList;
  * @author manuel
  */
 public class ProductoModel {
+
+    
+    private int producto_ID;
     private String nombre;
     private String marca;
     private float precioCompra;
@@ -149,6 +152,60 @@ public class ProductoModel {
      */
     public void setOrigen(String origen) {
         this.origen = origen;
+    }
+    /**
+     * @return the producto_ID
+     */
+    public int getProducto_ID() {
+        return producto_ID;
+    }
+
+    /**
+     * @param producto_ID the producto_ID to set
+     */
+    public void setProducto_ID(int producto_ID) {
+        this.producto_ID = producto_ID;
+    }
+    
+    public ProductoModel clone(){
+        ProductoModel clon = new ProductoModel();
+        
+        clon.setCantidadEnStock(this.cantidadEnStock);
+        clon.setDescripcion(this.descripcion);
+        clon.setMarca(this.marca);
+        clon.setNombre(this.nombre);
+        clon.setOrigen(this.origen);
+        clon.setPedido(this.pedido);
+        clon.setPrecioCompra(this.precioCompra);
+        clon.setPrecioVenta(this.precioVenta);
+        clon.setProducto_ID(this.producto_ID);
+        clon.setVenta(this.venta);
+        return clon;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + this.producto_ID;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ProductoModel other = (ProductoModel) obj;
+        if (this.producto_ID != other.producto_ID) {
+            return false;
+        }
+        return true;
     }
     
 }

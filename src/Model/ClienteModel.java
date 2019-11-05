@@ -22,6 +22,11 @@ public class ClienteModel {
     public ClienteModel(){
     
     }
+    public ClienteModel(long cuit_cuil, String telefono){
+        this.telefonos_Del_Responsable=new ArrayList();
+        this.cuit_cuil=cuit_cuil;
+        this.telefonos_Del_Responsable.add(telefono);
+    }
     /**
      * @return the ordenes
      */
@@ -106,5 +111,15 @@ public class ClienteModel {
         this.direccion = direccion;
     }
    
+    public ClienteModel clone(){
+        ClienteModel clon = new ClienteModel();
+        clon.setCompras(this.compras);
+        clon.setCuit_cuil(this.cuit_cuil);
+        clon.setDireccion(this.direccion);
+        clon.setNombre(this.nombre);
+        clon.setOrdenes(this.ordenes);
+        clon.setTelefonos_Del_Responsable(this.telefonos_Del_Responsable);
+        return clon;
+    }
     
 }

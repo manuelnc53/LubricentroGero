@@ -19,6 +19,7 @@ public class OrdenModel {
     private Date fecha_Orden;
     private long nro_Orden;
     private String urgencia;
+    private String Descripcion;
     private EstadoModel estado;
     private EmpleadoModel empleado_cajero;
     private ArrayList<EmpleadoModel> empleados_mantenimiento;
@@ -152,6 +153,23 @@ public class OrdenModel {
     public void setEstado(EstadoModel estado) {
         this.estado = estado;
     }
+        /**
+     * @return the Descripcion
+     */
+    public String getDescripcion() {
+        return Descripcion;
+    }
 
+    /**
+     * @param Descripcion the Descripcion to set
+     */
+    public void setDescripcion(String Descripcion) {
+        this.Descripcion = Descripcion;
+    }
+
+    @Override
+    public String toString() {
+        return "OrdenModel{" + "fecha_Orden=" + fecha_Orden + ", nro_Orden=" + nro_Orden + ", urgencia=" + urgencia + ", Descripcion=" + Descripcion + ", estado=" + estado + ", empleado_cajero=" + empleado_cajero + ", empleados_mantenimiento=" + empleados_mantenimiento + ", cliente=" + cliente + ", vehiculo=" + vehiculo + ", servicios=" + servicios + '}';
+    }
     
 }
