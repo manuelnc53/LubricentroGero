@@ -22,10 +22,12 @@ public class ClienteModel {
     public ClienteModel(){
     
     }
-    public ClienteModel(long cuit_cuil, String telefono){
-        this.telefonos_Del_Responsable=new ArrayList();
-        this.cuit_cuil=cuit_cuil;
-        this.telefonos_Del_Responsable.add(telefono);
+
+     public ClienteModel(long cuit_cuil, String telefono){
+         this.telefonos_Del_Responsable=new ArrayList();
+         this.cuit_cuil=cuit_cuil;
+         this.telefonos_Del_Responsable.add(telefono);
+
     }
     /**
      * @return the ordenes

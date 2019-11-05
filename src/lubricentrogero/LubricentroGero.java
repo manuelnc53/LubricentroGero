@@ -42,7 +42,7 @@ public class LubricentroGero {
             
             // TODO code application logic here
         } catch (SQLException ex) {
-            System.out.println("Error");
+            System.out.println("Error "+ ex);
         }
     }
     
