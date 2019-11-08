@@ -5,7 +5,7 @@
  */
 package Model;
 
-import java.beans.Statement;
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -43,6 +43,28 @@ public class ProductoDAO implements DAO<ProductoModel> {
     @Override
     public boolean delete(Long id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public ArrayList<ProductoModel> ranking() throws SQLException{
+        ArrayList<ProductoModel> retorno= new ArrayList();
+        Statement st =Conexion.getConnection().createStatement();
+        ResultSet resultado;
+        resultado = st.executeQuery("SELECT Prod_Nombre, Prod_Marca,cantidad\n" +
+                                    "FROM (SELECT ItemVenta_Producto_ID,SUM(ItemVenta_Cantidad) AS cantidad\n" +
+                                    "		FROM itemventa\n" +
+                                    "		GROUP BY ItemVenta_Producto_ID\n" +
+                                    "		ORDER BY cantidad DESC), productos\n" +
+                                    " where Prod_ID = ItemVenta_Producto_ID");
+        while ( resultado.next() ) {
+                
+              ProductoModel aux=new ProductoModel();
+              aux.setNombre(resultado.getString("Prod_Nombre"));
+              aux.setMarca(resultado.getString("Prod_Marca"));
+              retorno.add(aux);
+        
+        
+        }
+        
+        return retorno;
     }
     
     public List dameProductos(){//devuelve una lista con todos los productos en la base de datos
