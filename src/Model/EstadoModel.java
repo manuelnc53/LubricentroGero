@@ -30,4 +30,5 @@ public enum EstadoModel {
         this.estado=estado;
     
     }
+    
 }

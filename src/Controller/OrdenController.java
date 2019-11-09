@@ -26,9 +26,16 @@ public class OrdenController {
         orden=new OrdenModel();
         ordenDao= new OrdenDAO();
     }
-    public List verOrdenes() throws SQLException {
+    public List verOrdenes(String idCliente) throws SQLException {
         List<OrdenModel> listado=new ArrayList();
-        listado=ordenDao.dameOrdenes();
+        listado=ordenDao.dameOrdenes(idCliente);
         return listado;
+    }
+    
+    public OrdenModel verOrden(String idOrden){
+        OrdenModel ordAux = new OrdenModel();
+        ordAux.setNro_Orden(Long.valueOf(idOrden));
+        //ordenDao read;
+        return ordAux;
     }
 }

@@ -25,6 +25,7 @@ public class LubricentroGero {
      */
     public static void main(String[] args) throws SQLException, ParseException {
         // TODO code application logic here
+        
         VentaView ventaView=new VentaView();
         ventaView.setVisible(true);
     }
