@@ -59,6 +59,7 @@ public class ProductoDAO implements DAO<ProductoModel> {
               ProductoModel aux=new ProductoModel();
               aux.setNombre(resultado.getString("Prod_Nombre"));
               aux.setMarca(resultado.getString("Prod_Marca"));
+              aux.setCantidadEnStock(resultado.getInt("cantidad"));
               retorno.add(aux);
         
         

@@ -34,22 +34,22 @@ public class RankingView extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Posicion", "Nombre", "Marca"
+                "Posicion", "Nombre", "Marca", "Cantidad"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabla);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,22 +107,24 @@ public class RankingView extends javax.swing.JFrame {
     defaultTableModel.addColumn("Posicion");
     defaultTableModel.addColumn("Nombre");
     defaultTableModel.addColumn("Marca");
-    //defaultTableModel.addColumn( "Cantidad");
+    defaultTableModel.addColumn( "Cantidad");
     
     
     while(iterator.hasNext()){
-        String[] aux = new String[3];
+        String[] aux = new String[4];
         ProductoModel auxRanking= new ProductoModel();
         auxRanking=iterator.next();
         aux[0]=Integer.toString(posicion);
         aux[1]= auxRanking.getNombre();
         aux[2]= auxRanking.getMarca();
+        aux[3]= Integer.toString(auxRanking.getCantidadEnStock());
+        
         
         posicion++;
         defaultTableModel.addRow(aux); 
     }
     
-    jTable1.setModel(defaultTableModel);
+    tabla.setModel(defaultTableModel);
     }
     
     private void lookAndFeel(){
@@ -153,6 +155,6 @@ public class RankingView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }

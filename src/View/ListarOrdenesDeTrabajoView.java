@@ -253,6 +253,7 @@ public void setModel(ArrayList<OrdenModel> rows){
             jTable2.setModel(defaultTableModel2);
             
             
+            
             DefaultTableModel defaultTableModel3=new DefaultTableModel();
             
             defaultTableModel3.addColumn("Mantenimiento");
