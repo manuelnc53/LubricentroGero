@@ -10,6 +10,7 @@ import Model.EmpleadoModel;
 import Model.ResponsabilidadModel;
 import Model.VehiculoDAO;
 import Model.VehiculoModel;
+import View.PrincipalViewDosPuntoCero;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
@@ -24,11 +25,8 @@ public class LubricentroGero {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SQLException, ParseException, CloneNotSupportedException {
-        EmpleadoModel emp =new EmpleadoModel();
-        List a;
-        EmpleadoDAO bd = new EmpleadoDAO();
-        a=bd.dameEmpleados();
-        System.out.println(a);
+        PrincipalViewDosPuntoCero ventana = new PrincipalViewDosPuntoCero();
+        ventana.setVisible(true);
     }
     
 }
