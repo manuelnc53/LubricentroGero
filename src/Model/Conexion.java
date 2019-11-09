@@ -27,8 +27,8 @@ public class Conexion {
     private Conexion(){
         try{
             this.conexion = DriverManager.getConnection("jdbc:sqlite:"+url);//conexion recibe el controlador de sqlite, pasamos la ruta donde está
-            if(conexion!=null)
-            System.out.println(url);
+            //if(conexion!=null)
+            //System.out.println(url);
 
         }catch(SQLException ex){
             System.out.println("No se ha podido conectar a la base de datos\n"+ex.getMessage());

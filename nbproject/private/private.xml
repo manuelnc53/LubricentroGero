@@ -8,6 +8,7 @@
             <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Controller/OrdenController.java</file>
             <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/ServicioDAO.java</file>
             <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/RefrigeranteDAO.java</file>
+            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/View/ForcedListSelectionModel.java</file>
             <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/EmpleadoModel.java</file>
             <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/ServicioModel.java</file>
             <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/ClienteDAO.java</file>
@@ -15,6 +16,7 @@
             <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/Item_de_VentaModel.java</file>
             <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/RefrigeranteModel.java</file>
             <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/View/ViewCrearOrden.java</file>
+            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Controller/ClienteController.java</file>
             <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/EstadoModel.java</file>
             <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/DAO.java</file>
             <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/ProveedorDAO.java</file>
@@ -22,6 +24,8 @@
             <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/LiquidoDeFrenoModel.java</file>
             <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/lubricentrogero/LubricentroGero.java</file>
             <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/Conexion.java</file>
+            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/View/CreadoSatisfactorioView.java</file>
+            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/View/VentaView.java</file>
             <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/PedidoDAO.java</file>
             <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/VehiculoDAO.java</file>
             <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/VehiculoModel.java</file>

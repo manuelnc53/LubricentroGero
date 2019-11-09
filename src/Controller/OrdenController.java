@@ -55,21 +55,10 @@ public class OrdenController {
         ordenBD.guardar(orden);
     }
     
-    public  float costoOrden(float tazaAumento){
+    public  float costoOrden(){
         float aux=0,aumento=1;
         for(ServicioModel o: orden.getServicios()){
             aux=(float) (aux+o.getPrecio());
-        }
-        /*System.out.println("llegue aqui");
-        for(EmpleadoModel o: mantenimiento){
-            aumento=(float) (aumento+tazaAumento);
-        }*/
-        aumento=aumento+(float) (orden.getEmpleados_mantenimiento().size()*tazaAumento);
-        if(aumento==1)
-            aux=0;
-        else
-        {aumento=aumento-tazaAumento;
-            aux=aux*aumento;
         }
         return aux;
     }
@@ -78,18 +67,22 @@ public class OrdenController {
         orden.setServicios((ArrayList<ServicioModel>) servicios);
     }
 
-    public String texto(float tazaAumento) {
+    public String texto() {
+        if(orden.getCliente().getNombre()==null || orden.getEmpleado_cajero().getNombre()==null || 
+                orden.getServicios().size() == 0 || orden.getVehiculo().getModelo()==null ||
+                orden.getEmpleados_mantenimiento().size()==0 ||orden.getCliente().getNombre()==null)
+            return "Faltan datos para generar la orden";
     String texto="Cliente: "+orden.getCliente().getNombre()+"\nCajero: "
             +orden.getEmpleado_cajero().getNombre()+"\nServicios: ";
     for(ServicioModel o: orden.getServicios()){
         texto = texto+o.getNombre()+", ";
     }
-    texto=texto+"\nVehiculo: "+orden.getVehiculo().getModelo()+"\nEmpleado/s: ";
+    texto=texto+"\nPatente de vehiculo: "+orden.getVehiculo().getModelo()+"\nEmpleado/s: ";
     for(EmpleadoModel o: orden.getEmpleados_mantenimiento()){
         texto = texto+o.getNombre()+", ";
     }
     texto=texto+"\nCosto: ";
-    float costo=this.costoOrden(tazaAumento);
+    float costo=this.costoOrden();
     texto=texto+costo;  
     return texto;
     

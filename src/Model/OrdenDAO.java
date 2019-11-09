@@ -48,24 +48,25 @@ public class OrdenDAO implements DAO<OrdenModel> {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         orden.setNro_Orden();
         consulta.setString(1, dateFormat.format(orden.getFecha_Orden()));
-        consulta.setInt(2, (int) orden.getNro_Orden());
+        consulta.setLong(2, orden.getNro_Orden());
         consulta.setString(3, orden.getUrgencia().toString());
         consulta.setString(4,orden.getEstado().toString());
-        consulta.setInt(5, (int) orden.getEmpleado_cajero().getCuit());
-        consulta.setInt(6, (int) orden.getCliente().getCuit_cuil());
+        consulta.setLong(5,  orden.getEmpleado_cajero().getCuit());
+        consulta.setLong(6, orden.getCliente().getCuit_cuil());
         consulta.setString(7,orden.getVehiculo().getPatente());
         consulta.setString(8,orden.getDescripcion());
         consulta.execute();
         for(ServicioModel o: orden.getServicios()){
         consulta = conexion.prepareStatement("INSERT INTO Respecto (Respecto_Orden_ID,Respecto_Servicio_ID) VALUES (?,?)");
-        consulta.setInt(1, (int) orden.getNro_Orden());
-        consulta.setInt(2, (int) o.getId());
+        consulta.setLong(1, orden.getNro_Orden());
+        consulta.setLong(2, o.getId());
+            System.out.println(orden.getNro_Orden()+" "+o.getId());
         consulta.execute();
         }
         for(EmpleadoModel o: orden.getEmpleados_mantenimiento()){
         consulta = conexion.prepareStatement("INSERT INTO Ejecuta (Ejec_Empleado_ID,Ejec_Orden_ID) VALUES (?,?)");
-        consulta.setInt(2, (int) orden.getNro_Orden());
-        consulta.setInt(1, (int) o.getCuit());
+        consulta.setLong(2,  orden.getNro_Orden());
+        consulta.setLong(1, o.getCuit());
         consulta.execute();
         }
     }
@@ -73,7 +74,7 @@ public class OrdenDAO implements DAO<OrdenModel> {
     long maximoID() throws SQLException {
         consulta = conexion.prepareStatement("SELECT MAX (Ord_Nro_Orden) from Ordenes");
         ResultSet resultado=consulta.executeQuery();
-        System.out.println("resultado:\n\n"+resultado.getInt(1));
+        //System.out.println("resultado:\n\n"+resultado.getInt(1));
         return resultado.getInt(1);
     }
     
