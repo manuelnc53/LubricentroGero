@@ -24,6 +24,11 @@ public class EmpleadoModel {
     private ArrayList<VentaModel> ventas_realizadas;
     private ArrayList<PedidoModel> pedidos_realizados;
     private ArrayList<CompraModel> compras_realizadas;
+
+    @Override
+    public String toString() {
+        return nombre=nombre+"\n";
+    }
     public EmpleadoModel(){
     }
     public EmpleadoModel(long cuit, String nombre){
@@ -184,7 +189,7 @@ public class EmpleadoModel {
         this.compras_realizadas = compras_realizadas;
     }
 
-    @Override
+   /** @Override
     public String toString() {
         return "\nDireccion=" + direccion + "\nNacimiento=" + nacimiento + 
                 "\nResponsabilidad=" + responsabilidad +
@@ -194,7 +199,7 @@ public class EmpleadoModel {
                 "\nVentas realizadas=" + ventas_realizadas + "\nPedidos realizados=" + pedidos_realizados + 
                 "\nCompras_realizadas=" + compras_realizadas;
     }
-
+**/
     @Override
     public int hashCode() {
         int hash = 3;

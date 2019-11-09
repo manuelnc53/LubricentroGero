@@ -13,16 +13,19 @@ import java.util.Date;
  * @author manuel
  */
 public class VentaModel {
+
     private Date fecha;
     private float monto;
     private ArrayList<ServicioModel> servicios;
     private ArrayList<Item_de_VentaModel> item_de_venta;
+    private String descripcion_Descuento_Recargo;
+    private float importe_Descuento_Recargo;
     private ClienteModel cliente;
     private EmpleadoModel empleado_responsable;
     
-    
     public VentaModel(){
-    
+        importe_Descuento_Recargo=0;
+        descripcion_Descuento_Recargo="";
     
     }
     /**
@@ -107,6 +110,34 @@ public class VentaModel {
      */
     public void setMonto(float monto) {
         this.monto = monto;
+    }
+    
+        /**
+     * @return the descripcion_Descuento_Recargo
+     */
+    public String getDescripcion_Descuento_Recargo() {
+        return descripcion_Descuento_Recargo;
+    }
+
+    /**
+     * @param descripcion_Descuento_Recargo the descripcion_Descuento_Recargo to set
+     */
+    public void setDescripcion_Descuento_Recargo(String descripcion_Descuento_Recargo) {
+        this.descripcion_Descuento_Recargo = descripcion_Descuento_Recargo;
+    }
+
+    /**
+     * @return the importe_Descuento_Recargo
+     */
+    public float getImporte_Descuento_Recargo() {
+        return importe_Descuento_Recargo;
+    }
+
+    /**
+     * @param importe_Descuento_Recargo the importe_Descuento_Recargo to set
+     */
+    public void setImporte_Descuento_Recargo(float importe_Descuento_Recargo) {
+        this.importe_Descuento_Recargo = importe_Descuento_Recargo;
     }
     
 }

@@ -36,10 +36,35 @@ public class OrdenDAO implements DAO<OrdenModel> {
     public boolean create(OrdenModel dato) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
-    public OrdenModel read(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    //read que me trae la orden pero solo con servicios, no necesito mas que el id de la orden y los servicios
+    public OrdenModel read(OrdenModel dato){
+    /*
+        String nroOrdenAux=String.valueOf(dato.getNro_Orden());
+        conexion = Conexion.getConnection();
+        //resultsets
+        ResultSet resultado;
+        ResultSet servicios;
+        PreparedStatement consulta;
+        PreparedStatement st2;
+        consulta=conexion.prepareStatement("SELECT * FROM Ordenes WHERE "+nroOrdenAux+"=Ord_Nro_Orden");
+        resultado=consulta.executeQuery();
+        while(resultado.next()){
+            st2=conexion.prepareStatement("SELECT  Ser_ID,Ser_Nombre,Ser_Precio FROM Servicios,Respecto WHERE Respecto_Orden_ID="+nroOrdenAux+" and  Respecto_Servicio_ID=Ser_ID");
+            servicios=st2.executeQuery();
+            //auxiliartque contendra los servicios que pertenecen a la ordea buscada
+            ArrayList<ServicioModel> auxServicios= new ArrayList();
+            while(servicios.next()){
+                ServicioModel servicioAux=new ServicioModel();
+                servicioAux.setId(servicios.getLong("Ser_ID"));
+                servicioAux.setNombre(servicios.getString("Ser_Nombre"));
+                servicioAux.setPrecio(servicios.getDouble("Ser_Precio"));
+                auxServicios.add(servicioAux);//agrego al array de servicios
+            }
+            dato.setServicios(auxServicios);
+            
+        }
+     */   
+    throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -51,6 +76,7 @@ public class OrdenDAO implements DAO<OrdenModel> {
     public boolean delete(Long id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 
 
     public ArrayList<OrdenModel> getAll() throws SQLException{
@@ -141,9 +167,11 @@ public class OrdenDAO implements DAO<OrdenModel> {
         
     }
 //
-    public ArrayList<OrdenModel> dameOrdenes() throws SQLException{
+//    public ArrayList<OrdenModel> dameOrdenes() throws SQLException{
+
+    public ArrayList<OrdenModel> dameOrdenes(String idCliente) throws SQLException{
         
-        String idCliente="20397508685";
+        
         Date fechaOrd;
         ArrayList<OrdenModel>listaOrdenes = new ArrayList();
         
@@ -200,11 +228,13 @@ public class OrdenDAO implements DAO<OrdenModel> {
                 st3= conexion.prepareStatement("select distinct Emp_Nombre,Emp_CUIL  from Empleados where Emp_CUIL in (select Ejec_Empleado_ID from Ejecuta where Ejec_Orden_ID="+ nrOrden+ ")");
                 mantenimiento=st3.executeQuery();
                 ArrayList<EmpleadoModel> auxMantenimiento= new ArrayList();
+                System.out.println("mantenimiento en el dao esta cerrado:"+mantenimiento.isClosed());
                 while(mantenimiento.next()){
                     EmpleadoModel empAux=new EmpleadoModel();
                     empAux.setCuit(mantenimiento.getLong("Emp_CUIL"));
                     empAux.setNombre(mantenimiento.getString("Emp_Nombre"));
                     auxMantenimiento.add(empAux);
+                    System.out.println("En el orden dao los empleados:"+auxMantenimiento.isEmpty());
                 }
                 String patenteAux=resultado.getString("Ord_Ve_ID");
                 System.out.println(patenteAux);
@@ -270,4 +300,20 @@ public class OrdenDAO implements DAO<OrdenModel> {
 
    
     
+
+    public static void main(String[] args) throws SQLException {
+        // TODO code application logic here
+        OrdenDAO ord=new OrdenDAO();
+        ArrayList<OrdenModel>listaOrdenes=new ArrayList();
+        
+        listaOrdenes=ord.dameOrdenes("20397508685");
+        for(OrdenModel o:listaOrdenes){
+            System.out.println(o);
+        } 
     }
+
+    @Override
+    public OrdenModel read(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    }}

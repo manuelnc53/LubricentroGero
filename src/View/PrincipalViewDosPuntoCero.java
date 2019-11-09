@@ -94,6 +94,11 @@ public class PrincipalViewDosPuntoCero extends javax.swing.JFrame {
         });
 
         listarVentasBoton.setText("Listar ventas");
+        listarVentasBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listarVentasBotonActionPerformed(evt);
+            }
+        });
 
         crearOrdenBoton.setText("Crear orden de trabajo");
         crearOrdenBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -103,6 +108,11 @@ public class PrincipalViewDosPuntoCero extends javax.swing.JFrame {
         });
 
         registrarVentaBoton.setText("Registrar Venta");
+        registrarVentaBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarVentaBotonActionPerformed(evt);
+            }
+        });
 
         verOrdenesBoton.setText("Ver ordenes de trabajo");
         verOrdenesBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -277,6 +287,35 @@ public class PrincipalViewDosPuntoCero extends javax.swing.JFrame {
             Logger.getLogger(PrincipalViewDosPuntoCero.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_verOrdenesBotonActionPerformed
+
+    private void listarVentasBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarVentasBotonActionPerformed
+       
+    }//GEN-LAST:event_listarVentasBotonActionPerformed
+
+    private void registrarVentaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarVentaBotonActionPerformed
+        JFrame estaVentana = this;
+        try {
+            VentaView ventana;
+            ventana = new VentaView();
+            WindowListener exitListener = new WindowAdapter() {
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+                ventana.setVisible(false);
+                estaVentana.setVisible(true);
+                    }
+                };
+            ventana.addWindowListener(exitListener);
+            this.setVisible(false);
+            ventana.setAlwaysOnTop(true);
+            ventana.setVisible(true);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PrincipalViewDosPuntoCero.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(PrincipalViewDosPuntoCero.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_registrarVentaBotonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

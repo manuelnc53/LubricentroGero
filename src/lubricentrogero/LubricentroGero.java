@@ -46,15 +46,7 @@ public class LubricentroGero {
 
    /** public static void main(String[] args) throws SQLException, ParseException {
         // TODO code application logic here
-        RankingController rankingController= new RankingController();
-         try{
-        }
-         catch(Exception e){
-         
-        // System.out.println(e);
-         
-         }
-        try{
+
         VentaView ventaView=new VentaView();
         ventaView.setVisible(true);
         }catch(Exception e){
