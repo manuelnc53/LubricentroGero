@@ -93,7 +93,7 @@ public class PrincipalViewDosPuntoCero extends javax.swing.JFrame {
             }
         });
 
-        listarVentasBoton.setText("Listar ventas");
+        listarVentasBoton.setText("Listar productos");
         listarVentasBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listarVentasBotonActionPerformed(evt);
@@ -288,10 +288,6 @@ public class PrincipalViewDosPuntoCero extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_verOrdenesBotonActionPerformed
 
-    private void listarVentasBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarVentasBotonActionPerformed
-       
-    }//GEN-LAST:event_listarVentasBotonActionPerformed
-
     private void registrarVentaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarVentaBotonActionPerformed
         JFrame estaVentana = this;
         try {
@@ -316,6 +312,10 @@ public class PrincipalViewDosPuntoCero extends javax.swing.JFrame {
             Logger.getLogger(PrincipalViewDosPuntoCero.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_registrarVentaBotonActionPerformed
+
+    private void listarVentasBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarVentasBotonActionPerformed
+
+    }//GEN-LAST:event_listarVentasBotonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
