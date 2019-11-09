@@ -35,7 +35,9 @@ public class RankingController implements Observer {
         this.rankingView.setVisible(true);
 
     }
-
+    public RankingView getRankingView(){
+        return this.rankingView;
+    }
     @Override
     public void update(Observable o, Object arg) {
        ArrayList<ProductoModel> ranking= new ArrayList();

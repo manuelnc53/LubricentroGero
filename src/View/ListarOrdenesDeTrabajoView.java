@@ -96,8 +96,6 @@ public class ListarOrdenesDeTrabajoView extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

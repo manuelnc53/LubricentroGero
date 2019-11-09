@@ -26,6 +26,10 @@ public class ListarOrdenesDeTrabajoController {
         listarOrdenesDeTrabajoView= new ListarOrdenesDeTrabajoView();
     }
     
+    public ListarOrdenesDeTrabajoView getListarOrdenesDeTrabajoView(){
+        return this.listarOrdenesDeTrabajoView;
+    
+    }
     public void iniciar() throws SQLException{
         ArrayList<OrdenModel> ordenes= new ArrayList();
         ordenes = this.ordenDAO.getAll();

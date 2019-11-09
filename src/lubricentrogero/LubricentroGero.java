@@ -24,9 +24,11 @@ import Model.EmpleadoModel;
 import Model.ResponsabilidadModel;
 import Model.VehiculoDAO;
 import Model.VehiculoModel;
+
 import View.RankingView;
 import View.ViewCrearOrden;
 
+import View.PrincipalViewDosPuntoCero;
 import java.util.List;
 
 /**
@@ -41,11 +43,12 @@ public class LubricentroGero {
      * @throws java.text.ParseException
      */
 
-    public static void main(String[] args) throws SQLException, ParseException {
+
+   /** public static void main(String[] args) throws SQLException, ParseException {
         // TODO code application logic here
         RankingController rankingController= new RankingController();
          try{
-        rankingController.iniciar();}
+        }
          catch(Exception e){
          
         // System.out.println(e);
@@ -82,9 +85,14 @@ public class LubricentroGero {
         }
         
         
+        }
         
-        
-        
+        **/
+
+    public static void main(String[] args) throws SQLException, ParseException, CloneNotSupportedException {
+        PrincipalViewDosPuntoCero ventana = new PrincipalViewDosPuntoCero();
+        ventana.setVisible(true);
+
     }
     
 }

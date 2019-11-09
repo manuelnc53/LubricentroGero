@@ -59,7 +59,7 @@ public class EmpleadoDAO implements DAO<EmpleadoModel> {
         ResponsabilidadModel responsabilidad=ResponsabilidadModel.CAJERO;
         while(bdEmpleados.next()){
             auxiliar.setDireccion(bdEmpleados.getString(1));
-            System.out.println(bdEmpleados.getString(1));
+            //System.out.println(bdEmpleados.getString(1));
             fecha=new SimpleDateFormat("dd/MM/yyyy").parse(bdEmpleados.getString(2));
             auxiliar.setEdad((Date) fecha.clone());
             res=bdEmpleados.getString(3);
@@ -77,7 +77,7 @@ public class EmpleadoDAO implements DAO<EmpleadoModel> {
         }
             auxiliar.setResponsabilidad(responsabilidad);
             auxiliar.setNombre(bdEmpleados.getString(4));
-            auxiliar.setCuit(bdEmpleados.getInt(5));
+            auxiliar.setCuit(bdEmpleados.getLong(5));
             fecha=new SimpleDateFormat("dd/MM/yyyy").parse(bdEmpleados.getString(6));
             auxiliar.setFecha_ingreso((Date) fecha.clone());
             empleados.add((EmpleadoModel) auxiliar.clone());
