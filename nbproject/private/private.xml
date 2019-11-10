@@ -1,79 +1,31 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Prueba/BankAccount.java</file>
+            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Model/ClienteDAO.java</file>
             <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/lubricentrogero/LubricentroGero.java</file>
             <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Model/OrdenDAO.java</file>
+            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Model/ClienteModel.java</file>
+            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Model/EmpleadoModel.java</file>
+            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/View/RankingView.java</file>
             <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/View/ListarOrdenesDeTrabajoView.java</file>
-            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Prueba/Prueba.java</file>
+            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Model/ProductoDAO.java</file>
+            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Controller/ListarOrdenesDeTrabajoController.java</file>
+            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/View/ViewCrearOrden.java</file>
+            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Controller/RankingController.java</file>
+            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Model/OrdenModel.java</file>
+            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Model/ProductoModel.java</file>
+            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Prueba/BankAccount.java</file>
+            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Controller/OrdenController.java</file>
+            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/View/CreadoSatisfactorioView.java</file>
+            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Controller/VentaController.java</file>
+            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Model/Conexion.java</file>
+            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/View/VentaView.java</file>
             <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Model/Observable.java</file>
+            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Prueba/Prueba.java</file>
+            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Model/Observer.java</file>
+            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/View/PrincipalViewDosPuntoCero.java</file>
         </group>
     </open-files>
 </project-private>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/OrdenDAO.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/AceiteDAO.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Controller/OrdenController.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/ServicioDAO.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/RefrigeranteDAO.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/View/ForcedListSelectionModel.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/EmpleadoModel.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/ServicioModel.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/ClienteDAO.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/EmpleadoDAO.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/Item_de_VentaModel.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/RefrigeranteModel.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/View/ViewCrearOrden.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Controller/ClienteController.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/EstadoModel.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/DAO.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/ProveedorDAO.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/OrdenModel.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/LiquidoDeFrenoModel.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/lubricentrogero/LubricentroGero.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/Conexion.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/View/CreadoSatisfactorioView.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/View/VentaView.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/PedidoDAO.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/VehiculoDAO.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/VehiculoModel.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Controller/AceiteController.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/ClienteModel.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/ProductoModel.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/ResponsabilidadModel.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Controller/ServicioController.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/View/TablaNoEditable.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Model/AceiteModel.java</file>
-            <file>file:/C:/Users/YOGA/Documents/NetBeansProjects/LubricentroGero/src/Controller/EmpleadoController.java</file>
-        </group>
-    </open-files>
-</project-private>
->>>>>>> origin/Gon
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/luisr/OneDrive/Escritorio/Lubricentro%20version%2021-10/LubricentroGero/LubricentroGero/src/Model/VehiculoDAO.java</file>
-            <file>file:/C:/Users/luisr/OneDrive/Escritorio/Lubricentro%20version%2021-10/LubricentroGero/LubricentroGero/src/Model/OrdenModel.java</file>
-            <file>file:/C:/Users/luisr/OneDrive/Escritorio/Lubricentro%20version%2021-10/LubricentroGero/LubricentroGero/src/Model/ProductoDAO.java</file>
-            <file>file:/C:/Users/luisr/OneDrive/Escritorio/Lubricentro%20version%2021-10/LubricentroGero/LubricentroGero/src/Model/EmpleadoModel.java</file>
-            <file>file:/C:/Users/luisr/OneDrive/Escritorio/Lubricentro%20version%2021-10/LubricentroGero/LubricentroGero/src/Model/RenglonDeVenta.java</file>
-            <file>file:/C:/Users/luisr/OneDrive/Escritorio/Lubricentro%20version%2021-10/LubricentroGero/LubricentroGero/nbproject/build-impl.xml</file>
-            <file>file:/C:/Users/luisr/OneDrive/Escritorio/Lubricentro%20version%2021-10/LubricentroGero/LubricentroGero/src/Model/OrdenDAO.java</file>
-            <file>file:/C:/Users/luisr/OneDrive/Escritorio/Lubricentro%20version%2021-10/LubricentroGero/LubricentroGero/src/View/VentaView.java</file>
-            <file>file:/C:/Users/luisr/OneDrive/Escritorio/Lubricentro%20version%2021-10/LubricentroGero/LubricentroGero/src/Controller/OrdenController.java</file>
-        </group>
-    </open-files>
-</project-private>
->>>>>>> origin/Luis

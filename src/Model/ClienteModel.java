@@ -27,6 +27,8 @@ public class ClienteModel {
          this.telefonos_Del_Responsable=new ArrayList();
          this.cuit_cuil=cuit_cuil;
          this.telefonos_Del_Responsable.add(telefono);
+         this.ordenes= new ArrayList();
+         this.compras= new ArrayList();
 
     }
     /**

@@ -30,6 +30,7 @@ public class OrdenController {
     public OrdenController(){
         orden=new OrdenModel();
         ordenDao= new OrdenDAO();
+        ordenBD= new OrdenDAO();
     }
     public List verOrdenes(String idCliente) throws SQLException {
         List<OrdenModel> listado=new ArrayList();
@@ -48,6 +49,7 @@ public class OrdenController {
     public void guardar(String urgencia, EstadoModel estadoModel, EmpleadoModel cajero,
         List<EmpleadoModel> empleadosSelec, ClienteModel cliente,
         VehiculoModel vehiculo, List<ServicioModel> servicios,String descripcion) throws SQLException {
+        System.out.println("hola1");
         orden.setCliente(cliente);
         orden.setUrgencia(urgencia);
         orden.setEmpleado_cajero(cajero);
@@ -57,11 +59,13 @@ public class OrdenController {
         orden.setServicios((ArrayList<ServicioModel>) servicios);
         orden.setDescripcion("hola");
         orden.setDescripcion(descripcion);
+        System.out.println("hola2");
     }
 
     
     public void guardarEnBD() throws SQLException{
-        ordenBD.guardar(orden);
+        System.out.println(this.orden);
+        ordenBD.guardar(this.orden);
     }
     
     public  float costoOrden(){

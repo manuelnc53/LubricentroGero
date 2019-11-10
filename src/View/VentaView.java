@@ -357,7 +357,7 @@ public class VentaView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTabbedPaneSelecionVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -806,7 +806,7 @@ public class VentaView extends javax.swing.JFrame {
         long id=Long.valueOf(idString);
         for(OrdenModel o:ordenes){
             if(id==o.getNro_Orden()){
-            serviciosAux=o.getServicios();}
+            serviciosAux=o.getServicios();
             for(ServicioModel s: serviciosAux){
                 ren = new RenglonDeVenta();
                 ren.setTipoDeIntem(2);//Es un servicio(2)
@@ -818,7 +818,8 @@ public class VentaView extends javax.swing.JFrame {
                 System.out.println(ren);
                 listaRenglonesVenta.add(ren);
                 
-            }
+            }}
+            
         }
         //cargo un servicio
         crearTablaVentas(listaRenglonesVenta, modeloTablaVentas);

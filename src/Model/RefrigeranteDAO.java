@@ -44,6 +44,7 @@ public class RefrigeranteDAO implements DAO<RefrigeranteModel> {
             
             refrigerante.setLitros(resultado.getFloat(2));
         } catch (SQLException ex) {
+            
             Logger.getLogger(RefrigeranteDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     return refrigerante.clone();   

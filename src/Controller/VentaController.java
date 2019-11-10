@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import Model.DAO;
 import Model.EmpleadoModel;
 import Model.Item_de_VentaModel;
+import Model.Observable;
 import Model.ProductoModel;
 import Model.RenglonDeVenta;
 import Model.ServicioModel;
@@ -23,7 +24,7 @@ import java.util.List;
  *
  * @author manuel
  */
-public class VentaController  {
+public class VentaController extends Observable  {
     private VentaModel venta;
     private VentaDAO ventaDao;
     public VentaController(){
@@ -68,6 +69,9 @@ public class VentaController  {
         venta.setItem_de_venta(itemsVenta);
         venta.setServicios(serviciosVenta);
         exitoDeVenta=ventaDao.create(venta);
+        //Notifica los cambios
+        setChanged();
+        notifyObservers();
     }
     
 }

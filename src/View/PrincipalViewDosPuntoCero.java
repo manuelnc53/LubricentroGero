@@ -3,6 +3,7 @@ package View;
 import Controller.EmpleadoController;
 import Controller.ListarOrdenesDeTrabajoController;
 import Controller.RankingController;
+import Controller.VentaController;
 import Model.EmpleadoModel;
 import Model.ResponsabilidadModel;
 import java.awt.event.WindowAdapter;
@@ -48,6 +49,10 @@ public class PrincipalViewDosPuntoCero extends javax.swing.JFrame {
        // EmpleadoModel first = (EmpleadoModel) iter.next();
         cajero = cajeroEncontrado;
         System.out.println(cajero);
+        
+        VentaController venta= new VentaController();
+        RankingController ranking= new RankingController();
+        venta.addObserver(ranking);
         
     }
 

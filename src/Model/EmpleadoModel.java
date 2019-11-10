@@ -25,10 +25,10 @@ public class EmpleadoModel {
     private ArrayList<PedidoModel> pedidos_realizados;
     private ArrayList<CompraModel> compras_realizadas;
 
-    @Override
+   /** @Override
     public String toString() {
         return nombre=nombre+"\n";
-    }
+    }**/
     public EmpleadoModel(){
     }
     public EmpleadoModel(long cuit, String nombre){

@@ -878,7 +878,7 @@ public class ViewCrearOrden extends javax.swing.JFrame {
         CreadoSatisfactorioView ventana = new CreadoSatisfactorioView(new javax.swing.JFrame(), true);
         this.setVisible(false);
         ventana.setVisible(true);
-        super.setVisible(true);
+        padre.setVisible(true);
         this.dispose();
      //   System.exit(0);//Sacar esta linea cuando se junte todo el proyecto
     }//GEN-LAST:event_botonCrearOrdenActionPerformed

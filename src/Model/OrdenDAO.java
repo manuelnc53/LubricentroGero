@@ -257,17 +257,21 @@ public class OrdenDAO implements DAO<OrdenModel> {
     }
 
     public void guardar(OrdenModel orden) throws SQLException {
+        
         consulta = conexion.prepareStatement("INSERT INTO Ordenes (Ord_Fecha_Emision,Ord_Nro_Orden,Ord_Urgencia,Ord_Estado,Ord_Emp_ID,Ord_Clien_ID,Ord_Ve_ID,Ord_Descripcion) VALUES (?,?,?,?,?,?,?,?)");
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                
         orden.setNro_Orden();
         consulta.setString(1, dateFormat.format(orden.getFecha_Orden()));
         consulta.setLong(2, orden.getNro_Orden());
         consulta.setString(3, orden.getUrgencia().toString());
+
         consulta.setString(4,orden.getEstado().toString());
         consulta.setLong(5,  orden.getEmpleado_cajero().getCuit());
         consulta.setLong(6, orden.getCliente().getCuit_cuil());
         consulta.setString(7,orden.getVehiculo().getPatente());
         consulta.setString(8,orden.getDescripcion());
+        System.out.println("estoy aca2");
         consulta.execute();
         for(ServicioModel o: orden.getServicios()){
         consulta = conexion.prepareStatement("INSERT INTO Respecto (Respecto_Orden_ID,Respecto_Servicio_ID) VALUES (?,?)");
