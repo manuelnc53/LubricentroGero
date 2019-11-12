@@ -16,6 +16,9 @@ public class AceiteModel extends ProductoModel {
     
     public AceiteModel(){
      super();
+     this.aceite_ID=0;
+     this.litros=0;
+     this.tipo="";
     } 
     /**
      * @return the acietie_ID

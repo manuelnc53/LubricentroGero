@@ -25,6 +25,7 @@ import Model.ServicioModel;
 import Model.VehiculoDAO;
 import Model.VehiculoModel;
 import Model.VentaModel;
+import java.awt.Dialog;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Date;
@@ -42,6 +43,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,6 +51,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.Stack;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 public class VentaView extends javax.swing.JFrame {
 
@@ -83,6 +86,8 @@ public class VentaView extends javax.swing.JFrame {
     public VentaView(/*EmpleadoModel cajero*/) throws SQLException, ParseException {
         initComponents();
         cajerox=new EmpleadoModel();//sacar y cambiar en el llamado al controler cuando el gonza me lo pase por el constructor
+        cajerox.setCuit(999999999999L);
+        clienteAux=new ClienteModel();
         //obtengo la fecha actual del sistema
         fechaActual = new Date();
         formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
@@ -226,6 +231,7 @@ public class VentaView extends javax.swing.JFrame {
     
     private void crearTablaVentas(List<RenglonDeVenta> renglonesVenta,DefaultTableModel modeloTablaVentas){
         String []datos=new String[5];
+        float total=0;
         int i;
         SimpleDateFormat fechaAux = new SimpleDateFormat("dd/MM/yyyy");
         for(i=0;i<modeloTablaVentas.getRowCount();i++){//limpia la tabla ventas
@@ -239,8 +245,9 @@ public class VentaView extends javax.swing.JFrame {
             datos[3]=r.getPrecioUnitario();
             datos[4]=r.getImporte();
             modeloTablaVentas.addRow(datos);
+            total=total+Float.valueOf(r.getImporte());
         }
-        
+        jTextFieldTotalVenta.setText(String.valueOf(total));
     }
     
     /**
@@ -293,6 +300,8 @@ public class VentaView extends javax.swing.JFrame {
         jTableOrdenesVenta = new javax.swing.JTable();
         jTextFieldCantidadVenta = new javax.swing.JTextField();
 
+        jDialogAgregarManualmente.setAlwaysOnTop(true);
+
         descripcionjDialogAgregarManualmente.setColumns(20);
         descripcionjDialogAgregarManualmente.setRows(5);
         jScrollPane1.setViewportView(descripcionjDialogAgregarManualmente);
@@ -311,6 +320,11 @@ public class VentaView extends javax.swing.JFrame {
         });
 
         cancelarjDialogAgregarManualmente.setText("Cancelar");
+        cancelarjDialogAgregarManualmente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarjDialogAgregarManualmenteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jDialogAgregarManualmenteLayout = new javax.swing.GroupLayout(jDialogAgregarManualmente.getContentPane());
         jDialogAgregarManualmente.getContentPane().setLayout(jDialogAgregarManualmenteLayout);
@@ -621,6 +635,13 @@ public class VentaView extends javax.swing.JFrame {
             jTableOrdenesVenta.getColumnModel().getColumn(0).setPreferredWidth(30);
         }
 
+        jTextFieldCantidadVenta.setText("1");
+        jTextFieldCantidadVenta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldCantidadVentaKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jTabbedPaneVentaLayout = new javax.swing.GroupLayout(jTabbedPaneVenta);
         jTabbedPaneVenta.setLayout(jTabbedPaneVentaLayout);
         jTabbedPaneVentaLayout.setHorizontalGroup(
@@ -694,41 +715,47 @@ public class VentaView extends javax.swing.JFrame {
         int tab;
         tab=jTabbedPaneSelecionVenta.getSelectedIndex();
         switch(tab){
-                case 0: String nombre=(String) jTableClientesVenta.getValueAt(jTableClientesVenta.getSelectedRow(),1);
-                        jTextFieldNombreCliente.setText(nombre);
-                        clienteAux=new ClienteModel();
-                        String a=(String) jTableClientesVenta.getValueAt(jTableClientesVenta.getSelectedRow(),0);//variable auxiliar
-                        clienteAux.setCuit_cuil(Long.valueOf(a));
-                        clienteAux.setNombre((String) jTableClientesVenta.getValueAt(jTableClientesVenta.getSelectedRow(),1));
-                        clienteAux.setDireccion((String) jTableClientesVenta.getValueAt(jTableClientesVenta.getSelectedRow(),2));
-                        break;
-                
-                case 1: String idProducto,nombreProducto,cantidad,Descripcion,producto,descripcion,precio,stock,importe="";
-                        RenglonDeVenta renAuxi=new RenglonDeVenta();
-                        String [] datos= new String[6];
-                       // System.out.println((String) jTableProductosVenta.getValueAt(jTableProductosVenta.getSelectedRow(),0));
-                        idProducto=(String) jTableProductosVenta.getValueAt(jTableProductosVenta.getSelectedRow(),0);
-                        nombreProducto= (String) jTableProductosVenta.getValueAt(jTableProductosVenta.getSelectedRow(),1);//getSelecteRow retorna -1 si no selecciono una fila
-                        descripcion = (String) jTableProductosVenta.getValueAt(jTableProductosVenta.getSelectedRow(),4);
-                        precio = (String) jTableProductosVenta.getValueAt(jTableProductosVenta.getSelectedRow(),5);
-                        importe=(String) jTableProductosVenta.getValueAt(jTableProductosVenta.getSelectedRow(),5);
-                        int cant;
-                        Float pre;
-                        renAuxi.setTipoDeIntem(1);//1 porque es un producto
-                        renAuxi.setiD(idProducto);
-                        renAuxi.setDescripcion(descripcion);
+            //Si se encuentra selecciona la pestaña cliente
+            case 0: String nombre=(String) jTableClientesVenta.getValueAt(jTableClientesVenta.getSelectedRow(),1);
+                    jTextFieldNombreCliente.setText(nombre);
+                    clienteAux=new ClienteModel();
+                    String a=(String) jTableClientesVenta.getValueAt(jTableClientesVenta.getSelectedRow(),0);//variable auxiliar
+                    clienteAux.setCuit_cuil(Long.valueOf(a));
+                    clienteAux.setNombre((String) jTableClientesVenta.getValueAt(jTableClientesVenta.getSelectedRow(),1));
+                    clienteAux.setDireccion((String) jTableClientesVenta.getValueAt(jTableClientesVenta.getSelectedRow(),2));
+                    break;
+            //Si se encuentra selecciona la pestaña producto
+            case 1: String idProducto,nombreProducto,cantidad,Descripcion,producto,descripcion,precio,stock,importe="";
+                    RenglonDeVenta renAuxi=new RenglonDeVenta();
+                    String [] datos= new String[6];
+                   // System.out.println((String) jTableProductosVenta.getValueAt(jTableProductosVenta.getSelectedRow(),0));
+                    idProducto=(String) jTableProductosVenta.getValueAt(jTableProductosVenta.getSelectedRow(),0);
+                    nombreProducto= (String) jTableProductosVenta.getValueAt(jTableProductosVenta.getSelectedRow(),1);//getSelecteRow retorna -1 si no selecciono una fila
+                    descripcion = (String) jTableProductosVenta.getValueAt(jTableProductosVenta.getSelectedRow(),4);
+                    precio = (String) jTableProductosVenta.getValueAt(jTableProductosVenta.getSelectedRow(),5);
+                    importe=(String) jTableProductosVenta.getValueAt(jTableProductosVenta.getSelectedRow(),5);
+                    int cant;
+                    Float pre;
+                    renAuxi.setTipoDeIntem(1);//1 porque es un producto
+                    renAuxi.setiD(idProducto);
+                    renAuxi.setDescripcion(descripcion);
+                    if(jTextFieldCantidadVenta.getText().isEmpty()){
+                        //JOptionPane.showMessageDialog(null,"Ingrese la cantidad del producto a agregar","Mensaje de Error",JOptionPane.ERROR_MESSAGE);
+                        //JOptionPane.showMessageDialog(null, "error");
+                        System.out.println("cANTIDAD VACIA");
+                        JOptionPane.showMessageDialog(this, "Ingrese la cantidad del producto a agregar", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        System.out.println("cANTIDAD VACIA");
+                    }else{
                         renAuxi.setCantidad(jTextFieldCantidadVenta.getText());
                         cant=Integer.valueOf(jTextFieldCantidadVenta.getText());
                         pre=Float.valueOf(precio);
                         renAuxi.setPrecioUnitario(precio);
                         renAuxi.setImporte(String.valueOf(cant*pre));
                         listaRenglonesVenta.add(renAuxi);//agrego el renglo a la lista unica de renglones
-                        crearTablaVentas(listaRenglonesVenta, modeloTablaVentas);//creo la tabla
-                     
-                        break;
-      
-        }               
-        
+                        crearTablaVentas(listaRenglonesVenta, modeloTablaVentas);//creo la tabla    
+                    }
+                    break;
+        }                 
     }//GEN-LAST:event_jButtonAgregarTablaRenglonesVentaActionPerformed
 
     private void jButtonAgregarTablaRenglonesVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAgregarTablaRenglonesVentaMouseClicked
@@ -738,9 +765,19 @@ public class VentaView extends javax.swing.JFrame {
 
     private void jButtonRegistrarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarVentaActionPerformed
         // para registrar la venta
-     
+        if(clienteAux.getCuit_cuil()==0){
+            JOptionPane.showMessageDialog(this, "Seleccione un cliente para relizar la venta", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            if(listaRenglonesVenta.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Agregue un producto o una orden para relizar la venta", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            else{
+                ventaControlador.registrarVenta(listaRenglonesVenta, fechaActual, cajerox, clienteAux);
+                JOptionPane.showMessageDialog(this, "Venta registrada", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
         
-        ventaControlador.registrarVenta(listaRenglonesVenta, fechaActual, cajerox, clienteAux);
     }//GEN-LAST:event_jButtonRegistrarVentaActionPerformed
 
     private void jTextFieldBuscadorTablaProductosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldBuscadorTablaProductosKeyReleased
@@ -766,7 +803,13 @@ public class VentaView extends javax.swing.JFrame {
 
     private void jTableClientesVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClientesVentaMouseClicked
         // TODO add your handling code here:
-       
+        String nombre=(String) jTableClientesVenta.getValueAt(jTableClientesVenta.getSelectedRow(),1);
+        jTextFieldNombreCliente.setText(nombre);
+        //clienteAux=new ClienteModel();
+        String a=(String) jTableClientesVenta.getValueAt(jTableClientesVenta.getSelectedRow(),0);//variable auxiliar
+        clienteAux.setCuit_cuil(Long.valueOf(a));
+        clienteAux.setNombre((String) jTableClientesVenta.getValueAt(jTableClientesVenta.getSelectedRow(),1));
+        clienteAux.setDireccion((String) jTableClientesVenta.getValueAt(jTableClientesVenta.getSelectedRow(),2));
         try {
             ordenes=ordenControlador.verOrdenes(jTableClientesVenta.getValueAt(jTableClientesVenta.getSelectedRow(),0).toString());
         } catch (SQLException ex) {
@@ -777,7 +820,7 @@ public class VentaView extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        //jDialogAgregarManualmente =new JDialog(this,"Agregar Manualmente",true);
+        //jDialogAgregarManualmente =new JDialog(this,"Agregar Manualmente",Dialog.ModalityType.DOCUMENT_MODAL);
         jDialogAgregarManualmente.setVisible(true);
         jDialogAgregarManualmente.setSize(400, 400);
         jDialogAgregarManualmente.setLocation(600,300);
@@ -785,6 +828,21 @@ public class VentaView extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        RenglonDeVenta renglonEliminar=new RenglonDeVenta();//renglon que se desea eliminar de la tabla y la lista
+        Iterator<RenglonDeVenta> ite=listaRenglonesVenta.iterator();//iterador para eliminar
+        DefaultTableModel dtm = (DefaultTableModel) jTableMostrarRenglonesVenta.getModel();
+        renglonEliminar.setiD((String) jTableMostrarRenglonesVenta.getValueAt(jTableMostrarRenglonesVenta.getSelectedRow(),0));
+        renglonEliminar.setDescripcion((String) jTableMostrarRenglonesVenta.getValueAt(jTableMostrarRenglonesVenta.getSelectedRow(),1));
+        renglonEliminar.setCantidad((String) jTableMostrarRenglonesVenta.getValueAt(jTableMostrarRenglonesVenta.getSelectedRow(),2));
+        renglonEliminar.setPrecioUnitario((String) jTableMostrarRenglonesVenta.getValueAt(jTableMostrarRenglonesVenta.getSelectedRow(),3));
+        renglonEliminar.setImporte((String) jTableMostrarRenglonesVenta.getValueAt(jTableMostrarRenglonesVenta.getSelectedRow(),4));
+        while(ite.hasNext()){
+            if(ite.next().equals(renglonEliminar)){
+                ite.remove();//elimino de la lista que mantiene la tabla
+            }    
+        }
+        dtm.removeRow(jTableMostrarRenglonesVenta.getSelectedRow());//elimino de la tabla
+        crearTablaVentas(listaRenglonesVenta, modeloTablaVentas);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -797,6 +855,9 @@ public class VentaView extends javax.swing.JFrame {
 
     private void jTableOrdenesVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableOrdenesVentaMouseClicked
         // TODO add your handling code here:
+        if(evt.getClickCount()==2){
+            System.out.println("hice dos clicks");
+        }
         long idAux;
         idAux=Long.valueOf(jTableOrdenesVenta.getValueAt(jTableOrdenesVenta.getSelectedRow(),0).toString());
         System.out.println("dentro del evento de la tabla ordenes:"+idAux);
@@ -804,25 +865,25 @@ public class VentaView extends javax.swing.JFrame {
         RenglonDeVenta ren;//se cargara con servicios leidos de la orden
         String idString=(String)jTableOrdenesVenta.getValueAt(jTableOrdenesVenta.getSelectedRow(),0);//variable auxiliar
         long id=Long.valueOf(idString);
-        for(OrdenModel o:ordenes){
+        for(OrdenModel o:ordenes){//recorro el areglo de ordenes que mantiene la tabla
             if(id==o.getNro_Orden()){
-            serviciosAux=o.getServicios();
-            for(ServicioModel s: serviciosAux){
-                ren = new RenglonDeVenta();
-                ren.setTipoDeIntem(2);//Es un servicio(2)
-                ren.setiD(String.valueOf(s.getId()));
-                ren.setDescripcion(s.getNombre());
-                ren.setCantidad("1");
-                ren.setPrecioUnitario(String.valueOf(s.getPrecio()));
-                ren.setImporte(String.valueOf(s.getPrecio()));
-                System.out.println(ren);
-                listaRenglonesVenta.add(ren);
-                
-            }}
+            serviciosAux=o.getServicios();//agrego los servicios que posse la orden 
+                for(ServicioModel s: serviciosAux){//recorro esos servicios agregandolos como renglones de venta
+                    ren = new RenglonDeVenta();
+                    ren.setTipoDeIntem(2);//Es un servicio(2)
+                    ren.setiD(String.valueOf(s.getId()));
+                    ren.setDescripcion(s.getNombre());
+                    ren.setCantidad("1");
+                    ren.setPrecioUnitario(String.valueOf(s.getPrecio()));
+                    ren.setImporte(String.valueOf(s.getPrecio()));
+                    System.out.println(ren);
+                    listaRenglonesVenta.add(ren);
+                }
+            }
             
         }
-        //cargo un servicio
-        crearTablaVentas(listaRenglonesVenta, modeloTablaVentas);
+        
+        crearTablaVentas(listaRenglonesVenta, modeloTablaVentas);//actualizo la tabla/creo la tabla
     }//GEN-LAST:event_jTableOrdenesVentaMouseClicked
 
     private void aceptarjDialogAgregarManualmenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarjDialogAgregarManualmenteActionPerformed
@@ -836,6 +897,26 @@ public class VentaView extends javax.swing.JFrame {
         listaRenglonesVenta.add(renAux);
         crearTablaVentas(listaRenglonesVenta, modeloTablaVentas);
     }//GEN-LAST:event_aceptarjDialogAgregarManualmenteActionPerformed
+
+    private void cancelarjDialogAgregarManualmenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarjDialogAgregarManualmenteActionPerformed
+        // TODO add your handling code here:
+        descripcionjDialogAgregarManualmente.setText("");
+        costojDialogAgregarManualmente.setText("");
+        jDialogAgregarManualmente.dispose();
+    }//GEN-LAST:event_cancelarjDialogAgregarManualmenteActionPerformed
+
+    private void jTextFieldCantidadVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCantidadVentaKeyTyped
+        // TODO add your handling code here:
+         char caracter = evt.getKeyChar();
+
+      // Verifica si la tecla pulsada no es un digito
+      if(((caracter < '0') ||
+         (caracter > '9')) &&
+         (caracter != '\b' /*corresponde a BACK_SPACE*/))
+      {
+         evt.consume();  // ignorar el evento de teclado
+      }
+    }//GEN-LAST:event_jTextFieldCantidadVentaKeyTyped
 
     /**
      * @param args the command line arguments

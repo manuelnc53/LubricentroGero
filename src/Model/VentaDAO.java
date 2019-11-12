@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -37,6 +38,7 @@ public class VentaDAO implements DAO<VentaModel> {
         int cantDelItem;
         int cantInsert = 0,cantStock=0,idInsertItem = 0;
         //statement para las consultas
+        PreparedStatement controlClavesForaneas;
         PreparedStatement consulta;
         PreparedStatement st;
         PreparedStatement st1;
@@ -61,7 +63,10 @@ public class VentaDAO implements DAO<VentaModel> {
         conexion = Conexion.getConnection();
         System.out.println("en el venta dao para primera consulta \n'"+fecha+"'"+","+clienteId+","+empleadoId+",'"+descDescuentoRecargo+"',"+importeDescuentoRecargo+");");
         try {
+            controlClavesForaneas= conexion.prepareStatement("PRAGMA foreign_keys = ON;");
+            controlClavesForaneas.execute();
             consulta = conexion.prepareStatement("INSERT INTO Ventas (Venta_Fecha,Venta_Cliente_ID,Venta_Emp_ID,Venta_Descrip_Desc_Recargo,Venta_Importe_Desc_Recargo) VALUES ('"+fecha+"'"+","+clienteId+","+empleadoId+",'"+descDescuentoRecargo+"',"+importeDescuentoRecargo+");");
+            System.out.println("dentro del dao venta quiero insertar con los sig valores\n"+fecha+"'"+","+clienteId+","+empleadoId+",'"+descDescuentoRecargo+"',"+importeDescuentoRecargo);
             consulta.executeUpdate();
             st = conexion.prepareStatement("SELECT last_insert_rowid()");
             idVent = st.executeQuery();

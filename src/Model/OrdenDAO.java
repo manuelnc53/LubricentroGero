@@ -107,7 +107,7 @@ public class OrdenDAO implements DAO<OrdenModel> {
               
               aux.setUrgencia(resultado.getString("Ord_Urgencia"));
               aux.setVehiculo( new VehiculoModel(resultado.getString("Ord_Ve_ID")));
-              if (resultado.getString("Ord_Estado").equals("en_proceso")){
+              if (resultado.getString("Ord_Estado").equals("EN_PROCESO")){
                   aux.setEstado(EstadoModel.EN_PROCESO);
               }else{
                   aux.setEstado(EstadoModel.FINALIZADO);
