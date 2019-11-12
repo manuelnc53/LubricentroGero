@@ -297,7 +297,7 @@ public class PrincipalViewDosPuntoCero extends javax.swing.JFrame {
         JFrame estaVentana = this;
         try {
             VentaView ventana;
-            ventana = new VentaView();
+            ventana = new VentaView(this);
             WindowListener exitListener = new WindowAdapter() {
 
     @Override

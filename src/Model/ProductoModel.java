@@ -202,22 +202,17 @@ public class ProductoModel {
         return hash;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
+    
+    public boolean equals(ProductoModel obj) {
+        if (this.producto_ID == obj.getProducto_ID()) {
             return true;
         }
-        if (obj == null) {
+        else{
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final ProductoModel other = (ProductoModel) obj;
-        if (this.producto_ID != other.producto_ID) {
-            return false;
-        }
-        return true;
     }
+
+   
+    
     
 }
