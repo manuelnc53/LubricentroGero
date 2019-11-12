@@ -20,7 +20,7 @@ public class ClienteModel {
     private ArrayList<VentaModel> compras;
 
     public ClienteModel(){
-    
+        this.cuit_cuil=0;
     }
 
      public ClienteModel(long cuit_cuil, String telefono){

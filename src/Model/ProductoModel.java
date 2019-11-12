@@ -13,7 +13,6 @@ import java.util.ArrayList;
  */
 public class ProductoModel {
 
-    
     private int producto_ID;
     private String nombre;
     private String marca;
@@ -21,6 +20,7 @@ public class ProductoModel {
     private float precioVenta;
     private String descripcion;
     private int cantidadEnStock;
+    private int catidadMinimaEnStock;
     private String origen;
     private ArrayList<Item_de_VentaModel> venta;
     private ArrayList<PedidoModel> pedido;
@@ -166,7 +166,19 @@ public class ProductoModel {
     public void setProducto_ID(int producto_ID) {
         this.producto_ID = producto_ID;
     }
-    
+    /**
+     * @return the catidadMinimaEsStock
+     */
+    public int getCatidadMinimaEnStock() {
+        return catidadMinimaEnStock;
+    }
+
+    /**
+     * @param catidadMinimaEsStock the catidadMinimaEsStock to set
+     */
+    public void setCatidadMinimaEnStock(int catidadMinimaEsStock) {
+        this.catidadMinimaEnStock = catidadMinimaEsStock;
+    }
     public ProductoModel clone(){
         ProductoModel clon = new ProductoModel();
         

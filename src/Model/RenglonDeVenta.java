@@ -19,10 +19,9 @@ public class RenglonDeVenta {
     private String precioUnitario;
     private String importe;
 
-   
     
     public boolean equals (RenglonDeVenta ren){
-        if(ren.getTipoDeIntem()==this.getTipoDeIntem() && ren.getiD().equals(this.getiD()) 
+        if(ren.getiD().equals(this.getiD()) 
                 && ren.getDescripcion().equals(this.getDescripcion()) && ren.getCantidad().equals(this.getCantidad())
                 && ren.getPrecioUnitario().equals(this.getPrecioUnitario()) && ren.getImporte().equals(this.getImporte())){
             return true;

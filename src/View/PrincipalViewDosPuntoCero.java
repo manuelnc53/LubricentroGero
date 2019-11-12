@@ -30,6 +30,8 @@ import javax.swing.JOptionPane;
  */
 public class PrincipalViewDosPuntoCero extends javax.swing.JFrame {
     private EmpleadoModel cajero;
+     private RankingController rankingController;
+     private VentaView ventaView;
     /**
      * Creates new form PrincipalViewDosPuntoCero
      */
@@ -50,9 +52,12 @@ public class PrincipalViewDosPuntoCero extends javax.swing.JFrame {
         cajero = cajeroEncontrado;
         System.out.println(cajero);
         
-        VentaController venta= new VentaController();
-        RankingController ranking= new RankingController();
-        venta.addObserver(ranking);
+        this.rankingController= new RankingController();
+        this.ventaView = new VentaView();
+        this.ventaView.setVisible(false);
+        this.ventaView.addObserver(rankingController);
+        /**RankingController ranking= new RankingController();
+        venta.addObserver(ranking);**/
         
     }
 
@@ -205,9 +210,9 @@ public class PrincipalViewDosPuntoCero extends javax.swing.JFrame {
     private void rankingMensualBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rankingMensualBotonActionPerformed
         JFrame estaVentana = this;
         try {
-            RankingController ventana= new RankingController();
-            ventana.iniciar();
-            WindowListener exitListener = new WindowAdapter() {
+            
+            rankingController.iniciar();
+            /*WindowListener exitListener = new WindowAdapter() {
 
     @Override
     public void windowClosing(WindowEvent e) {
@@ -218,7 +223,7 @@ public class PrincipalViewDosPuntoCero extends javax.swing.JFrame {
             ventana.getRankingView().addWindowListener(exitListener);
             this.setVisible(false);
             ventana.getRankingView().setAlwaysOnTop(true);
-            ventana.getRankingView().setVisible(true);
+            ventana.getRankingView().setVisible(true);**/
             
         } catch (SQLException ex) {
             Logger.getLogger(PrincipalViewDosPuntoCero.class.getName()).log(Level.SEVERE, null, ex);
@@ -296,24 +301,22 @@ public class PrincipalViewDosPuntoCero extends javax.swing.JFrame {
     private void registrarVentaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarVentaBotonActionPerformed
         JFrame estaVentana = this;
         try {
-            VentaView ventana;
-            ventana = new VentaView();
+            //VentaView ventana;
+            this.ventaView.setVisible(true);
             WindowListener exitListener = new WindowAdapter() {
 
     @Override
     public void windowClosing(WindowEvent e) {
-                ventana.setVisible(false);
+                ventaView.setVisible(false);
                 estaVentana.setVisible(true);
                     }
                 };
-            ventana.addWindowListener(exitListener);
+            ventaView.addWindowListener(exitListener);
             this.setVisible(false);
-            ventana.setAlwaysOnTop(true);
-            ventana.setVisible(true);
+            ventaView.setAlwaysOnTop(true);
+            ventaView.setVisible(true);
             
-        } catch (SQLException ex) {
-            Logger.getLogger(PrincipalViewDosPuntoCero.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParseException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(PrincipalViewDosPuntoCero.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_registrarVentaBotonActionPerformed
