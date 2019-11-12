@@ -53,7 +53,7 @@ public class PrincipalViewDosPuntoCero extends javax.swing.JFrame {
         System.out.println(cajero);
         
         this.rankingController= new RankingController();
-        this.ventaView = new VentaView();
+        this.ventaView = new VentaView(this);
         this.ventaView.setVisible(false);
         this.ventaView.addObserver(rankingController);
         /**RankingController ranking= new RankingController();
@@ -301,8 +301,11 @@ public class PrincipalViewDosPuntoCero extends javax.swing.JFrame {
     private void registrarVentaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarVentaBotonActionPerformed
         JFrame estaVentana = this;
         try {
+
             //VentaView ventana;
             this.ventaView.setVisible(true);
+            /**VentaView ventana;
+            ventana = new VentaView(this);**/
             WindowListener exitListener = new WindowAdapter() {
 
     @Override

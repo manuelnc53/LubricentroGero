@@ -86,7 +86,7 @@ public class LubricentroGero {
         PrincipalViewDosPuntoCero ventana = new PrincipalViewDosPuntoCero();
         ventana.setVisible(true);
        
-
+                
     }
     
 }

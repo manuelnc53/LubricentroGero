@@ -52,6 +52,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.Stack;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 public class VentaView extends javax.swing.JFrame {
@@ -84,8 +85,10 @@ public class VentaView extends javax.swing.JFrame {
     //Clinte que se carga en el action listener de agregar luego se pasara a la orden
     private ClienteModel clienteAux;
     
-    public VentaView(/*EmpleadoModel cajero*/) throws SQLException, ParseException {
+    private JFrame ventanaPrincipal;
+    public VentaView(/*EmpleadoModel cajero*/JFrame ventanaPrin) throws SQLException, ParseException {
         initComponents();
+        ventanaPrincipal=ventanaPrin;
         cajerox=new EmpleadoModel();//sacar y cambiar en el llamado al controler cuando el gonza me lo pase por el constructor
         cajerox.setCuit(999999999999L);
         clienteAux=new ClienteModel();
@@ -305,6 +308,7 @@ public class VentaView extends javax.swing.JFrame {
         jScrollPaneServiciosTablaVenta = new javax.swing.JScrollPane();
         jTableOrdenesVenta = new javax.swing.JTable();
         jTextFieldCantidadVenta = new javax.swing.JTextField();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
         jDialogAgregarManualmente.setAlwaysOnTop(true);
 
@@ -648,6 +652,13 @@ public class VentaView extends javax.swing.JFrame {
             }
         });
 
+        jToggleButton1.setText("Cancelar");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jTabbedPaneVentaLayout = new javax.swing.GroupLayout(jTabbedPaneVenta);
         jTabbedPaneVenta.setLayout(jTabbedPaneVentaLayout);
         jTabbedPaneVentaLayout.setHorizontalGroup(
@@ -668,6 +679,8 @@ public class VentaView extends javax.swing.JFrame {
                         .addComponent(jPanelMostrarRenglonesVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jTabbedPaneVentaLayout.createSequentialGroup()
+                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
                         .addComponent(jButtonRegistrarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35))))
         );
@@ -687,7 +700,9 @@ public class VentaView extends javax.swing.JFrame {
                             .addGap(81, 81, 81)
                             .addComponent(jPanelMostrarRenglonesVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonRegistrarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jTabbedPaneVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButtonRegistrarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jTabbedPaneVentaLayout.createSequentialGroup()
                             .addGap(120, 120, 120)
                             .addComponent(jTabbedPaneSelecionVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -763,7 +778,9 @@ public class VentaView extends javax.swing.JFrame {
                             renAuxi.setPrecioUnitario(precio);
                             renAuxi.setImporte(String.valueOf(cant*pre));
                             listaRenglonesVenta.add(renAuxi);//agrego el renglo a la lista unica de renglones
-                            crearTablaVentas(listaRenglonesVenta, modeloTablaVentas);//creo la tabla  
+                            crearTablaVentas(listaRenglonesVenta, modeloTablaVentas);//creo la tabla 
+                            //decremento el stock de los prodectos que mantiene la tabla productos
+                            
                         }
                             
                            
@@ -790,6 +807,7 @@ public class VentaView extends javax.swing.JFrame {
                 ventaControlador.registrarVenta(listaRenglonesVenta, fechaActual, cajerox, clienteAux);
                 JOptionPane.showMessageDialog(this, "Venta registrada", "ERROR", JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
+                ventanaPrincipal.setVisible(true);
             }
         }
         
@@ -862,6 +880,14 @@ public class VentaView extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        listaRenglonesVenta.clear();
+        crearTablaVentas(listaRenglonesVenta, modeloTablaVentas);
+        jTextFieldNombreCliente.setText("");
+        jTableClientesVenta.clearSelection();
+        jTableProductosVenta.clearSelection();
+        jTableOrdenesVenta.clearSelection();
+        jTableClientesVenta.clearSelection();
+        clienteAux= new ClienteModel();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTableProductosVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableProductosVentaKeyTyped
@@ -932,6 +958,12 @@ public class VentaView extends javax.swing.JFrame {
          evt.consume();  // ignorar el evento de teclado
       }
     }//GEN-LAST:event_jTextFieldCantidadVentaKeyTyped
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        ventanaPrincipal.setVisible(true);
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1009,5 +1041,6 @@ public class VentaView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldFecha;
     private javax.swing.JTextField jTextFieldNombreCliente;
     private javax.swing.JTextField jTextFieldTotalVenta;
+    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }
