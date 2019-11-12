@@ -292,6 +292,7 @@ public class VentaView extends javax.swing.JFrame {
         jScrollPaneServiciosTablaVenta = new javax.swing.JScrollPane();
         jTableOrdenesVenta = new javax.swing.JTable();
         jTextFieldCantidadVenta = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         descripcionjDialogAgregarManualmente.setColumns(20);
         descripcionjDialogAgregarManualmente.setRows(5);
@@ -358,6 +359,7 @@ public class VentaView extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTabbedPaneSelecionVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -405,7 +407,7 @@ public class VentaView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelClientesVentaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelClientesVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPaneClientesTablaVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+                    .addComponent(jScrollPaneClientesTablaVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
                     .addGroup(jPanelClientesVentaLayout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
@@ -483,7 +485,7 @@ public class VentaView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelProductosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelProductosVentaLayout.createSequentialGroup()
-                        .addComponent(jScrollPaneProductosTablaVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+                        .addComponent(jScrollPaneProductosTablaVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanelProductosVentaLayout.createSequentialGroup()
                         .addGroup(jPanelProductosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -527,17 +529,17 @@ public class VentaView extends javax.swing.JFrame {
             jTableMostrarRenglonesVenta.getColumnModel().getColumn(0).setPreferredWidth(10);
         }
 
-        jPanelMostrarRenglonesVenta.add(jScrollPaneMostrarRenglonesVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 630, 240));
+        jPanelMostrarRenglonesVenta.add(jScrollPaneMostrarRenglonesVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 590, 240));
 
         jTextFieldNombreCliente.setEditable(false);
         jPanelMostrarRenglonesVenta.add(jTextFieldNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 270, -1));
 
         jLabelNombreCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelNombreCliente.setText("Cliente");
-        jPanelMostrarRenglonesVenta.add(jLabelNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 60, 20));
+        jPanelMostrarRenglonesVenta.add(jLabelNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 60, 20));
 
         jLabel2.setText("Fecha");
-        jPanelMostrarRenglonesVenta.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 60, -1, 20));
+        jPanelMostrarRenglonesVenta.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, -1, 20));
 
         jButton2.setText("Agregar Manualmente");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -564,13 +566,13 @@ public class VentaView extends javax.swing.JFrame {
         jPanelMostrarRenglonesVenta.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 430, 190, -1));
 
         jTextFieldFecha.setEditable(false);
-        jPanelMostrarRenglonesVenta.add(jTextFieldFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, 90, -1));
+        jPanelMostrarRenglonesVenta.add(jTextFieldFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, 90, -1));
 
         jTextFieldTotalVenta.setEditable(false);
-        jPanelMostrarRenglonesVenta.add(jTextFieldTotalVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 360, 80, -1));
+        jPanelMostrarRenglonesVenta.add(jTextFieldTotalVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 360, 80, -1));
 
         jLabel7.setText("Total:");
-        jPanelMostrarRenglonesVenta.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 360, 40, 20));
+        jPanelMostrarRenglonesVenta.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 360, 40, 20));
 
         jButtonAgregarTablaRenglonesVenta.setText("agregar");
         jButtonAgregarTablaRenglonesVenta.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -626,23 +628,28 @@ public class VentaView extends javax.swing.JFrame {
         jTabbedPaneVentaLayout.setHorizontalGroup(
             jTabbedPaneVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jTabbedPaneVentaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonRegistrarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jTabbedPaneVentaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jTabbedPaneVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTabbedPaneSelecionVenta)
-                    .addComponent(jScrollPaneServiciosTablaVenta))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                    .addComponent(jScrollPaneServiciosTablaVenta)
+                    .addComponent(jTabbedPaneSelecionVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jTabbedPaneVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jTabbedPaneVentaLayout.createSequentialGroup()
+                    .addGroup(jTabbedPaneVentaLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                         .addGroup(jTabbedPaneVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabelCantidadVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonAgregarTablaRenglonesVenta)
                             .addComponent(jTextFieldCantidadVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanelMostrarRenglonesVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jTabbedPaneVentaLayout.createSequentialGroup()
-                        .addComponent(jButtonRegistrarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelMostrarRenglonesVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14))
+                    .addGroup(jTabbedPaneVentaLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel8)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jTabbedPaneVentaLayout.setVerticalGroup(
             jTabbedPaneVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -654,36 +661,22 @@ public class VentaView extends javax.swing.JFrame {
                         .addGap(13, 13, 13)
                         .addComponent(jLabelCantidadVenta)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextFieldCantidadVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jTabbedPaneVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jTabbedPaneVentaLayout.createSequentialGroup()
-                            .addGap(81, 81, 81)
-                            .addComponent(jPanelMostrarRenglonesVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonRegistrarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jTabbedPaneVentaLayout.createSequentialGroup()
-                            .addGap(120, 120, 120)
-                            .addComponent(jTabbedPaneSelecionVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jScrollPaneServiciosTablaVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(49, Short.MAX_VALUE))
+                        .addComponent(jTextFieldCantidadVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(226, 226, 226)
+                        .addComponent(jLabel8))
+                    .addGroup(jTabbedPaneVentaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanelMostrarRenglonesVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(172, 172, 172)
+                        .addComponent(jButtonRegistrarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jTabbedPaneVentaLayout.createSequentialGroup()
+                        .addComponent(jTabbedPaneSelecionVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPaneServiciosTablaVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jTabbedPaneVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPaneVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        getContentPane().add(jTabbedPaneVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 780));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -891,6 +884,7 @@ public class VentaView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabelCantidadVenta;
     private javax.swing.JLabel jLabelNombreCliente;
     private javax.swing.JPanel jPanelClientesVenta;
