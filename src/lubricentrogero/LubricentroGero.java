@@ -30,6 +30,7 @@ import View.ViewCrearOrden;
 
 import View.PrincipalViewDosPuntoCero;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -84,6 +85,7 @@ public class LubricentroGero {
     public static void main(String[] args) throws SQLException, ParseException, CloneNotSupportedException {
         PrincipalViewDosPuntoCero ventana = new PrincipalViewDosPuntoCero();
         ventana.setVisible(true);
+       
 
     }
     

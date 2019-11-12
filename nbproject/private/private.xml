@@ -3,29 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Model/ClienteDAO.java</file>
-            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/lubricentrogero/LubricentroGero.java</file>
-            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Model/OrdenDAO.java</file>
-            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Model/ClienteModel.java</file>
-            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Model/EmpleadoModel.java</file>
-            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/View/RankingView.java</file>
-            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/View/ListarOrdenesDeTrabajoView.java</file>
-            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Model/ProductoDAO.java</file>
-            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Controller/ListarOrdenesDeTrabajoController.java</file>
-            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/View/ViewCrearOrden.java</file>
-            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Controller/RankingController.java</file>
-            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Model/OrdenModel.java</file>
-            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Model/ProductoModel.java</file>
-            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Prueba/BankAccount.java</file>
-            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Controller/OrdenController.java</file>
-            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/View/CreadoSatisfactorioView.java</file>
-            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Controller/VentaController.java</file>
-            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Model/Conexion.java</file>
-            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/View/VentaView.java</file>
-            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Model/Observable.java</file>
-            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Prueba/Prueba.java</file>
-            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/Model/Observer.java</file>
-            <file>file:/C:/Users/pc/Desktop/ISW2/LubricentroGero/src/View/PrincipalViewDosPuntoCero.java</file>
+            <file>file:/C:/Users/luisr/OneDrive/Escritorio/Proyecto%20Final/LubricentroGero/LubricentroGero/src/Controller/ProductoController.java</file>
+            <file>file:/C:/Users/luisr/OneDrive/Escritorio/Proyecto%20Final/LubricentroGero/LubricentroGero/src/View/ListarServiciosView.java</file>
+            <file>file:/C:/Users/luisr/OneDrive/Escritorio/Proyecto%20Final/LubricentroGero/LubricentroGero/src/Model/OrdenModel.java</file>
+            <file>file:/C:/Users/luisr/OneDrive/Escritorio/Proyecto%20Final/LubricentroGero/LubricentroGero/src/lubricentrogero/LubricentroGero.java</file>
+            <file>file:/C:/Users/luisr/OneDrive/Escritorio/Proyecto%20Final/LubricentroGero/LubricentroGero/src/View/VentaView.java</file>
+            <file>file:/C:/Users/luisr/OneDrive/Escritorio/Proyecto%20Final/LubricentroGero/LubricentroGero/src/View/ListarProductosView.java</file>
+            <file>file:/C:/Users/luisr/OneDrive/Escritorio/Proyecto%20Final/LubricentroGero/LubricentroGero/src/Model/VentaDAO.java</file>
+            <file>file:/C:/Users/luisr/OneDrive/Escritorio/Proyecto%20Final/LubricentroGero/LubricentroGero/src/View/ViewCrearOrden.java</file>
+            <file>file:/C:/Users/luisr/OneDrive/Escritorio/Proyecto%20Final/LubricentroGero/LubricentroGero/src/Model/OrdenDAO.java</file>
+            <file>file:/C:/Users/luisr/OneDrive/Escritorio/Proyecto%20Final/LubricentroGero/LubricentroGero/src/Model/AceiteModel.java</file>
         </group>
     </open-files>
 </project-private>
