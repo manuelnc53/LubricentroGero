@@ -180,7 +180,7 @@ public class VentaView extends javax.swing.JFrame {
     }
     
     private  void crearTablaProductos(List<ProductoModel> productosParaTabla,DefaultTableModel modeloTablaProductos){
-        String []datos=new String[6];
+        String []datos=new String[7];
         int i;
         //limpia la tabla antes
         for(i=0;i<modeloTablaProductos.getRowCount();i++){
@@ -197,7 +197,7 @@ public class VentaView extends javax.swing.JFrame {
             datos[3]=o.getDescripcion();
             datos[4]=String.valueOf(o.getPrecioVenta());
             datos[5]=String.valueOf(o.getCantidadEnStock());
-            
+            datos[6]=String.valueOf(o.getCatidadMinimaEnStock());
             modeloTablaProductos.addRow(datos);
         }
     }
@@ -734,7 +734,8 @@ public class VentaView extends javax.swing.JFrame {
                     descripcion = (String) jTableProductosVenta.getValueAt(jTableProductosVenta.getSelectedRow(),4);
                     precio = (String) jTableProductosVenta.getValueAt(jTableProductosVenta.getSelectedRow(),5);
                     importe=(String) jTableProductosVenta.getValueAt(jTableProductosVenta.getSelectedRow(),5);
-                    int cant;
+                    int cant,stockAux;
+                    stockAux=Integer.valueOf(jTableProductosVenta.getValueAt(jTableProductosVenta.getSelectedRow(),5).toString()) ;
                     Float pre;
                     renAuxi.setTipoDeIntem(1);//1 porque es un producto
                     renAuxi.setiD(idProducto);
@@ -746,13 +747,20 @@ public class VentaView extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Ingrese la cantidad del producto a agregar", "ERROR", JOptionPane.ERROR_MESSAGE);
                         System.out.println("cANTIDAD VACIA");
                     }else{
-                        renAuxi.setCantidad(jTextFieldCantidadVenta.getText());
-                        cant=Integer.valueOf(jTextFieldCantidadVenta.getText());
-                        pre=Float.valueOf(precio);
-                        renAuxi.setPrecioUnitario(precio);
-                        renAuxi.setImporte(String.valueOf(cant*pre));
-                        listaRenglonesVenta.add(renAuxi);//agrego el renglo a la lista unica de renglones
-                        crearTablaVentas(listaRenglonesVenta, modeloTablaVentas);//creo la tabla    
+                        if(Integer.valueOf(jTextFieldCantidadVenta.getText()) > stockAux){//si la cantidad a vender supera el stock
+                            System.out.println("asdad");
+                            JOptionPane.showMessageDialog(this, "Stock insuficiente", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        }else{
+                            renAuxi.setCantidad(jTextFieldCantidadVenta.getText());
+                            cant=Integer.valueOf(jTextFieldCantidadVenta.getText());
+                            pre=Float.valueOf(precio);
+                            renAuxi.setPrecioUnitario(precio);
+                            renAuxi.setImporte(String.valueOf(cant*pre));
+                            listaRenglonesVenta.add(renAuxi);//agrego el renglo a la lista unica de renglones
+                            crearTablaVentas(listaRenglonesVenta, modeloTablaVentas);//creo la tabla  
+                        }
+                            
+                           
                     }
                     break;
         }                 
@@ -775,6 +783,7 @@ public class VentaView extends javax.swing.JFrame {
             else{
                 ventaControlador.registrarVenta(listaRenglonesVenta, fechaActual, cajerox, clienteAux);
                 JOptionPane.showMessageDialog(this, "Venta registrada", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
             }
         }
         

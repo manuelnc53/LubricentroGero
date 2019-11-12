@@ -868,7 +868,7 @@ public class ViewCrearOrden extends javax.swing.JFrame {
     private void botonCrearOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearOrdenActionPerformed
         OrdenController controlador = new OrdenController();
         try {
-            controlador.guardar(comboBoxPrioridad.getSelectedItem().toString(),EstadoModel.EN_PROCESO,cajero,empleadosSelec,cliente,vehiculo,servicios,
+            controlador.guardar(comboBoxPrioridad.getSelectedItem().toString(),EstadoModel.EN_PROCESO,cajero,empleadosSelec,cliente,vehiculo,serviciosSelec,
                 areaTextoDescripcion.getText());
             controlador.guardarEnBD();
         } catch (SQLException ex) {
