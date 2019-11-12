@@ -10,7 +10,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -48,9 +50,14 @@ public class ProductoDAO implements DAO<ProductoModel> {
         ArrayList<ProductoModel> retorno= new ArrayList();
         Statement st =Conexion.getConnection().createStatement();
         ResultSet resultado;
+        Date fecha= new Date();
+        SimpleDateFormat formatoFecha= new SimpleDateFormat("dd/MM/yyyy");
+        String a=formatoFecha.format(fecha).toString();
         resultado = st.executeQuery("SELECT Prod_Nombre, Prod_Marca,cantidad\n" +
                                     "FROM (SELECT ItemVenta_Producto_ID,SUM(ItemVenta_Cantidad) AS cantidad\n" +
-                                    "		FROM itemventa\n" +
+                                    "		FROM  (SELECT  ItemVenta_Producto_ID,ItemVenta_Cantidad\n" +
+"							FROM itemventa, ventas\n" +
+"							WHERE Venta_Fecha LIKE '%"+a.substring(2,a.length())+"' AND Venta_ID=ItemVenta_Venta_ID)\n" +
                                     "		GROUP BY ItemVenta_Producto_ID\n" +
                                     "		ORDER BY cantidad DESC), productos\n" +
                                     " where Prod_ID = ItemVenta_Producto_ID");
