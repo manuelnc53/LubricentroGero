@@ -18,6 +18,7 @@ import Model.AceiteModel;
 import Model.ClienteModel;
 import Model.EmpleadoDAO;
 import Model.EmpleadoModel;
+import Model.Observer;
 import Model.OrdenModel;
 import Model.ProductoModel;
 import Model.RenglonDeVenta;
@@ -114,6 +115,11 @@ public class VentaView extends javax.swing.JFrame {
         crearTablaClientes(clientes, modeloTablaClientes);
         crearTablaProductos(productos, modeloTablaProductos);
           
+    }
+    
+    public void addObserver(Observer observer){
+    this.ventaControlador.addObserver(observer);
+    
     }
     
     /**
